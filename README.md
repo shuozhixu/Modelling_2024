@@ -23,7 +23,7 @@ Please read the following journal articles to understand how the aforementioned 
 
 ## Alloys
 
-At least two alloys will be considered
+At least two alloys will be considered.
 
 ### CoCrNi
 
@@ -43,7 +43,7 @@ At least two alloys will be considered
 
 ## Ceramics
 
-Two ceramics will be considered
+Two ceramics will be considered.
 
 ### BaCe<sub>0.5</sub>Zr<sub>0.5</sub>O<sub>3</sub>
 
