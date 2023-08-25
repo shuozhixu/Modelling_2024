@@ -43,7 +43,7 @@ At least two alloys will be considered.
 
 ## Ceramics
 
-Two ceramics will be considered.
+Four ceramics will be considered.
 
 ### BaCe<sub>0.5</sub>Zr<sub>0.5</sub>O<sub>3</sub>
 
@@ -61,4 +61,18 @@ It is the simplification of BaCo<sub>0.4</sub>Fe<sub>0.4</sub>Zr<sub>0.1</sub>Y<
 
 #### Elastic constants
 
-#### GSFE
+### La<sub>0.8</sub>Sr<sub>0.2</sub>Ga<sub>0.8</sub>Mg<sub>0.2</sub>O<sub>2.8</sub>
+
+It is an electrolyte in one type of fuel cell.
+
+#### Lattice parameters
+
+#### Elastic constants
+
+### La<sub>0.6</sub>Sr<sub>0.4</sub>CoO<sub>3</sub> 
+
+It is the simplification of La<sub>0.6</sub>Sr<sub>0.4</sub>CoO<sub>$3-\delta$</sub>, which is a cathode in one type of fuel cell.
+
+#### Lattice parameters
+
+#### Elastic constants
