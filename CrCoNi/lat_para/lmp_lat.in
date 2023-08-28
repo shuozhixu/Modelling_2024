@@ -1,0 +1,61 @@
+#Shuozhi Xu, OU
+
+
+# ------------------- INITIALIZE -------------------------------
+units           metal
+boundary        p p p
+atom_style      atomic
+
+
+# ------------------- ATOM DEFINE ------------------------------
+
+read_data	min.NiCoCr_27nmx_27nmy_27nmz_random.dat
+
+# ------------------- FIELD DEFINE -----------------------------
+pair_style      eam/alloy
+pair_coeff      * * CoCrNi.lammps.eam Ni Co Cr
+
+#pair_style adp
+#pair_coeff * * AuRh.adp.txt Rh
+
+neighbor        0.3     bin
+#neigh_modify    one   20000000 page 200000000
+
+# ------------------- SETTINGS ---------------------------------
+#### Computes Required
+
+variable r equal 0.8
+
+change_box all x scale $r y scale $r z scale $r remap
+
+variable a loop 400
+
+label loop
+
+variable b equal $r+$a*0.001
+
+variable c equal $r+($a-1)*0.001
+
+variable d equal $b/$c
+
+change_box all x scale $d y scale $d z scale $d remap
+
+thermo          1
+thermo_style    custom step lx ly lz pe etotal
+
+variable lat_para equal (lx/3.+ly/6.+lz/2.)/3.
+
+variable eatom equal etotal/count(all)
+
+# ------------------- EQUILIBRATE -----------------------
+
+#run 0
+
+#print "${lat_para} ${eatom}" file a_E
+fix 1 all print 1 "${lat_para} ${eatom}" append a_E screen no title ""
+
+run 1
+unfix 1
+next a
+
+jump lmp_lat.in loop
