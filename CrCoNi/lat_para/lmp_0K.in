@@ -1,11 +1,9 @@
 #Shuozhi Xu, OU
 
-
 # ------------------- INITIALIZE -------------------------------
 units           metal
 boundary        p p p
 atom_style      atomic
-
 
 # ------------------- ATOM DEFINE ------------------------------
 
@@ -58,4 +56,4 @@ run 1
 unfix 1
 next a
 
-jump lmp_lat.in loop
+jump lmp_0K.in loop

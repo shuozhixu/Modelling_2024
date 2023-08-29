@@ -1,0 +1,96 @@
+#This is the file to calculate the <112> GSFE curve. Along this curve, there are 101*20 data points. orient [1-10] [11-2] [111], x, y, z
+
+#shell   mkdir      dump
+
+#variable	n loop 20
+#label		loopn
+
+# ------------------- INITIALIZE -------------------------------
+units           metal
+dimension	3
+boundary        p p s
+atom_style      atomic
+read_data	data.CoCrNi_gsfe_random       ######variable
+
+# ------------------- FIELD DEFINE -----------------------------
+pair_style      eam/alloy
+pair_coeff      * * CoCrNi.lammps.eam Ni Co Cr 
+
+neighbor        0.3     bin
+neigh_modify    delay   10
+
+# ------------------- SETTINGS ---------------------------------
+thermo          1000
+thermo_style    custom step etotal
+
+variable        tmp0 equal "zlo+6"      ##### 8>5.8799999999999999 (potential cutoff), variable
+variable        zlo0 equal ${tmp0}
+variable        tmp1 equal "zhi-6"
+variable        zhi0 equal ${tmp1}
+variable        tmp2 equal "(zlo+zhi)/2"
+variable        zmid equal ${tmp2}
+
+region		upbound block INF INF INF INF ${zhi0} INF units box    
+region		lobound block INF INF INF INF INF ${zlo0} units box      
+
+group		upbound region upbound
+group		lobound region lobound
+group		boundary union lobound upbound
+group		mobile subtract all boundary
+
+region		upper block INF INF INF INF ${zmid} INF units box      #variable
+region		lower block INF INF INF INF INF ${zmid} units box      #variable
+
+group		top region upper
+group		bot region lower
+
+variable        Nslip equal 20                   #the number of periods
+variable        stepn equal 100
+variable        stepm equal ${Nslip}*${stepn}+1
+
+variable        latparam equal 3.5564             #variable
+
+variable        area equal lx*ly
+
+variable        disp equal (${latparam}*sqrt(6)/2)/${stepn}
+
+displace_atoms  bot move 0 ${disp} 0 units box
+
+variable        a loop ${stepm}
+label           loopa
+
+variable        rdisp equal ($a-1)/${stepn}
+
+displace_atoms  bot move 0 -${disp} 0 units box
+
+compute         peratom all pe/atom
+compute         eatoms all reduce sum c_peratom
+
+variable        gsfe equal c_eatoms/${area}*1.60218*10000
+
+dump            1 all custom 10000 dump.* id type xs ys zs
+
+thermo          1
+thermo_style    custom step pe c_eatoms
+
+fix		1 boundary setforce 0.0 0.0 0.0
+fix		2 mobile setforce 0.0 0.0 NULL
+
+min_style       cg
+minimize	1e-12 1e-12 10000 10000           #minimize        0.0 0.0 100000 100000
+
+print           "${rdisp} ${gsfe}" append gsfe_ori
+
+undump          1
+unfix           1
+unfix		2
+uncompute       peratom
+uncompute       eatoms
+
+next            a
+jump            lmp_gsfe.in loopa
+
+#clear
+#next		n
+#jump		lmp_HEA.in loopn
+

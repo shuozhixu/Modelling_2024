@@ -47,7 +47,7 @@ region		box prism 0 2.0 0 3.0 0 4.0 0.0 0.0 0.0
 
 read_data	min.NiCoCr_27nmx_27nmy_27nmz_random.dat
 
-variable r equal 0.924
+variable r equal 1.
 
 change_box all x scale $r y scale $r z scale $r remap
 

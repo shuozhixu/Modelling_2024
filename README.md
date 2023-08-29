@@ -42,30 +42,36 @@ Therefore, the first step in this project is to install all four packages to you
 
 At least four alloys will be considered.
 
+Please, each time you run a new type of simulation, create a new directory.
+
 ### CoCrNi
+
+Note: all files can be found in the `CoCrNi` directory in this GitHub repository, except the data files which can be [here](https://drive.google.com/drive/folders/13xaI274U-xIsBN8h_TY_eohsXxedEwFE?usp=sharing). The reason is that the data files are too large for GitHub.
+
+All data files are from [this paper](http://dx.doi.org/10.1016/j.actamat.2020.08.044), which should be cited.
 
 #### Lattice parameters at 0 K
 
 ###### Random CoCrNi
 
-Run the simulation with files `lmp_lat.in`, `min.NiCoCr_27nmx_27nmy_27nmz_random`, and `CoCrNi.lammps.eam`. The second file can be found [here](https://drive.google.com/drive/folders/13xaI274U-xIsBN8h_TY_eohsXxedEwFE?usp=sharing) while the other two in this GitHub repository.
+Run the simulation with files `lmp_0K.in`, `min.NiCoCr_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
 
-Once the simulation is finished, you will find a new file a_E. The first column is the ratio of the trial lattice parameter to 3.5564, the second column is the trial lattice parameter itself, in units of Anstrong, the thrid column is the cohesive energy, in units of eV. If you plot a curve with the second column as the x axis and the third column as the y axis, the curve should look like the ones in Figure 1(a) of [this paper](http://dx.doi.org/10.1016/j.commatsci.2021.110942).
+Once it is finished, you will find a new file `a_E`. The first column is the ratio of the trial lattice parameter to 3.5564, the second column is the trial lattice parameter itself, in units of Anstrong, the thrid column is the cohesive energy, in units of eV. If you plot a curve with the second column as the x axis and the third column as the y axis, the curve should look like the ones in Figure 1(a) of [this paper](http://dx.doi.org/10.1016/j.commatsci.2021.110942).
 
 Then run `sh min.sh` to find out the trial lattice parameter corresponding to the lowest cohesive energy (i.e., the minimum on that curve), and that would be the actual lattice parameter. Specifically, you will see
 
-	0.924 3.04920000000009 -5.96926166742226
+	1 3.55644549888703 -4.32151351854507
 
 on the screen. Record these three numbers. These are for random CoCrNi.
 
 ###### CoCrNi with CSRO
 
-Make a new directory and copy these files into it: 
-`lmp_lat.in`, `min.NiCoCr_27nmx_27nmy_27nmz_350K.dat`, and `CoCrNi.lammps.eam`. The second file can be found [here](https://drive.google.com/drive/folders/13xaI274U-xIsBN8h_TY_eohsXxedEwFE?usp=sharing). Make one change in `lmp_lat.in`:
+The simulation requires files 
+`lmp_0K.in`, `min.NiCoCr_27nmx_27nmy_27nmz_350K.dat`, and `CoCrNi.lammps.eam`. The second file can be found [here](https://drive.google.com/drive/folders/13xaI274U-xIsBN8h_TY_eohsXxedEwFE?usp=sharing). Make one change in `lmp_lat.in`:
 
-- Line 12. Change the word `random` to `350K`, i.e., to match the new data file's name.
+- Line 10. Change the word `random` to `350K`, i.e., to match the new data file's name.
 
-Run the simulation. Once it is finished, you will find a new file `a_E`. The first column is the ratio of the trial lattice parameter to 3.yyy; the other two columns have the same meaning as the random case. Repeat the remaining steps in the random case and record the three numbers for the CoCrNi with CSRO annealled at 350 K.
+Run the simulation. Once it is finished, you will find a new file `a_E`. The first column is the ratio of the trial lattice parameter to 3.561; the other two columns have the same meaning as the random case. Repeat the remaining steps in the random case and record the three numbers for the CoCrNi with CSRO.
 
 #### Elastic constants at 0 K
 
@@ -73,35 +79,86 @@ Run the simulation. Once it is finished, you will find a new file `a_E`. The fir
 
 Run the simulation with files `in.elastic`, `displace.mod`, `init.mod`, `potential.mod`, `min.NiCoCr_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
 
-Once the simulation is finished, go to the end of the file lmp.out. You will find values of C11all, C12all etc. Use Equations 10-12 of [this paper](http://dx.doi.org/10.1016/j.commatsci.2021.110942) to calculate the three effective BCC elastic constants, in units of GPa. Specifically, they should be
-
-	383.218 119.581 53.754
-
-Record these numbers, which are for the random CoCrNi.
+Once it is finished, you will find a file `lmp.out`. Rename that file to `lmp_random.out` and upload it to the `CoCrNi/ela_const/0K` directory. 
 
 ###### CoCrNi with CSRO
 
-Make a new directory and copy these files into it: `in.elastic`, `displace.mod`, `init.mod`, `potential.mod`, `min.NiCoCr_27nmx_27nmy_27nmz_350K.dat`, and `CoCrNi.lammps.eam`. Make one change in `init.mod`:
+The simulation requires files `in.elastic`, `displace.mod`, `init.mod`, `potential.mod`, `min.NiCoCr_27nmx_27nmy_27nmz_350K.dat`, and `CoCrNi.lammps.eam`. Make one change in `init.mod`:
 
-- Change the last number (by default 0.zzz) of line 50 to the correct ratio identified in the prior lattice parameter calculation, i.e., the first of the three numbers you recorded for the CSRO case.
+- Change the last number (by default 1.) of line 50 to the correct ratio identified in the prior lattice parameter calculation, i.e., the first of the three numbers you recorded for the CSRO case.
 
-Run the simulation and record the three elastic constants, which are for CoCrNi with CSRO.
+Run the simulation. Once it is finished, rename the newly generated file `lmp.out` to `lmp_350K.out` and upload it to the `CoCrNi/ela_const/0K` directory.
 
 #### Lattice parameters at 350 K
 
 ###### Random CoCrNi
 
+Run the simulation with files `lmp_350K.in`, `min.NiCoCr_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
+
+Once it is finished, go to the file `log.lammps` and find the first block of data that starts with a line `Step Lx Ly Lz`. The first column of the data block starts from 0, increasing in increment of 100, and stops at 10000.
+
+First, calculate the lattice parameter at the last step 10000, using
+
+	(Lx'/Lx + Ly'/Ly + Lz'/Lz)/3
+
+where Lx', Ly', and Lz' are taken at the step 10000, while Lx, Ly, and Lz are taken at step 0. Record the result.
+
+Then repeat the equation above, but using Lx', Ly', and Lz' at steps 9900, 9800, 9700, and 9600 respectively. In total, you get five lattice parameters. Calculate the mean of the five numbers, and that is the lattice parameter for random CoCrNi at 350 K.
+
+You will also find a newly generated file `data.relax`, which will be used later for the elastic constants calculations.
+
 ###### CoCrNi with CSRO
+
+Repeat the steps above, except that
+
+- Use the data file `min.NiCoCr_27nmx_27nmy_27nmz_350K.dat` instead
+- Change the word `random` to `350K` in line 10 of the file `lmp_350K.in`
+
+Record the lattice parameter, which is for CoCrNi with CSRO.
+
+Again, the newly generated file `data.relax` will be used later for the elastic constants calculations.
 
 #### Elastic constants at 350 K
 
-#### GSFE
+###### Random CoCrNi
+
+Run the simulation with files `in.elastic`, `init.in`, `potential.in`, `output.in`, `final_output.in`, `data.relax`, and `CoCrNi.lammps.eam`. Note that the file `data.relax` is the one you got from the `Lattice parameters at 350 K - Random CoCrNi` calculation.
+
+Once it is finished, rename the file `lmp.out` to `lmp_random.out` and upload it to the `CoCrNi/ela_const/350K` directory. 
+
+###### CoCrNi with CSRO
+
+Repeat the steps above, except that
+
+- Use the `data.relax` file from the `Lattice parameters at 350 K - CoCrNi with CSRO` calculation instead
+
+At the end of the simulation, rename the file `lmp.out` to `lmp_350K.out` and upload it to the `CoCrNi/ela_const/350K` directory.
+
+#### GSFE at 0 K
+
+###### Random CoCrNi
+
+Run the simulation with files `lmp_gsfe.in`, `data.CoCrNi_gsfe_random`, and `CoCrNi.lammps.eam`.
+
+Once it is finished, you will find a file `gsfe_ori`. Run `sh gsfe_curve.in` in the terminal to generate a new file `gsfe`. Plot a curve using the first and second columns as the _x_ and _y_ axes, respectively. Bring it to our meeting for discussion.
+
+###### CoCrNi with CSRO
+
+Repeat the steps above, except that
+
+- Use the data file `data.CoCrNi_gsfe_350K` instead
 
 ### MoNbTa
 
 #### Lattice parameters
 
 #### Elastic constants
+
+You will find values of C11all, C12all etc. Use Equations 10-12 of [this paper](http://dx.doi.org/10.1016/j.commatsci.2021.110942) to calculate the three effective BCC elastic constants, in units of GPa. Specifically, they should be
+
+	383.218 119.581 53.754
+
+Record these numbers, which are for the random CoCrNi.
 
 #### GSFE
 
