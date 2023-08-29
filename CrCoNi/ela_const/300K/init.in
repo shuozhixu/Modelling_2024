@@ -14,7 +14,7 @@ log log.elastic.${logsuffix}
 
 # select temperature and pressure (lattice constant)
 
-variable temp index 350.0                 # temperature of initial sample
+variable temp index 300.0                 # temperature of initial sample
 #variable a index 5.457                     # lattice constant
 
 # select sampling parameters, important for speed/convergence

@@ -42,19 +42,19 @@ Therefore, the first step in this project is to install all four packages to you
 
 ## Alloys
 
-At least six alloys will be considered.
+Six alloys will be considered.
 
 ### HfMoNbTaTi
 
-Done.
+Done. Need to cite [this paper](http://dx.doi.org/10.1063/5.0116898).
 
 ### HfNbTaTiZr
 
-Done.
+Done. Also need to cite [this paper](http://dx.doi.org/10.1063/5.0116898).
 
 ### CoCrNi
 
-Note: All files can be found in the `CoCrNi` directory in this GitHub repository, except the data files which can be [here](https://drive.google.com/drive/folders/13xaI274U-xIsBN8h_TY_eohsXxedEwFE?usp=sharing). The reason is that the data files are too large for GitHub.
+Note: All files for calculations can be found in the `CoCrNi` directory in this GitHub repository, except the data files which can be [here](https://drive.google.com/drive/folders/13xaI274U-xIsBN8h_TY_eohsXxedEwFE?usp=sharing). The reason is that the data files are too large for GitHub.
 
 All data files are from [this paper](http://dx.doi.org/10.1016/j.actamat.2020.08.044), which should be cited.
 
@@ -87,7 +87,11 @@ Run the simulation. Once it is finished, you will find a new file `a_E`. The fir
 
 Run the simulation with files `in.elastic`, `displace.mod`, `init.mod`, `potential.mod`, `min.NiCoCr_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
 
-Once it is finished, you will find a file `lmp.out`. Rename that file to `lmp_random.out` and upload it to the `CoCrNi/ela_const/0K` directory. 
+Once it is finished, you will find a file `lmp.out`, at the end of which you will find values of C11all, C12all etc. Specifically, you will see
+
+	
+
+Rename that file to `lmp_random.out` and upload it to the `CoCrNi/ela_const/0K` directory. 
 
 ###### CoCrNi with CSRO
 
@@ -97,13 +101,21 @@ The simulation requires files `in.elastic`, `displace.mod`, `init.mod`, `potenti
 
 Run the simulation. Once it is finished, rename the newly generated file `lmp.out` to `lmp_350K.out` and upload it to the `CoCrNi/ela_const/0K` directory.
 
-#### Lattice parameters at 350 K
+#### Lattice parameters at 300 K
 
 ###### Random CoCrNi
 
-Run the simulation with files `lmp_350K.in`, `min.NiCoCr_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
+Run the simulation with files `lmp_300K.in`, `min.NiCoCr_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
 
 Once it is finished, go to the file `log.lammps` and find the first block of data that starts with a line `Step Lx Ly Lz`. The first column of the data block starts from 0, increasing in increment of 100, and stops at 10000.
+
+In fact, you will find that the first line of the block is
+
+	
+	
+while the last line is
+
+	
 
 First, calculate the lattice parameter at the last step 10000, using
 
@@ -111,7 +123,7 @@ First, calculate the lattice parameter at the last step 10000, using
 
 where Lx', Ly', and Lz' are taken at the step 10000, while Lx, Ly, and Lz are taken at step 0. Record the result.
 
-Then repeat the equation above, but using Lx', Ly', and Lz' at steps 9900, 9800, 9700, and 9600 respectively. In total, you get five lattice parameters. Calculate the mean of the five numbers, and that is the lattice parameter for random CoCrNi at 350 K.
+Then repeat the equation above, but using Lx', Ly', and Lz' at steps 9900, 9800 , ..., and 9100, respectively. In total, you get ten lattice parameters. Calculate the mean of the ten numbers, and that is the lattice parameter for random CoCrNi at 350 K.
 
 You will also find a newly generated file `data.relax`, which will be used later for the elastic constants calculations.
 
@@ -120,27 +132,27 @@ You will also find a newly generated file `data.relax`, which will be used later
 Repeat the steps above, except that
 
 - Use the data file `min.NiCoCr_27nmx_27nmy_27nmz_350K.dat` instead
-- Change the word `random` to `350K` in line 10 of the file `lmp_350K.in`
+- Change the word `random` to `350K` in line 10 of the file `lmp_300K.in`
 
 Record the lattice parameter, which is for CoCrNi with CSRO.
 
 Again, the newly generated file `data.relax` will be used later for the elastic constants calculations.
 
-#### Elastic constants at 350 K
+#### Elastic constants at 300 K
 
 ###### Random CoCrNi
 
-Run the simulation with files `in.elastic`, `init.in`, `potential.in`, `output.in`, `final_output.in`, `data.relax`, and `CoCrNi.lammps.eam`. Note that the file `data.relax` is the one you got from the `Lattice parameters at 350 K - Random CoCrNi` calculation.
+Run the simulation with files `in.elastic`, `init.in`, `potential.in`, `output.in`, `final_output.in`, `data.relax`, and `CoCrNi.lammps.eam`. Note that the file `data.relax` is the one you got from the `Lattice parameters at 300 K - Random CoCrNi` calculation.
 
-Once it is finished, rename the file `lmp.out` to `lmp_random.out` and upload it to the `CoCrNi/ela_const/350K` directory. 
+Once it is finished, rename the file `lmp.out` to `lmp_random.out` and upload it to the `CoCrNi/ela_const/300K` directory. 
 
 ###### CoCrNi with CSRO
 
 Repeat the steps above, except that
 
-- Use the `data.relax` file from the `Lattice parameters at 350 K - CoCrNi with CSRO` calculation instead
+- Use the `data.relax` file from the `Lattice parameters at 300 K - CoCrNi with CSRO` calculation instead
 
-At the end of the simulation, rename the file `lmp.out` to `lmp_350K.out` and upload it to the `CoCrNi/ela_const/350K` directory.
+At the end of the simulation, rename the file `lmp.out` to `lmp_300K.out` and upload it to the `CoCrNi/ela_const/300K` directory.
 
 #### GSFE at 0 K
 
@@ -156,6 +168,7 @@ Repeat the steps above, except that
 
 - Use the data file `data.CoCrNi_gsfe_350K` instead
 - Change the word `random` to `350K` in line 14 of the file `lmp_gsfe.in`
+- Change the number `3.5564` to `3.561` in line 51 of the file `lmp_gsfe.in`
 
 ### MoNbTa
 

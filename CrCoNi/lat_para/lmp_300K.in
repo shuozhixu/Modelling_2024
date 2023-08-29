@@ -19,7 +19,7 @@ pair_coeff      * * CoCrNi.lammps.eam Ni Co Cr
 
 # ------------------- SETTINGS ---------------------------------
 
-variable        myTemp equal 350
+variable        myTemp equal 300
 
 neighbor        0.3     bin
 neigh_modify    delay   10
