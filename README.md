@@ -29,7 +29,7 @@ LAMMPS on [OSCER](http://www.ou.edu/oscer.html) likely does not come with many p
 
 To finish this project, at least four packages are needed. The first two comes with the official LAMMPS source code, and so it should be straightforward to install them:
 
-- MANYBODY package
+- MANYBODY package. This is to use the manybody potential such as the embedded-atom method potential.
 - EXTRA-COMPUTE package. This is to calculate the elastic constants at finite temperatures using the Born matrix method. To learn more, please visit [this page](https://docs.lammps.org/Howto_elastic.html
 ) and [this page](https://docs.lammps.org/compute_born_matrix.html).
 
