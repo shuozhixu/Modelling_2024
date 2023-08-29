@@ -44,7 +44,7 @@ region		lower block INF INF INF INF INF ${zmid} units box      #variable
 group		top region upper
 group		bot region lower
 
-variable        Nslip equal 20                   #the number of periods
+variable        Nslip equal 30                   #the number of periods
 variable        stepn equal 100
 variable        stepm equal ${Nslip}*${stepn}+1
 

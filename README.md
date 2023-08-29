@@ -21,6 +21,8 @@ Please read the following journal articles to understand how the aforementioned 
 
 - Shuozhi Xu, Wu-Rong Jian, Irene J. Beyerlein, [Ideal simple shear strengths of two HfNbTaTi-based quinary refractory multi-principal element alloys](http://dx.doi.org/10.1063/5.0116898), APL Mater. 10 (2022) 111107
 
+Please, each time you run a new type of simulation, create a new directory.
+
 ## LAMMPS
 
 LAMMPS on [OSCER](http://www.ou.edu/oscer.html) likely does not come with many packages. To build more packages into LAMMPS, please visit [this page](https://docs.lammps.org/Build_package.html).
@@ -40,13 +42,19 @@ Therefore, the first step in this project is to install all four packages to you
 
 ## Alloys
 
-At least four alloys will be considered.
+At least six alloys will be considered.
 
-Please, each time you run a new type of simulation, create a new directory.
+### HfMoNbTaTi
+
+Done.
+
+### HfNbTaTiZr
+
+Done.
 
 ### CoCrNi
 
-Note: all files can be found in the `CoCrNi` directory in this GitHub repository, except the data files which can be [here](https://drive.google.com/drive/folders/13xaI274U-xIsBN8h_TY_eohsXxedEwFE?usp=sharing). The reason is that the data files are too large for GitHub.
+Note: All files can be found in the `CoCrNi` directory in this GitHub repository, except the data files which can be [here](https://drive.google.com/drive/folders/13xaI274U-xIsBN8h_TY_eohsXxedEwFE?usp=sharing). The reason is that the data files are too large for GitHub.
 
 All data files are from [this paper](http://dx.doi.org/10.1016/j.actamat.2020.08.044), which should be cited.
 
@@ -140,33 +148,57 @@ At the end of the simulation, rename the file `lmp.out` to `lmp_350K.out` and up
 
 Run the simulation with files `lmp_gsfe.in`, `data.CoCrNi_gsfe_random`, and `CoCrNi.lammps.eam`.
 
-Once it is finished, you will find a file `gsfe_ori`. Run `sh gsfe_curve.in` in the terminal to generate a new file `gsfe`. Plot a curve using the first and second columns as the _x_ and _y_ axes, respectively. Bring it to our meeting for discussion.
+Once it is finished, you will find a file `gsfe_ori`. Run `sh gsfe_curve.in` in the terminal to generate a new file `gsfe`. Plot a curve using its first and second columns as the _x_ and _y_ axes, respectively. Bring it to our meeting for discussion.
 
 ###### CoCrNi with CSRO
 
 Repeat the steps above, except that
 
 - Use the data file `data.CoCrNi_gsfe_350K` instead
+- Change the word `random` to `350K` in line 14 of the file `lmp_gsfe.in`
 
 ### MoNbTa
 
 #### Lattice parameters
 
+###### Random MoNbTa, at 0 K, 600 K, and 900 K
+
+Done.
+
+###### MoNbTa with CSRO, at 0 K
+
+Need to generate MoNbTa with CSRO.
+
+- First, use [Atomsk](https://atomsk.univ-lille.fr) to generate random MoNbTa.
+- Then, use the [VCSGC package](https://vcsgc-lammps.materialsmodeling.org) to generate MoNbTa with CSRO, annealed at 300 K.
+
 #### Elastic constants
 
-You will find values of C11all, C12all etc. Use Equations 10-12 of [this paper](http://dx.doi.org/10.1016/j.commatsci.2021.110942) to calculate the three effective BCC elastic constants, in units of GPa. Specifically, they should be
+###### Random MoNbTa, at 0 K, 600 K, and 900 K
+
+Done.
+
+###### MoNbTa with CSRO, at 0 K
+
+At the end of the `log.out` file, you will find values of C11all, C12all etc. Use Equations 10-12 of [this paper](http://dx.doi.org/10.1016/j.commatsci.2021.110942) to calculate the three effective BCC elastic constants, in units of GPa. Specifically, they should be
 
 	383.218 119.581 53.754
 
-Record these numbers, which are for the random CoCrNi.
+Record these numbers.
 
-#### GSFE
+#### GSFE at 0 K
+
+###### Random MoNbTa
+
+Done.
+
+###### CoCrNi with CSRO, at 0 K
 
 ### Co<sub>2</sub>Ni<sub>2</sub>Ru
 
-#### Lattice parameters
+#### Lattice parameters at 0 K
 
-#### Elastic constants
+#### Elastic constants at 0 K
 
 #### GSFE
 
