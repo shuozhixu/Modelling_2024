@@ -89,7 +89,8 @@ Run the simulation with files `in.elastic`, `displace.mod`, `init.mod`, `potenti
 
 Once it is finished, you will find a file `lmp.out`, at the end of which you will find values of C11all, C12all etc. Specifically, you will see
 
-	
+	Elastic Constant C11all = 309.979695007998 GPa
+	Elastic Constant C22all = 310.087578803684 GPa
 
 Rename that file to `lmp_random.out` and upload it to the `CoCrNi/ela_const/0K` directory. 
 
@@ -111,15 +112,15 @@ Once it is finished, go to the file `log.lammps` and find the first block of dat
 
 In fact, you will find that the first line of the block is
 
-	
+	0    271.59916    274.41197     277.1948
 	
 while the last line is
 
-	
+	10000     272.5714    275.39428    278.18707
 
 First, calculate the lattice parameter at the last step 10000, using
 
-	(Lx'/Lx + Ly'/Ly + Lz'/Lz)/3
+(Lx'/Lx + Ly'/Ly + Lz'/Lz)/3
 
 where Lx', Ly', and Lz' are taken at the step 10000, while Lx, Ly, and Lz are taken at step 0. Record the result.
 
@@ -160,7 +161,11 @@ At the end of the simulation, rename the file `lmp.out` to `lmp_300K.out` and up
 
 Run the simulation with files `lmp_gsfe.in`, `data.CoCrNi_gsfe_random`, and `CoCrNi.lammps.eam`.
 
-Once it is finished, you will find a file `gsfe_ori`. Run `sh gsfe_curve.in` in the terminal to generate a new file `gsfe`. Plot a curve using its first and second columns as the _x_ and _y_ axes, respectively. Bring it to our meeting for discussion.
+Once it is finished, you will find a file `gsfe_ori`, which should contain 3001 lines, with the first one being
+
+	0 -374943.444563279
+
+Then run `sh gsfe_curve.in` in the terminal to generate a new file `gsfe`. Plot a curve using its first and second columns as the _x_ and _y_ axes, respectively. Bring it to our meeting for discussion.
 
 ###### CoCrNi with CSRO
 
