@@ -50,7 +50,7 @@ At least four alloys will be considered.
 
 Run the simulation with files `lmp_lat.in`, `min.NiCoCr_27nmx_27nmy_27nmz_random`, and `CoCrNi.lammps.eam`. The second file can be found [here](https://drive.google.com/drive/folders/13xaI274U-xIsBN8h_TY_eohsXxedEwFE?usp=sharing) while the other two in this GitHub repository.
 
-Once the simulation is finished, you will find a new file a_E. The first column is the ratio of the trial lattice parameter to 3.xxx, the second column is the trial lattice parameter itself, in units of Anstrong, the thrid column is the cohesive energy, in units of eV. If you plot a curve with the second column as the x axis and the third column as the y axis, the curve should look like the ones in Figure 1(a) of [this paper](http://dx.doi.org/10.1016/j.commatsci.2021.110942).
+Once the simulation is finished, you will find a new file a_E. The first column is the ratio of the trial lattice parameter to 3.5564, the second column is the trial lattice parameter itself, in units of Anstrong, the thrid column is the cohesive energy, in units of eV. If you plot a curve with the second column as the x axis and the third column as the y axis, the curve should look like the ones in Figure 1(a) of [this paper](http://dx.doi.org/10.1016/j.commatsci.2021.110942).
 
 Then run `sh min.sh` to find out the trial lattice parameter corresponding to the lowest cohesive energy (i.e., the minimum on that curve), and that would be the actual lattice parameter. Specifically, you will see
 

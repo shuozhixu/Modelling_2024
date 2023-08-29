@@ -43,7 +43,7 @@ change_box all x scale $d y scale $d z scale $d remap
 thermo          1
 thermo_style    custom step lx ly lz pe etotal
 
-variable lat_para equal (lx/3.+ly/6.+lz/2.)/3.
+variable lat_para equal (lx/(54*sqrt(2.))+ly/(63*sqrt(6.)/2)+lz/(45*sqrt(3.)))/3.
 
 variable eatom equal etotal/count(all)
 
@@ -52,7 +52,7 @@ variable eatom equal etotal/count(all)
 #run 0
 
 #print "${lat_para} ${eatom}" file a_E
-fix 1 all print 1 "${lat_para} ${eatom}" append a_E screen no title ""
+fix 1 all print 1 "$b ${lat_para} ${eatom}" append a_E screen no title ""
 
 run 1
 unfix 1
