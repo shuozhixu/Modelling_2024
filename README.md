@@ -45,13 +45,39 @@ Note: Only the first two packages are required for CoCrNi. So please first insta
 
 Six alloys will be considered.
 
+No new calculations are needed for the first two alloys. Data are included here so that you will include them into the paper.
+
 ### HfMoNbTaTi
 
-Done. Need to cite [this paper](http://dx.doi.org/10.1063/5.0116898).
+Data at 0 K were taken from [this paper](http://dx.doi.org/10.1063/5.0116898). Need to cite it. Data at finite temperatures are newly calculated for the current project. In all cases, simulation cells with size D (see Table II of the paper) were used.
+
+Results are summarized in the directory `HfMoNbTaTi` in this GitHub repository. USFEs, taken on the \{110\} plane, are in units of mJ/m<sup>2</sup>.
+
+###### Random HfMoNbTaTi
+
+The random material was studied at 0 K, 300 K, 600 K, 900 K, and 1200 K, respectively. Results are in `data_random.txt`.
+
+###### HfMoNbTaTi with CSRO
+
+Following [the paper](http://dx.doi.org/10.1063/5.0116898), four levels of CSRO were considered, with the material annealed at 300 K, 600 K, and 900 K, respectively. In what follows, let's call them 300KMDMC, 600KMDMC, 900KMDMC, respectively.
+
+The material 300KMDMC was studied at 0 K and 300 K, respectively. Results are in `data_300KMDMC.txt`.
+
+The material 600KMDMC was studied at 0 K and 600 K, respectively. Results are in `data_600KMDMC.txt`.
+
+The material 900KMDMC was studied at 0 K and 900 K, respectively. Results are in `data_900KMDMC.txt`.
 
 ### HfNbTaTiZr
 
-Done. Also need to cite [this paper](http://dx.doi.org/10.1063/5.0116898).
+Data at 0 K were taken from [this paper](http://dx.doi.org/10.1063/5.0116898). Need to cite it. Data at finite temperatures are newly calculated for the current project. In all cases, simulation cells with size D (see Table II of the paper) were used.
+
+Results are summarized in the directory `HfNbTaTiZr` in this GitHub repository. USFEs, taken on the \{110\} plane, are in units of mJ/m<sup>2</sup>.
+
+Note:
+
+- Only random HfNbTaTiZr is considered, and the results are in `data_random.txt`.
+- Pure Mo, Nb, and Ta are considered, and the results are in `Mo.txt`, `Nb.txt`, and `Ta.txt`, respectively.
+- These four materials are studied at 0 K, 300 K, 600 K, and 900 K, respectively. It would be interesting to compare the temperature effect on them.
 
 ### CoCrNi
 
@@ -63,7 +89,7 @@ All data files are from [this paper](http://dx.doi.org/10.1016/j.actamat.2020.08
 
 ###### Random CoCrNi
 
-Run the simulation with files `lmp_0K.in`, `min.NiCoCr_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
+Run the simulation with files `lmp_0K.in`, `min.CoCrNi_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
 
 Once it is finished, you will find a new file `a_E`. The first column is the ratio of the trial lattice parameter to 3.5564, the second column is the trial lattice parameter itself, in units of Anstrong, the thrid column is the cohesive energy, in units of eV. If you plot a curve with the second column as the x axis and the third column as the y axis, the curve should look like the ones in Figure 1(a) of [this paper](http://dx.doi.org/10.1016/j.commatsci.2021.110942).
 
@@ -76,9 +102,9 @@ on the screen. Record these three numbers. These are for random CoCrNi.
 ###### CoCrNi with CSRO
 
 The simulation requires files 
-`lmp_0K.in`, `min.NiCoCr_27nmx_27nmy_27nmz_350K.dat`, and `CoCrNi.lammps.eam`. The second file can be found [here](https://drive.google.com/drive/folders/13xaI274U-xIsBN8h_TY_eohsXxedEwFE?usp=sharing). Make one change in `lmp_lat.in`:
+`lmp_0K.in`, `min.CoCrNi_27nmx_27nmy_27nmz_350KMDMC.dat`, and `CoCrNi.lammps.eam`. The second file can be found [here](https://drive.google.com/drive/folders/13xaI274U-xIsBN8h_TY_eohsXxedEwFE?usp=sharing). Make one change in `lmp_lat.in`:
 
-- Line 10. Change the word `random` to `350K`, i.e., to match the new data file's name.
+- Line 10. Change the word `random` to `350KMDMC`, i.e., to match the new data file's name.
 
 Run the simulation. Once it is finished, you will find a new file `a_E`. The first column is the ratio of the trial lattice parameter to 3.561; the other two columns have the same meaning as the random case. Repeat the remaining steps in the random case and record the three numbers for the CoCrNi with CSRO.
 
@@ -86,7 +112,7 @@ Run the simulation. Once it is finished, you will find a new file `a_E`. The fir
 
 ###### Random CoCrNi
 
-Run the simulation with files `in.elastic`, `displace.mod`, `init.mod`, `potential.mod`, `min.NiCoCr_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
+Run the simulation with files `in.elastic`, `displace.mod`, `init.mod`, `potential.mod`, `min.CoCrNi_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
 
 Once it is finished, you will find a file `lmp.out`, at the end of which you will find values of C11all, C12all etc. Specifically, you will see
 
@@ -97,17 +123,17 @@ Rename that file to `lmp_random.out` and upload it to the `CoCrNi/ela_const/0K` 
 
 ###### CoCrNi with CSRO
 
-The simulation requires files `in.elastic`, `displace.mod`, `init.mod`, `potential.mod`, `min.NiCoCr_27nmx_27nmy_27nmz_350K.dat`, and `CoCrNi.lammps.eam`. Make one change in `init.mod`:
+The simulation requires files `in.elastic`, `displace.mod`, `init.mod`, `potential.mod`, `min.CoCrNi_27nmx_27nmy_27nmz_350KMDMC.dat`, and `CoCrNi.lammps.eam`. Make one change in `init.mod`:
 
 - Change the last number (by default 1.) of line 50 to the correct ratio identified in the prior lattice parameter calculation, i.e., the first of the three numbers you recorded for the CSRO case.
 
-Run the simulation. Once it is finished, rename the newly generated file `lmp.out` to `lmp_350K.out` and upload it to the `CoCrNi/ela_const/0K` directory.
+Run the simulation. Once it is finished, rename the newly generated file `lmp.out` to `lmp_350KMDMC.out` and upload it to the `CoCrNi/ela_const/0K` directory.
 
 #### Lattice parameters at 300 K
 
 ###### Random CoCrNi
 
-Run the simulation with files `lmp_300K.in`, `min.NiCoCr_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
+Run the simulation with files `lmp_300K.in`, `min.CoCrNi_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
 
 Once it is finished, go to the file `log.lammps` and find the first block of data that starts with a line `Step Lx Ly Lz`. The first column of the data block starts from 0, increasing in increment of 100, and stops at 10000.
 
@@ -125,7 +151,7 @@ First, calculate the lattice parameter at the last step 10000, using
 
 where Lx', Ly', and Lz' are taken at the step 10000, while Lx, Ly, and Lz are taken at step 0. Record the result.
 
-Then repeat the equation above, but using Lx', Ly', and Lz' at steps 9900, 9800 , ..., and 9100, respectively. In total, you get ten lattice parameters. Calculate the mean of the ten numbers, and that is the lattice parameter for random CoCrNi at 350 K.
+Then repeat the equation above, but using Lx', Ly', and Lz' at steps 9900, 9800 , ..., and 9100, respectively. In total, you get ten lattice parameters. Calculate the mean of the ten numbers, and that is the lattice parameter for random CoCrNi at 300 K.
 
 You will also find a newly generated file `data.relax`, which will be used later for the elastic constants calculations.
 
@@ -133,8 +159,8 @@ You will also find a newly generated file `data.relax`, which will be used later
 
 Repeat the steps above, except that
 
-- Use the data file `min.NiCoCr_27nmx_27nmy_27nmz_350K.dat` instead
-- Change the word `random` to `350K` in line 10 of the file `lmp_300K.in`
+- Use the data file `min.CoCrNi_27nmx_27nmy_27nmz_350KMDMC.dat` instead
+- Change the word `random` to `350KMDMC` in line 10 of the file `lmp_300K.in`
 
 Record the lattice parameter, which is for CoCrNi with CSRO.
 
@@ -179,8 +205,8 @@ Then run `sh gsfe_curve.in` in the terminal to generate a new file `gsfe`. Plot 
 
 Repeat the steps above, except that
 
-- Use the data file `data.CoCrNi_gsfe_350K` instead
-- Change the word `random` to `350K` in line 14 of the file `lmp_gsfe.in`
+- Use the data file `data.CoCrNi_gsfe_350KMDMC` instead
+- Change the word `random` to `350KMDMC` in line 14 of the file `lmp_gsfe.in`
 - Change the number `3.5564` to `3.561` in line 51 of the file `lmp_gsfe.in`
 
 ### MoNbTa (I am still adding more content)
