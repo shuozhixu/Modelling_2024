@@ -39,7 +39,7 @@ The other two do not come with the official LAMMPS source code, and so it is not
 - [VCSGC package](https://vcsgc-lammps.materialsmodeling.org). This is to generate materials with chemical short-range order at a given temperature. [Here](http://dx.doi.org/10.1103/PhysRevB.85.184203) is the paper for VCSGC; it should be cited if one uses this package.
 - [M3GNet package](https://www.linkedin.com/posts/ongsp_github-advancesoftcorplammps-compiled-activity-7008842815757586432-BaWR). This is to help use the M3GNet potential. [Here](https://www.nature.com/articles/s43588-022-00349-3) is the paper for M3GNet; it should be cited if one uses this package.
 
-Therefore, the first step in this project is to install all four packages to your own version of LAMMPS.
+Note: Only the first two packages are required for CoCrNi. So please first install them and run simulations for CoCrNi. While you are running those simulations, work on installing the last two packages, which are required for all other materials in this project.
 
 ## Alloys
 
@@ -146,7 +146,14 @@ Again, the newly generated file `data.relax` will be used later for the elastic 
 
 Run the simulation with files `in.elastic`, `init.in`, `potential.in`, `output.in`, `final_output.in`, `data.relax`, and `CoCrNi.lammps.eam`. Note that the file `data.relax` is the one you got from the `Lattice parameters at 300 K - Random CoCrNi` calculation.
 
-Once it is finished, rename the file `lmp.out` to `lmp_random.out` and upload it to the `CoCrNi/ela_const/300K` directory. 
+Once it is finished, go to the end of the file `lmp.out`, and you will see
+
+	Elastic Constant C11 = 298.291596568703 GPa
+	Elastic Constant C22 = 297.341418727254 GPa
+
+which are smaller than those calculated at 0 K, as expected.
+
+Rename the file `lmp.out` to `lmp_random.out` and upload it to the `CoCrNi/ela_const/300K` directory. 
 
 ###### CoCrNi with CSRO
 
@@ -154,7 +161,7 @@ Repeat the steps above, except that
 
 - Use the `data.relax` file from the `Lattice parameters at 300 K - CoCrNi with CSRO` calculation instead
 
-At the end of the simulation, rename the file `lmp.out` to `lmp_300K.out` and upload it to the `CoCrNi/ela_const/300K` directory.
+Once the simulation is finished, rename the file `lmp.out` to `lmp_300K.out` and upload it to the `CoCrNi/ela_const/300K` directory.
 
 #### GSFE at 0 K
 
@@ -176,7 +183,7 @@ Repeat the steps above, except that
 - Change the word `random` to `350K` in line 14 of the file `lmp_gsfe.in`
 - Change the number `3.5564` to `3.561` in line 51 of the file `lmp_gsfe.in`
 
-### MoNbTa
+### MoNbTa (I am still adding more content)
 
 #### Lattice parameters
 
