@@ -187,9 +187,9 @@ Repeat the steps above, except that
 
 #### Lattice parameters
 
-###### Random MoNbTa, at 0 K, 600 K, and 900 K
+###### Random MoNbTa, at 0 K, 600 K, 900 K, and 1200 K
 
-Done.
+Done. Results are summarized in the file `MoNbTa/random/data_random.txt` in this GitHub repository.
 
 ###### MoNbTa with CSRO, at 0 K
 
@@ -200,9 +200,9 @@ Need to generate MoNbTa with CSRO.
 
 #### Elastic constants
 
-###### Random MoNbTa, at 0 K, 600 K, and 900 K
+###### Random MoNbTa, at 0 K, 600 K, 900 K, and 1200 K
 
-Done.
+Done. Results are summarized in the file `MoNbTa/random/data_random.txt` in this GitHub repository.
 
 ###### MoNbTa with CSRO, at 0 K
 
