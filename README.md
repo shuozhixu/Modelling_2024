@@ -77,7 +77,7 @@ Note:
 
 - Only random HfNbTaTiZr is considered, and the results are in `data_random.txt`.
 - Pure Mo, Nb, and Ta are considered, and the results are in `Mo.txt`, `Nb.txt`, and `Ta.txt`, respectively.
-- These four materials are studied at 0 K, 300 K, 600 K, and 900 K, respectively. It would be interesting to compare the temperature effect on them.
+- These four materials are studied at 0 K, 300 K, 600 K, 900 K, and 1200 K, respectively. The only exception is that Nb becomes unstable at 1200 K so there is no data for that case. Among the materials, it would be interesting to compare the temperature effect on them.
 
 ### CoCrNi
 
