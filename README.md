@@ -41,6 +41,11 @@ The other two do not come with the official LAMMPS source code, and so it is not
 
 Note: Only the first two packages are required for CoCrNi. So please first install them and run simulations for CoCrNi. While you are running those simulations, work on installing the last two packages, which are required for all other materials in this project.
 
+Note: if you use sbatch files from [LAMMPSatOU](https://github.com/ANSHURAJ11/LAMMPSatOU), you may need to change the walltime (default: 12 hours) and/or number of cores (default: 16). For this project, I recommend
+
+	#SBATCH --time=200:00:00
+	#SBATCH --ntasks=32
+
 ## Alloys
 
 Six alloys will be considered.
