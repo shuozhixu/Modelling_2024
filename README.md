@@ -114,9 +114,9 @@ First, calculate the lattice parameter at the last step 10000, using
 
 where Lx', Ly', and Lz' are taken at the step 10000, while Lx, Ly, and Lz are taken at step 0. Record the result.
 
-Then repeat the equation above, but using Lx', Ly', and Lz' at steps 9900, 9800 , ..., and 9100, respectively. In total, you get ten lattice parameters. Calculate the mean of the ten numbers, and that is the lattice parameter for random CoCrNi at 300 K.
+Then repeat the equation above, but using Lx', Ly', and Lz' at steps 9900, 9800 , ..., and 9100, respectively. In total, you get ten lattice parameters. Calculate the mean of the ten numbers, and that is the ratio of the lattice parameter for random CoCrNi at 300 K to the trial lattice parameter, 3.5564 Angstrom.
 
-You will also find a newly generated file `data.relax`, which will be used later for the elastic constants calculations.
+You will also find a newly generated file `data.relax`, which will be used later in elastic constants calculations.
 
 #### CoCrNi with CSRO
 
@@ -125,9 +125,9 @@ Repeat the steps above, except that
 - Use the data file `min.CoCrNi_27nmx_27nmy_27nmz_350KMDMC.dat` instead
 - Change the word `random` to `350KMDMC` in line 10 of the file `lmp_300K.in`
 
-Record the lattice parameter, which is for CoCrNi with CSRO.
+Record the lattice parameter, which is for CoCrNi with CSRO. The trial lattice parameter is 3.561 Angstrom.
 
-Again, the newly generated file `data.relax` will be used later for the elastic constants calculations.
+Again, the newly generated file `data.relax` will be used later in elastic constants calculations.
 
 ### Elastic constants at 300 K
 
@@ -182,7 +182,7 @@ Run the atomsk script, `atomsk_Ni.sh`, which can be found in `CoCrNi/ni/` in thi
 
 Then use the data file and the same potential file to calculate its lattice parameters and elastic constants at 0 K and 300 K. Also calculate its GSFE at 0 K.
 
-Note: when calculating its lattice parameter at 0 K, modify the 
+Note: The trial lattice parameter is 3.5564 Angstrom. When calculating the lattice parameter at 0 K, in line 44 of `lmp_0K.in`, change the three numbers 54, 63, and 45, to 30, 30, and 10, respectively. This is because different cell sizes are used here.
 
 ## MoNbTa
 
@@ -206,7 +206,11 @@ How are they determined? Follow the procedure described in Section B.2 of [this 
 
 Once the iteration is done, calculate the lattice parameters and elastic constants at 0 K, 300 K, 600 K, 900 K, and 1200 K. Also calculate the GSFE at 0 K.
 
-Use the same method for CoCrNi. Remember to modify the input files for MoNbTa and use the appropriate potential.
+Use the same method for CoCrNi. Remember to modify the input files accordingly and use the appropriate potential.
+
+In particular, the trial lattice parameter is 3.135 Angstrom. When calculating the lattice parameter at 0 K, change line 44 of `lmp_0K.in` to
+
+	variable lat_para equal (lx/(10*sqrt(6.)/2.)+ly/(46*sqrt(3.))+lz/(14*sqrt(2.)))/3.
 
 ### Pure metals
 

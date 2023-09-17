@@ -2,10 +2,10 @@
 
 rm -f *.lmp data.*
 
-a=3.52
+a=3.5564
 
-atomsk --create fcc $a Mo orient [11-2] [111] [1-10] -duplicate 10 46 14 data.Mo lmp
+atomsk --create fcc $a Ni orient [1-10] [11-2] [111] -duplicate 30 30 10 data.Ni.cfg lmp
 
-mv data.Mo.lmp data.Mo
+mv data.Ni.lmp data.Ni
 
 rm -f *.cfg
