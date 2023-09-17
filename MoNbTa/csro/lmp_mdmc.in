@@ -1,0 +1,96 @@
+# general variables
+variable	temperature equal 300 #change this to the temperature of interest
+variable	nsteps_run equal 1200000
+#variable	nsteps_npt equal 20000
+
+# variables for 'fix sgcmc'
+variable	nsteps_mc     equal 20
+variable	swap_fraction equal 0.25
+variable	temperature_mc equal ${temperature}
+variable	deltamu1 equal 0.021 
+variable	deltamu2 equal -0.32 
+variable	target_concentration1 equal 0.3333333333333333
+variable	target_concentration2 equal 0.3333333333333333
+variable	kappa equal 1e3
+
+# general settings
+units		metal
+dimension 3
+boundary	p p p
+
+#processors      3 3 3
+atom_style	atomic
+
+# set up structure
+read_data       data.Mo   #######?
+
+# set up interaction
+pair_style eam/alloy
+pair_coeff * * CrMoNbTaVW_Xu2022.eam.alloy Mo Nb Ta #change to proper elements
+
+timestep	0.0025
+
+# initialize velocities
+variable	double_temp equal ${temperature}*2
+velocity	all create ${double_temp} 32456781 dist gaussian #choose a random number
+
+#compute rdf
+compute 2 all rdf 300 * * 1 1 1 2 1 3 2 1 2 2 2 3 3 1 3 2 3 3
+
+# what and how to run
+fix		integrate all npt &
+		temp ${temperature} ${temperature} 1.7 &
+		aniso 0.0 0.0 1.5
+fix		mc all sgcmc ${nsteps_mc} ${swap_fraction} ${temperature_mc} ${deltamu1} ${deltamu2} &
+		randseed 73291438 &
+		variance ${kappa} ${target_concentration1} ${target_concentration2}
+
+fix cn all ave/time 10000 1 10000 c_2[*] file cn.out mode vector
+
+# set up output
+thermo		10
+thermo_style	custom step cpu temp atoms etotal  pe press &
+		lx ly lz f_mc[1] f_mc[2] f_mc[3] f_mc[4] f_mc[5] 
+thermo_modify	flush yes
+dump 		1 all custom 400000 mc.*.dump id type x y z
+
+run		${nsteps_run}
+
+write_data      data.MoNbTa_CSRO   #######?
+
+#uncompute 2
+unfix  integrate
+#unfix  mc
+#unfix  cn
+#undump 1
+
+# ------------------------- SRO ---------------------------------
+compute 1 all coord/atom cutoff 3.0 * 1 2 3                   # 1st shell
+
+variable aMoMo1     atom  (c_1[2]/c_1[1]-1/3)/(1-1/3)
+variable aMoNb1     atom  (1-c_1[3]*3/c_1[1])+(1-c_1[2]*3/c_1[1])
+variable aMoTa1     atom  (1-c_1[4]*3/c_1[1])+(1-c_1[2]*3/c_1[1])
+variable aNbNb1     atom  (c_1[3]/c_1[1]-1/3)/(1-1/3)
+variable aNbTa1     atom  (1-c_1[4]*3/c_1[1])+(1-c_1[3]*3/c_1[1])      #aCrCo1
+variable aTaTa1     atom  (c_1[4]/c_1[1]-1/3)/(1-1/3)
+
+#fix		integrate all npt &
+		temp ${temperature} 1 1.7 &
+		aniso 0 0 1.5
+
+dump            2 all custom 1 dump.* id type x y z vx vy vz v_aMoMo1 v_aMoNb1 v_aMoTa1 v_aNbNb1 v_aNbTa1 v_aTaTa1
+dump_modify     1 sort id
+
+compute 2 all rdf 300 * * 1 1 1 2 1 3 2 1 2 2 2 3 3 1 3 2 3 3
+fix 1 all ave/time 100 1 100 c_2[*] file rdf.1200000.dat mode vector
+
+thermo		1
+thermo_style	custom step temp atoms pe press lx ly lz 
+thermo_modify	flush yes
+run		0
+
+#uncompute 1
+#unfix integrate
+#undump 1
+
+print           "All done"

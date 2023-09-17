@@ -22,23 +22,16 @@ Please read the following journal articles to understand how the aforementioned 
 
 - Shuozhi Xu, Wu-Rong Jian, Irene J. Beyerlein, [Ideal simple shear strengths of two HfNbTaTi-based quinary refractory multi-principal element alloys](http://dx.doi.org/10.1063/5.0116898), APL Mater. 10 (2022) 111107
 
-Please, each time you run a new type of simulation, create a new directory.
-
 ## LAMMPS
 
 LAMMPS on [OSCER](http://www.ou.edu/oscer.html) likely does not come with many packages. To build more packages into LAMMPS, please visit [this page](https://docs.lammps.org/Build_package.html).
 
-To finish this project, at least three packages are needed. The first two comes with the official LAMMPS source code, and so it should be straightforward to install them:
+To finish this project, at least three packages are needed.
 
 - MANYBODY package. This is to use the manybody potential such as the embedded-atom method potential.
 - EXTRA-COMPUTE package. This is to calculate the elastic constants at finite temperatures using the Born matrix method. To learn more, please visit [this page](https://docs.lammps.org/Howto_elastic.html
 ) and [this page](https://docs.lammps.org/compute_born_matrix.html).
-
-The third one does not come with the official LAMMPS source code, and so it is not straightforward to install it:
-
-- [VCSGC package](https://vcsgc-lammps.materialsmodeling.org). This is to generate materials with chemical short-range order at a given temperature. [Here](http://dx.doi.org/10.1103/PhysRevB.85.184203) is the paper for VCSGC; it should be cited if one uses this package.
-
-Note: Only the first two packages are required for CoCrNi. So please first install them and run simulations for CoCrNi. While you are running those simulations, work on installing the third package, which is required for MoNbTa.
+- MC package. This is to generate materials with chemical short-range order at a given temperature. [This paper](http://dx.doi.org/10.1103/PhysRevB.85.184203) should be cited if one uses this package.
 
 Note: if you use sbatch files from [LAMMPSatOU](https://github.com/ANSHURAJ11/LAMMPSatOU), you may need to change the walltime (default: 12 hours) and/or number of cores (default: 16). For this project, I recommend
 
@@ -46,6 +39,8 @@ Note: if you use sbatch files from [LAMMPSatOU](https://github.com/ANSHURAJ11/LA
 	#SBATCH --ntasks=32
 
 Also, make sure that you are using your own version of LAMMPS in the sbatch file.
+
+Please, each time you run a new type of simulation, create a new directory.
 
 Four MPEAs will be considered. No new calculations are needed for the last two alloys. Data are present here so that you will include them into the paper.
 
@@ -185,11 +180,15 @@ Repeat the steps above, except that
 
 For CoCrNi, [Jian et al.](http://dx.doi.org/10.1016/j.actamat.2020.08.044) built all atomistc structures, and so we directly used them. For MoNbTa, however, we need to build the atomistic structure ourselves.
 
-First, build random MoNbTa using [Atomsk](https://atomsk.univ-lille.fr). The atomsk script, `atomsk.sh`, can be found in `MoNbTa/random`. The random structure will be `data.MoNbTa_random`.
+First, install [Atomsk](https://atomsk.univ-lille.fr).
 
-Second, build MoNbTa with CSRO, annealed at 300 K, by running LAMMPS simulations using `lmp_anneal.in`, `data.MoNbTa_random`, and `MoNbTa.lammps.eam`. Note that the [VCSGC package](https://vcsgc-lammps.materialsmodeling.org) is needed here.
+Second, run the atomsk script, `atomsk_Mo.sh`, which can be found in `MoNbTa/csro/` in this GitHub repository, to build a Mo structure named `data.Mo`.
 
-Run the simulation with files 
+Second, build MoNbTa with CSRO, annealed at 300 K, by running hybrid molecular dynamics (MD) and Monte Carlo (MC) simulations using `lmp_mdmc.in`, `data.Mo`, and `CrMoNbTaVW_Xu2022.eam.alloy`.
+
+By default, in `lmp_mdmc.in`, the two numbers at the end of lines 10 and 11 are 0.021 and -0.32, respectively. They are the chemical potential difference between Co and Ni, and that between Cr and Ni, respectively, in CoCrNi. Here, the two numbers need to be modified because MoNbTa is being studied.
+
+How is it done? Follow the procedure described in Section B.2 of [this paper](https://doi.org/10.1016/j.actamat.2019.12.031). The LAMMPS simulation will create a series of `mc.*.dump` files and eventually a `data.MoNbTa_CSRO` file. Use OVITO to  Adjust their values iteratively and make sure the dump files 
 
 ### Lattice parameters
 
