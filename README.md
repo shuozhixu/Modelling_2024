@@ -174,7 +174,7 @@ Repeat the steps above, except that
 
 ### Pure metal
 
-CoCrNi contains only one pure metal, Ni, having the same lattice (i.e., FCC). It would be interesting to compare the temperature effect between it and the MPEA.
+CoCrNi contains only one pure metal, Ni, that has the same lattice as the alloy. It would be interesting to compare the temperature effect between it and the MPEA.
 
 For CoCrNi, [Jian et al.](http://dx.doi.org/10.1016/j.actamat.2020.08.044) built all atomistc structures, and so we directly used them. For Ni, however, we need to build the atomistic structure ourselves. The first step is to install [Atomsk](https://atomsk.univ-lille.fr).
 
@@ -204,7 +204,9 @@ By default, in `lmp_mdmc.in`, the two numbers at the end of lines 10 and 11 are 
 
 How are they determined? Follow the procedure described in Section B.2 of [this paper](https://doi.org/10.1016/j.actamat.2019.12.031). Each LAMMPS simulation will create a series of `mc.*.dump` files and eventually a `data.MoNbTa_CSRO` file. Use OVITO to check the dump files to see if the three elements are almost equal-molar. If they are far from equal-molar and there is no sign that they are approaching equal-molar, cancel the simulation, modify the two numbers in lines 10 and 11 of `lmp_mdmc.in`, and run the simulation again. Iteratively adjust the two numbers until the final structure `data.MoNbTa_CSRO` is almost equal-molar. Note that it does not have to be exactly equal-molar.
 
-Once the iteration is done, calculate the lattice parameters and elastic constants at 0 K, 300 K, 600 K, 900 K, and 1200 K. Also calculate the GSFE at 0 K.
+Another thing to check is whether the energy converges to a constant. For that, plot two curves, one using `etotal` as the _y_ axis and `step` as the _x_ axis, another using `pe` as the _y_ axis and `step` as the _x_ axis. You can find `etotal`, `pe`, and `step` in the log file. If both energies approach a constant as `step` increases, the two numbers are good.
+
+Once the two numbers are identified, use the `data.MoNbTa_CSRO` file to calculate the lattice parameters and elastic constants at 0 K, 300 K, 600 K, 900 K, and 1200 K. Also calculate the GSFE at 0 K.
 
 Use the same method for CoCrNi. Remember to modify the input files accordingly and use the appropriate potential.
 
@@ -214,7 +216,7 @@ In particular, the trial lattice parameter is 3.135 Angstrom. When calculating t
 
 ### Pure metals
 
-MoNbTa contains three pure metals having the same lattice (i.e., BCC). It would be interesting to compare the temperature effect between them and the MPEA.
+MoNbTa contains three pure metals having the same lattice as the alloy. It would be interesting to compare the temperature effect between them and the MPEA.
 
 Results are in `Mo.txt`, `Nb.txt`, and `Ta.txt`, respectively. They were studied at 0 K, 300 K, 600 K, 900 K, and 1200 K, respectively. The only exception is that Nb becomes unstable at 1200 K so there is no data for that case.
 
