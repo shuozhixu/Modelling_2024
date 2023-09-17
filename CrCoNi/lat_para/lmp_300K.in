@@ -7,7 +7,7 @@ atom_style      atomic
 
 # ------------------- ATOM DEFINE ------------------------------
 
-read_data	min.NiCoCr_27nmx_27nmy_27nmz_random.dat
+read_data	min.CoCrNi_27nmx_27nmy_27nmz_random.dat
 
 # ------------------- FIELD DEFINE -----------------------------
 

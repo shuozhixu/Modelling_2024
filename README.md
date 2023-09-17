@@ -38,11 +38,9 @@ Note: if you use sbatch files from [LAMMPSatOU](https://github.com/ANSHURAJ11/LA
 	#SBATCH --time=200:00:00
 	#SBATCH --ntasks=32
 
-Also, make sure that you are using your own version of LAMMPS in the sbatch file.
-
 Please, each time you run a new type of simulation, create a new directory.
 
-Four MPEAs will be considered. No new calculations are needed for the last two alloys. Data are present here so that you will include them into the paper.
+Four MPEAs will be considered. No new calculations are needed for the last two alloys. Data are presented here so that you will include them in the paper.
 
 ## CoCrNi
 
@@ -174,9 +172,21 @@ Repeat the steps above, except that
 - Change the word `random` to `350KMDMC` in line 14 of the file `lmp_gsfe.in`
 - Change the number `3.5564` to `3.561` in line 51 of the file `lmp_gsfe.in`
 
+### Pure metal
+
+CoCrNi contains only one pure metal, Ni, having the same lattice (i.e., FCC). It would be interesting to compare the temperature effect between it and the MPEA.
+
+For CoCrNi, [Jian et al.](http://dx.doi.org/10.1016/j.actamat.2020.08.044) built all atomistc structures, and so we directly used them. For Ni, however, we need to build the atomistic structure ourselves. The first step is to install [Atomsk](https://atomsk.univ-lille.fr).
+
+Run the atomsk script, `atomsk_Ni.sh`, which can be found in `CoCrNi/ni/` in this GitHub repository, to build a Ni structure named `data.Ni`.
+
+Then use the data file and the same potential file to calculate its lattice parameters and elastic constants at 0 K and 300 K. Also calculate its GSFE at 0 K.
+
+Note: when calculating its lattice parameter at 0 K, modify the 
+
 ## MoNbTa
 
-For CoCrNi, [Jian et al.](http://dx.doi.org/10.1016/j.actamat.2020.08.044) built all atomistc structures, and so we directly used them. For MoNbTa, however, we need to build the atomistic structure ourselves. The first step is to install [Atomsk](https://atomsk.univ-lille.fr).
+Similar to Ni, we need to build the atomistic structures for MoNbTa ourselves.
 
 ### Random MoNbTa
 
@@ -200,9 +210,9 @@ Use the same method for CoCrNi. Remember to modify the input files for MoNbTa an
 
 ### Pure metals
 
-Results are in `Mo.txt`, `Nb.txt`, and `Ta.txt`, respectively. They were studied at 0 K, 300 K, 600 K, 900 K, and 1200 K, respectively. The only exception is that Nb becomes unstable at 1200 K so there is no data for that case.
+MoNbTa contains three pure metals having the same lattice (i.e., BCC). It would be interesting to compare the temperature effect between them and the MPEA.
 
-It would be interesting to compare the temperature effect between pure metals and the MPEA.
+Results are in `Mo.txt`, `Nb.txt`, and `Ta.txt`, respectively. They were studied at 0 K, 300 K, 600 K, 900 K, and 1200 K, respectively. The only exception is that Nb becomes unstable at 1200 K so there is no data for that case.
 
 ## HfMoNbTaTi
 

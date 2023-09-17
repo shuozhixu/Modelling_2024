@@ -45,7 +45,7 @@ region		box prism 0 2.0 0 3.0 0 4.0 0.0 0.0 0.0
 #create_box	1 box
 #create_atoms	1 box
 
-read_data	min.NiCoCr_27nmx_27nmy_27nmz_random.dat
+read_data	min.CoCrNi_27nmx_27nmy_27nmz_random.dat
 
 variable r equal 1.
 
