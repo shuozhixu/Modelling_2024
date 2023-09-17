@@ -176,51 +176,33 @@ Repeat the steps above, except that
 
 ## MoNbTa
 
-### Build atomistic structures
+For CoCrNi, [Jian et al.](http://dx.doi.org/10.1016/j.actamat.2020.08.044) built all atomistc structures, and so we directly used them. For MoNbTa, however, we need to build the atomistic structure ourselves. The first step is to install [Atomsk](https://atomsk.univ-lille.fr).
 
-For CoCrNi, [Jian et al.](http://dx.doi.org/10.1016/j.actamat.2020.08.044) built all atomistc structures, and so we directly used them. For MoNbTa, however, we need to build the atomistic structure ourselves.
+### Random MoNbTa
 
-First, install [Atomsk](https://atomsk.univ-lille.fr).
+Run the atomsk script, `atomsk_MoNbTa.sh`, which can be found in `MoNbTa/random/` in this GitHub repository, to build a random MoNbTa structure named `data.MoNbTa_random`.
 
-Second, run the atomsk script, `atomsk_Mo.sh`, which can be found in `MoNbTa/csro/` in this GitHub repository, to build a Mo structure named `data.Mo`.
+All results for random MoNbTa have been calculated. They are summarized in the file `MoNbTa/random/data_random.txt` in this GitHub repository. Most results were based on the [EAM potential](http://dx.doi.org/10.1016/j.commatsci.2021.110942) while those at 0 K were also based on the [MTP](http://dx.doi.org/10.1038/s41524-023-01046-z). We can compare the two potentials for properties at 0 K in the paper.
 
-Second, build MoNbTa with CSRO, annealed at 300 K, by running hybrid molecular dynamics (MD) and Monte Carlo (MC) simulations using `lmp_mdmc.in`, `data.Mo`, and `CrMoNbTaVW_Xu2022.eam.alloy`.
+### MoNbTa with CSRO
+
+Run the atomsk script, `atomsk_Mo.sh`, which can be found in `MoNbTa/csro/` in this GitHub repository, to build a Mo structure named `data.Mo`.
+
+Then build MoNbTa with CSRO, annealed at 300 K, by running hybrid molecular dynamics (MD) and Monte Carlo (MC) simulations using `lmp_mdmc.in`, `data.Mo`, and `CrMoNbTaVW_Xu2022.eam.alloy`.
 
 By default, in `lmp_mdmc.in`, the two numbers at the end of lines 10 and 11 are 0.021 and -0.32, respectively. They are the chemical potential difference between Co and Ni, and that between Cr and Ni, respectively, in CoCrNi. Here, the two numbers need to be modified because MoNbTa is being studied.
 
-How is it done? Follow the procedure described in Section B.2 of [this paper](https://doi.org/10.1016/j.actamat.2019.12.031). The LAMMPS simulation will create a series of `mc.*.dump` files and eventually a `data.MoNbTa_CSRO` file. Use OVITO to  Adjust their values iteratively and make sure the dump files 
+How are they determined? Follow the procedure described in Section B.2 of [this paper](https://doi.org/10.1016/j.actamat.2019.12.031). Each LAMMPS simulation will create a series of `mc.*.dump` files and eventually a `data.MoNbTa_CSRO` file. Use OVITO to check the dump files to see if the three elements are almost equal-molar. If they are far from equal-molar and there is no sign that they are approaching equal-molar, cancel the simulation, modify the two numbers in lines 10 and 11 of `lmp_mdmc.in`, and run the simulation again. Iteratively adjust the two numbers until the final structure `data.MoNbTa_CSRO` is almost equal-molar. Note that it does not have to be exactly equal-molar.
 
-### Lattice parameters
+Once the iteration is done, calculate the lattice parameters and elastic constants at 0 K, 300 K, 600 K, 900 K, and 1200 K. Also calculate the GSFE at 0 K.
 
-#### Random MoNbTa, at 0 K, 600 K, 900 K, and 1200 K
+Use the same method for CoCrNi. Remember to modify the input files for MoNbTa and use the appropriate potential.
 
-Done. Results are summarized in the file `MoNbTa/random/data_random.txt` in this GitHub repository.
+### Pure metals
 
-#### MoNbTa with CSRO, at 0 K
+Results are in `Mo.txt`, `Nb.txt`, and `Ta.txt`, respectively. They were studied at 0 K, 300 K, 600 K, 900 K, and 1200 K, respectively. The only exception is that Nb becomes unstable at 1200 K so there is no data for that case.
 
-
-
-### Elastic constants
-
-#### Random MoNbTa, at 0 K, 600 K, 900 K, and 1200 K
-
-Done. Results are summarized in the file `MoNbTa/random/data_random.txt` in this GitHub repository.
-
-#### MoNbTa with CSRO, at 0 K
-
-At the end of the `log.out` file, you will find values of C11all, C12all etc. Use Equations 10-12 of [this paper](http://dx.doi.org/10.1016/j.commatsci.2021.110942) to calculate the three effective BCC elastic constants, in units of GPa. Specifically, they should be
-
-	383.218 119.581 53.754
-
-Record these numbers.
-
-### GSFE at 0 K
-
-#### Random MoNbTa
-
-Done.
-
-#### CoCrNi with CSRO, at 0 K
+It would be interesting to compare the temperature effect between pure metals and the MPEA.
 
 ## HfMoNbTaTi
 
@@ -234,7 +216,7 @@ The random material was studied at 0 K, 300 K, 600 K, 900 K, and 1200 K, respect
 
 #### HfMoNbTaTi with CSRO
 
-Following [the paper](http://dx.doi.org/10.1063/5.0116898), four levels of CSRO were considered, with the material annealed at 300 K, 600 K, and 900 K, respectively. In what follows, let's call them 300KMDMC, 600KMDMC, 900KMDMC, respectively.
+Following [this paper](http://dx.doi.org/10.1063/5.0116898), four levels of CSRO were considered, with the material annealed at 300 K, 600 K, and 900 K, respectively. In what follows, let's call them 300KMDMC, 600KMDMC, 900KMDMC, respectively.
 
 The material 300KMDMC was studied at 0 K and 300 K, respectively. Results are in `data_300KMDMC.txt`.
 
@@ -248,8 +230,4 @@ Data at 0 K were taken from [this paper](http://dx.doi.org/10.1063/5.0116898). N
 
 Results are summarized in the directory `HfNbTaTiZr` in this GitHub repository. USFEs, taken on the \{110\} plane, are in units of mJ/m<sup>2</sup>.
 
-Note:
-
-- Only random HfNbTaTiZr is considered, and the results are in `data_random.txt`.
-- Pure Mo, Nb, and Ta are considered, and the results are in `Mo.txt`, `Nb.txt`, and `Ta.txt`, respectively.
-- These four materials are studied at 0 K, 300 K, 600 K, 900 K, and 1200 K, respectively. The only exception is that Nb becomes unstable at 1200 K so there is no data for that case. Among the materials, it would be interesting to compare the temperature effect on them.
+Note that only random HfNbTaTiZr is considered, and the results are in `data_random.txt`.
