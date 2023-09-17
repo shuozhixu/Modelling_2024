@@ -1,8 +1,8 @@
-# Calculations in alloys and ceramics
+# Multi-principal element alloys
 
 ## Foreword
 
-The purpose of this project is to calculate the basic structural parameters (including lattice parameter and elastic constants) and generalized stacking fault energies (GSFE) of several alloys and ceramics. The effects of chemical short-range order (CSRO) and temperature will be considered.
+The purpose of this project is to calculate the basic structural parameters (including lattice parameter and elastic constants) and generalized stacking fault energies (GSFE) of four equal-molar multi-principal element alloys (MPEAs). The effects of chemical short-range order (CSRO) and temperature will be considered.
 
 Please read the following journal articles to understand how the aforementioned material properties can be calculated.
 
@@ -28,71 +28,36 @@ Please, each time you run a new type of simulation, create a new directory.
 
 LAMMPS on [OSCER](http://www.ou.edu/oscer.html) likely does not come with many packages. To build more packages into LAMMPS, please visit [this page](https://docs.lammps.org/Build_package.html).
 
-To finish this project, at least four packages are needed. The first two comes with the official LAMMPS source code, and so it should be straightforward to install them:
+To finish this project, at least three packages are needed. The first two comes with the official LAMMPS source code, and so it should be straightforward to install them:
 
 - MANYBODY package. This is to use the manybody potential such as the embedded-atom method potential.
 - EXTRA-COMPUTE package. This is to calculate the elastic constants at finite temperatures using the Born matrix method. To learn more, please visit [this page](https://docs.lammps.org/Howto_elastic.html
 ) and [this page](https://docs.lammps.org/compute_born_matrix.html).
 
-The other two do not come with the official LAMMPS source code, and so it is not straightforward to install them:
+The third one does not come with the official LAMMPS source code, and so it is not straightforward to install it:
 
 - [VCSGC package](https://vcsgc-lammps.materialsmodeling.org). This is to generate materials with chemical short-range order at a given temperature. [Here](http://dx.doi.org/10.1103/PhysRevB.85.184203) is the paper for VCSGC; it should be cited if one uses this package.
-- [M3GNet package](https://www.linkedin.com/posts/ongsp_github-advancesoftcorplammps-compiled-activity-7008842815757586432-BaWR). This is to help use the M3GNet potential. [Here](https://www.nature.com/articles/s43588-022-00349-3) is the paper for M3GNet; it should be cited if one uses this package.
 
-Note: Only the first two packages are required for CoCrNi. So please first install them and run simulations for CoCrNi. While you are running those simulations, work on installing the last two packages, which are required for all other materials in this project.
+Note: Only the first two packages are required for CoCrNi. So please first install them and run simulations for CoCrNi. While you are running those simulations, work on installing the third package, which is required for MoNbTa.
 
 Note: if you use sbatch files from [LAMMPSatOU](https://github.com/ANSHURAJ11/LAMMPSatOU), you may need to change the walltime (default: 12 hours) and/or number of cores (default: 16). For this project, I recommend
 
 	#SBATCH --time=200:00:00
 	#SBATCH --ntasks=32
 
-## Alloys
+Also, make sure that you are using your own version of LAMMPS in the sbatch file.
 
-Six alloys will be considered.
+Four MPEAs will be considered. No new calculations are needed for the last two alloys. Data are present here so that you will include them into the paper.
 
-No new calculations are needed for the first two alloys. Data are included here so that you will include them into the paper.
-
-### HfMoNbTaTi
-
-Data at 0 K were taken from [this paper](http://dx.doi.org/10.1063/5.0116898). Need to cite it. Data at finite temperatures are newly calculated for the current project. In all cases, simulation cells with size D (see Table II of the paper) were used.
-
-Results are summarized in the directory `HfMoNbTaTi` in this GitHub repository. USFEs, taken on the \{110\} plane, are in units of mJ/m<sup>2</sup>.
-
-###### Random HfMoNbTaTi
-
-The random material was studied at 0 K, 300 K, 600 K, 900 K, and 1200 K, respectively. Results are in `data_random.txt`.
-
-###### HfMoNbTaTi with CSRO
-
-Following [the paper](http://dx.doi.org/10.1063/5.0116898), four levels of CSRO were considered, with the material annealed at 300 K, 600 K, and 900 K, respectively. In what follows, let's call them 300KMDMC, 600KMDMC, 900KMDMC, respectively.
-
-The material 300KMDMC was studied at 0 K and 300 K, respectively. Results are in `data_300KMDMC.txt`.
-
-The material 600KMDMC was studied at 0 K and 600 K, respectively. Results are in `data_600KMDMC.txt`.
-
-The material 900KMDMC was studied at 0 K and 900 K, respectively. Results are in `data_900KMDMC.txt`.
-
-### HfNbTaTiZr
-
-Data at 0 K were taken from [this paper](http://dx.doi.org/10.1063/5.0116898). Need to cite it. Data at finite temperatures are newly calculated for the current project. In all cases, simulation cells with size D (see Table II of the paper) were used.
-
-Results are summarized in the directory `HfNbTaTiZr` in this GitHub repository. USFEs, taken on the \{110\} plane, are in units of mJ/m<sup>2</sup>.
-
-Note:
-
-- Only random HfNbTaTiZr is considered, and the results are in `data_random.txt`.
-- Pure Mo, Nb, and Ta are considered, and the results are in `Mo.txt`, `Nb.txt`, and `Ta.txt`, respectively.
-- These four materials are studied at 0 K, 300 K, 600 K, 900 K, and 1200 K, respectively. The only exception is that Nb becomes unstable at 1200 K so there is no data for that case. Among the materials, it would be interesting to compare the temperature effect on them.
-
-### CoCrNi
+## CoCrNi
 
 Note: All files for calculations can be found in the `CoCrNi` directory in this GitHub repository, except the data files which can be [here](https://drive.google.com/drive/folders/13xaI274U-xIsBN8h_TY_eohsXxedEwFE?usp=sharing). The reason is that the data files are too large for GitHub.
 
 All data files are from [this paper](http://dx.doi.org/10.1016/j.actamat.2020.08.044), which should be cited.
 
-#### Lattice parameters at 0 K
+### Lattice parameters at 0 K
 
-###### Random CoCrNi
+#### Random CoCrNi
 
 Run the simulation with files `lmp_0K.in`, `min.CoCrNi_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
 
@@ -104,7 +69,7 @@ Then run `sh min.sh` to find out the trial lattice parameter corresponding to th
 
 on the screen. Record these three numbers. These are for random CoCrNi.
 
-###### CoCrNi with CSRO
+#### CoCrNi with CSRO
 
 The simulation requires files 
 `lmp_0K.in`, `min.CoCrNi_27nmx_27nmy_27nmz_350KMDMC.dat`, and `CoCrNi.lammps.eam`. The second file can be found [here](https://drive.google.com/drive/folders/13xaI274U-xIsBN8h_TY_eohsXxedEwFE?usp=sharing). Make one change in `lmp_lat.in`:
@@ -113,9 +78,9 @@ The simulation requires files
 
 Run the simulation. Once it is finished, you will find a new file `a_E`. The first column is the ratio of the trial lattice parameter to 3.561; the other two columns have the same meaning as the random case. Repeat the remaining steps in the random case and record the three numbers for the CoCrNi with CSRO.
 
-#### Elastic constants at 0 K
+### Elastic constants at 0 K
 
-###### Random CoCrNi
+#### Random CoCrNi
 
 Run the simulation with files `in.elastic`, `displace.mod`, `init.mod`, `potential.mod`, `min.CoCrNi_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
 
@@ -126,7 +91,7 @@ Once it is finished, you will find a file `lmp.out`, at the end of which you wil
 
 Rename that file to `lmp_random.out` and upload it to the `CoCrNi/ela_const/0K` directory. 
 
-###### CoCrNi with CSRO
+#### CoCrNi with CSRO
 
 The simulation requires files `in.elastic`, `displace.mod`, `init.mod`, `potential.mod`, `min.CoCrNi_27nmx_27nmy_27nmz_350KMDMC.dat`, and `CoCrNi.lammps.eam`. Make one change in `init.mod`:
 
@@ -134,9 +99,9 @@ The simulation requires files `in.elastic`, `displace.mod`, `init.mod`, `potenti
 
 Run the simulation. Once it is finished, rename the newly generated file `lmp.out` to `lmp_350KMDMC.out` and upload it to the `CoCrNi/ela_const/0K` directory.
 
-#### Lattice parameters at 300 K
+### Lattice parameters at 300 K
 
-###### Random CoCrNi
+#### Random CoCrNi
 
 Run the simulation with files `lmp_300K.in`, `min.CoCrNi_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
 
@@ -160,7 +125,7 @@ Then repeat the equation above, but using Lx', Ly', and Lz' at steps 9900, 9800 
 
 You will also find a newly generated file `data.relax`, which will be used later for the elastic constants calculations.
 
-###### CoCrNi with CSRO
+#### CoCrNi with CSRO
 
 Repeat the steps above, except that
 
@@ -171,9 +136,9 @@ Record the lattice parameter, which is for CoCrNi with CSRO.
 
 Again, the newly generated file `data.relax` will be used later for the elastic constants calculations.
 
-#### Elastic constants at 300 K
+### Elastic constants at 300 K
 
-###### Random CoCrNi
+#### Random CoCrNi
 
 Run the simulation with files `in.elastic`, `init.in`, `potential.in`, `output.in`, `final_output.in`, `data.relax`, and `CoCrNi.lammps.eam`. Note that the file `data.relax` is the one you got from the `Lattice parameters at 300 K - Random CoCrNi` calculation.
 
@@ -186,7 +151,7 @@ which are smaller than those calculated at 0 K, as expected.
 
 Rename the file `lmp.out` to `lmp_random.out` and upload it to the `CoCrNi/ela_const/300K` directory. 
 
-###### CoCrNi with CSRO
+#### CoCrNi with CSRO
 
 Repeat the steps above, except that
 
@@ -194,9 +159,9 @@ Repeat the steps above, except that
 
 Once the simulation is finished, rename the file `lmp.out` to `lmp_300K.out` and upload it to the `CoCrNi/ela_const/300K` directory.
 
-#### GSFE at 0 K
+### GSFE at 0 K
 
-###### Random CoCrNi
+#### Random CoCrNi
 
 Run the simulation with files `lmp_gsfe.in`, `data.CoCrNi_gsfe_random`, and `CoCrNi.lammps.eam`.
 
@@ -206,7 +171,7 @@ Once it is finished, you will find a file `gsfe_ori`, which should contain 3001 
 
 Then run `sh gsfe_curve.in` in the terminal to generate a new file `gsfe`. Plot a curve using its first and second columns as the _x_ and _y_ axes, respectively. Bring it to our meeting for discussion.
 
-###### CoCrNi with CSRO
+#### CoCrNi with CSRO
 
 Repeat the steps above, except that
 
@@ -214,28 +179,35 @@ Repeat the steps above, except that
 - Change the word `random` to `350KMDMC` in line 14 of the file `lmp_gsfe.in`
 - Change the number `3.5564` to `3.561` in line 51 of the file `lmp_gsfe.in`
 
-### MoNbTa (I am still adding more content)
+## MoNbTa
 
-#### Lattice parameters
+### Build atomistic structures
 
-###### Random MoNbTa, at 0 K, 600 K, 900 K, and 1200 K
+For CoCrNi, [Jian et al.](http://dx.doi.org/10.1016/j.actamat.2020.08.044) built all atomistc structures, and so we directly used them. For MoNbTa, however, we need to build the atomistic structure ourselves.
 
-Done. Results are summarized in the file `MoNbTa/random/data_random.txt` in this GitHub repository.
+First, build random MoNbTa using [Atomsk](https://atomsk.univ-lille.fr). The atomsk script, `atomsk.sh`, can be found in `MoNbTa/random`. The random structure will be `data.MoNbTa_random`.
 
-###### MoNbTa with CSRO, at 0 K
+Second, build MoNbTa with CSRO, annealed at 300 K, by running LAMMPS simulations using `lmp_anneal.in`, `data.MoNbTa_random`, and `MoNbTa.lammps.eam`. Note that the [VCSGC package](https://vcsgc-lammps.materialsmodeling.org) is needed here.
 
-Need to generate MoNbTa with CSRO.
+Run the simulation with files 
 
-- First, use [Atomsk](https://atomsk.univ-lille.fr) to generate random MoNbTa.
-- Then, use the [VCSGC package](https://vcsgc-lammps.materialsmodeling.org) to generate MoNbTa with CSRO, annealed at 300 K.
+### Lattice parameters
 
-#### Elastic constants
-
-###### Random MoNbTa, at 0 K, 600 K, 900 K, and 1200 K
+#### Random MoNbTa, at 0 K, 600 K, 900 K, and 1200 K
 
 Done. Results are summarized in the file `MoNbTa/random/data_random.txt` in this GitHub repository.
 
-###### MoNbTa with CSRO, at 0 K
+#### MoNbTa with CSRO, at 0 K
+
+
+
+### Elastic constants
+
+#### Random MoNbTa, at 0 K, 600 K, 900 K, and 1200 K
+
+Done. Results are summarized in the file `MoNbTa/random/data_random.txt` in this GitHub repository.
+
+#### MoNbTa with CSRO, at 0 K
 
 At the end of the `log.out` file, you will find values of C11all, C12all etc. Use Equations 10-12 of [this paper](http://dx.doi.org/10.1016/j.commatsci.2021.110942) to calculate the three effective BCC elastic constants, in units of GPa. Specifically, they should be
 
@@ -243,66 +215,42 @@ At the end of the `log.out` file, you will find values of C11all, C12all etc. Us
 
 Record these numbers.
 
-#### GSFE at 0 K
+### GSFE at 0 K
 
-###### Random MoNbTa
+#### Random MoNbTa
 
 Done.
 
-###### CoCrNi with CSRO, at 0 K
+#### CoCrNi with CSRO, at 0 K
 
-### Co<sub>2</sub>Ni<sub>2</sub>Ru
+## HfMoNbTaTi
 
-#### Lattice parameters at 0 K
+Data at 0 K were taken from [this paper](http://dx.doi.org/10.1063/5.0116898). Need to cite it. Data at finite temperatures are newly calculated for the current project. In all cases, simulation cells with size D (see Table II of the paper) were used.
 
-#### Elastic constants at 0 K
+Results are summarized in the directory `HfMoNbTaTi` in this GitHub repository. USFEs, taken on the \{110\} plane, are in units of mJ/m<sup>2</sup>.
 
-#### GSFE
+#### Random HfMoNbTaTi
 
-### Al<sub>0.3</sub>CoCrFeNi
+The random material was studied at 0 K, 300 K, 600 K, 900 K, and 1200 K, respectively. Results are in `data_random.txt`.
 
-#### Lattice parameters
+#### HfMoNbTaTi with CSRO
 
-#### Elastic constants
+Following [the paper](http://dx.doi.org/10.1063/5.0116898), four levels of CSRO were considered, with the material annealed at 300 K, 600 K, and 900 K, respectively. In what follows, let's call them 300KMDMC, 600KMDMC, 900KMDMC, respectively.
 
-#### GSFE
+The material 300KMDMC was studied at 0 K and 300 K, respectively. Results are in `data_300KMDMC.txt`.
 
-## Ceramics
+The material 600KMDMC was studied at 0 K and 600 K, respectively. Results are in `data_600KMDMC.txt`.
 
-Four ceramics will be considered.
+The material 900KMDMC was studied at 0 K and 900 K, respectively. Results are in `data_900KMDMC.txt`.
 
-### BaCe<sub>0.5</sub>Zr<sub>0.5</sub>O<sub>3</sub>
+## HfNbTaTiZr
 
-It is the simplification of BaCe<sub>0.4</sub>Zr<sub>0.4</sub>Y<sub>0.1</sub>Yb<sub>0.1</sub>O<sub>$3-\delta$</sub>, which is an electrolyte in one type of fuel cell.
+Data at 0 K were taken from [this paper](http://dx.doi.org/10.1063/5.0116898). Need to cite it. Data at finite temperatures are newly calculated for the current project. In all cases, simulation cells with size D (see Table II of the paper) were used.
 
-#### Lattice parameters
+Results are summarized in the directory `HfNbTaTiZr` in this GitHub repository. USFEs, taken on the \{110\} plane, are in units of mJ/m<sup>2</sup>.
 
-#### Elastic constants
+Note:
 
-#### GSFE
-
-### BaCo<sub>0.5</sub>Fe<sub>0.5</sub>O<sub>3</sub> 
-
-It is the simplification of BaCo<sub>0.4</sub>Fe<sub>0.4</sub>Zr<sub>0.1</sub>Y<sub>0.1</sub>O<sub>$3-\delta$</sub>, which is a positive electrode (i.e., cathode) in one type of fuel cell.
-
-#### Lattice parameters
-
-#### Elastic constants
-
-### La<sub>0.8</sub>Sr<sub>0.2</sub>Ga<sub>0.8</sub>Mg<sub>0.2</sub>O<sub>2.8</sub>
-
-It is an electrolyte in one type of fuel cell.
-
-#### Lattice parameters
-
-#### Elastic constants
-
-#### GSFE
-
-### La<sub>0.6</sub>Sr<sub>0.4</sub>CoO<sub>3</sub> 
-
-It is the simplification of La<sub>0.6</sub>Sr<sub>0.4</sub>CoO<sub>$3-\delta$</sub>, which is a cathode in one type of fuel cell.
-
-#### Lattice parameters
-
-#### Elastic constants
+- Only random HfNbTaTiZr is considered, and the results are in `data_random.txt`.
+- Pure Mo, Nb, and Ta are considered, and the results are in `Mo.txt`, `Nb.txt`, and `Ta.txt`, respectively.
+- These four materials are studied at 0 K, 300 K, 600 K, 900 K, and 1200 K, respectively. The only exception is that Nb becomes unstable at 1200 K so there is no data for that case. Among the materials, it would be interesting to compare the temperature effect on them.
