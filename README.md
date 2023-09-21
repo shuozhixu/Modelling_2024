@@ -65,7 +65,7 @@ on the screen. Record these three numbers. These are for random CoCrNi.
 #### CoCrNi with CSRO
 
 The simulation requires files 
-`lmp_0K.in`, `min.CoCrNi_27nmx_27nmy_27nmz_350KMDMC.dat`, and `CoCrNi.lammps.eam`. The second file can be found [here](https://drive.google.com/drive/folders/13xaI274U-xIsBN8h_TY_eohsXxedEwFE?usp=sharing). Make one change in `lmp_lat.in`:
+`lmp_0K.in`, `min.CoCrNi_27nmx_27nmy_27nmz_350KMDMC.dat`, and `CoCrNi.lammps.eam`. Make one change in `lmp_lat.in`:
 
 - Line 10. Change the word `random` to `350KMDMC`, i.e., to match the new data file's name.
 
@@ -77,7 +77,7 @@ Run the simulation. Once it is finished, you will find a new file `a_E`. The fir
 
 Run the simulation with files `in.elastic`, `displace.mod`, `init.mod`, `potential.mod`, `min.CoCrNi_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
 
-Once it is finished, you will find a file `lmp.out`, at the end of which you will find values of C11all, C12all etc. Specifically, you will see
+Once it is finished, you will find an output file, `*.out`, at the end of which you will find values of C11all, C12all etc. Specifically, you will see
 
 	Elastic Constant C11all = 309.979695007998 GPa
 	Elastic Constant C22all = 310.087578803684 GPa
@@ -90,7 +90,7 @@ The simulation requires files `in.elastic`, `displace.mod`, `init.mod`, `potenti
 
 - Change the last number (by default 1.) of line 50 to the correct ratio identified in the prior lattice parameter calculation, i.e., the first of the three numbers you recorded for the CSRO case.
 
-Run the simulation. Once it is finished, rename the newly generated file `lmp.out` to `lmp_350KMDMC.out` and upload it to the `CoCrNi/ela_const/0K` directory.
+Run the simulation. Once it is finished, rename the newly generated output file to `lmp_350KMDMC.out` and upload it to the `CoCrNi/ela_const/0K` directory.
 
 ### Lattice parameters at 300 K
 
@@ -135,14 +135,14 @@ Again, the newly generated file `data.relax` will be used later in elastic const
 
 Run the simulation with files `in.elastic`, `init.in`, `potential.in`, `output.in`, `final_output.in`, `data.relax`, and `CoCrNi.lammps.eam`. Note that the file `data.relax` is the one you got from the `Lattice parameters at 300 K - Random CoCrNi` calculation.
 
-Once it is finished, go to the end of the file `lmp.out`, and you will see
+Once it is finished, go to the end of the output file, and you will see
 
 	Elastic Constant C11 = 298.291596568703 GPa
 	Elastic Constant C22 = 297.341418727254 GPa
 
 which are smaller than those calculated at 0 K, as expected.
 
-Rename the file `lmp.out` to `lmp_random.out` and upload it to the `CoCrNi/ela_const/300K` directory. 
+Rename the file to `lmp_random.out` and upload it to the `CoCrNi/ela_const/300K` directory. 
 
 #### CoCrNi with CSRO
 
@@ -150,7 +150,7 @@ Repeat the steps above, except that
 
 - Use the `data.relax` file from the `Lattice parameters at 300 K - CoCrNi with CSRO` calculation instead
 
-Once the simulation is finished, rename the file `lmp.out` to `lmp_300K.out` and upload it to the `CoCrNi/ela_const/300K` directory.
+Once the simulation is finished, rename the output file to `lmp_300K.out` and upload it to the `CoCrNi/ela_const/300K` directory.
 
 ### GSFE at 0 K
 
