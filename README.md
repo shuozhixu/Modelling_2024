@@ -198,7 +198,7 @@ All results for random MoNbTa have been calculated. They are summarized in the f
 
 Run the atomsk script, `atomsk_Mo.sh`, which can be found in `MoNbTa/csro/` in this GitHub repository, to build a Mo structure named `data.Mo`.
 
-Then build MoNbTa with CSRO, annealed at 300 K, by running hybrid molecular dynamics (MD) and Monte Carlo (MC) simulations using `lmp_mdmc.in`, `data.Mo`, and `CrMoNbTaVW_Xu2022.eam.alloy`.
+Then build MoNbTa with CSRO by running hybrid molecular dynamics (MD) and Monte Carlo (MC) simulations using `lmp_mdmc.in`, `data.Mo`, and `CrMoNbTaVW_Xu2022.eam.alloy`.
 
 By default, in `lmp_mdmc.in`, the two numbers at the end of lines 10 and 11 are 0.021 and -0.32, respectively. They are the chemical potential difference between Co and Ni, and that between Cr and Ni, respectively, in CoCrNi. Here, the two numbers need to be modified because MoNbTa is being studied.
 
@@ -206,7 +206,11 @@ How are they determined? Follow the procedure described in Section B.2 of [this 
 
 Another thing to check is whether the energy converges to a constant. For that, plot two curves, one using `etotal` as the _y_ axis and `step` as the _x_ axis, another using `pe` as the _y_ axis and `step` as the _x_ axis. You can find `etotal`, `pe`, and `step` in the log file. If both energies approach a constant as `step` increases, the two numbers are good. The curves may look like Figure 1(a) of [this paper](https://doi.org/10.1073/pnas.1808660115), which is for CoCrNi.
 
-Once the two numbers are identified, use the `data.MoNbTa_CSRO` file to calculate the lattice parameters and elastic constants at 0 K, 300 K, 600 K, 900 K, and 1200 K. Also calculate the GSFE at 0 K.
+Note: to determine the two chemical potential differences, the temperature needs to be higher than the melting point. [A previous paper](http://dx.doi.org/10.1063/5.0116898) on two refractory MPEAs used 1500 K, which might be sufficient for MoNbTa. You can use the method described in Section 3.1 of [this paper](https://doi.org/10.1117/12.2635100) to determine whether MoNbTa melts at 1500 K. For this purpose, The radial distribution function can be [calculated in OVITO](https://www.ovito.org/manual/reference/pipelines/modifiers/coordination_analysis.html). If the material does not melt at 1500 K, let me know.
+
+Once the two chemical potential differences are identified, change the temperature in line 2 from `1500` to `300`. Then redo the calculation, which will produce a file `data.MoNbTa_CSRO` eventually.
+
+Use that data file to calculate the lattice parameters and elastic constants at 0 K, 300 K, 600 K, 900 K, and 1200 K. Also calculate the GSFE at 0 K.
 
 Use the same method for CoCrNi. Remember to modify the input files accordingly and use the appropriate potential.
 
