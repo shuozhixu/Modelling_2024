@@ -192,11 +192,32 @@ Similar to Ni, we need to build the atomistic structures for MoNbTa ourselves.
 
 Run the atomsk script, `atomsk_MoNbTa.sh`, which can be found in `MoNbTa/random/` in this GitHub repository, to build a random MoNbTa structure named `data.MoNbTa_random`.
 
+In the data file, change the masses section to
+
+		1   95.96000000    # Mo
+		2   92.90638000    # Nb
+		3   180.94788000   # Ta
+
 All results for random MoNbTa have been calculated. They are summarized in the file `MoNbTa/random/data_random.txt` in this GitHub repository. Most results were based on the [EAM potential](http://dx.doi.org/10.1016/j.commatsci.2021.110942) while those at 0 K were also based on the [MTP](http://dx.doi.org/10.1038/s41524-023-01046-z). We can compare the two potentials for properties at 0 K in the paper.
 
 ### MoNbTa with CSRO
 
+#### Build the CSRO structure
+
 Run the atomsk script, `atomsk_Mo.sh`, which can be found in `MoNbTa/csro/` in this GitHub repository, to build a Mo structure named `data.Mo`.
+
+Next, make two changes to `data.Mo`:
+
+- Line 4. Change the first number `1` to `3`
+- Line 12 contains the atomic mass of Mo. Add two lines after it, i.e.,
+
+		Masses
+		
+		1   95.96000000    # Mo
+		2   92.90638000    # Nb
+		3   180.94788000   # Ta
+		
+		Atoms # atomic
 
 Then build MoNbTa with CSRO by running hybrid molecular dynamics (MD) and Monte Carlo (MC) simulations using `lmp_mdmc.in`, `data.Mo`, and `CrMoNbTaVW_Xu2022.eam.alloy`.
 
@@ -208,15 +229,45 @@ Another thing to check is whether the energy converges to a constant. For that, 
 
 Note: to determine the two chemical potential differences, the temperature needs to be higher than the melting point. [A previous paper](http://dx.doi.org/10.1063/5.0116898) on two refractory MPEAs used 1500 K, which might be sufficient for MoNbTa. You can use the method described in Section 3.1 of [this paper](https://doi.org/10.1117/12.2635100) to determine whether MoNbTa melts at 1500 K. For this purpose, The radial distribution function can be [calculated in OVITO](https://www.ovito.org/manual/reference/pipelines/modifiers/coordination_analysis.html). If the material does not melt at 1500 K, let me know.
 
-Once the two chemical potential differences are identified, change the temperature in line 2 from `1500` to `300`. Then redo the calculation, which will produce a file `data.MoNbTa_CSRO` eventually.
+Once the two chemical potential differences are identified, change the temperature in line 2 from `1500` to `300`. Then redo the calculation, which will produce a file `data.MoNbTa_CSRO`, which is the CSRO structure annealed at 300 K, and a file `cn.out`.
 
-Use that data file to calculate the lattice parameters and elastic constants at 0 K, 300 K, 600 K, 900 K, and 1200 K. Also calculate the GSFE at 0 K.
+#### Target quantities calculation
+
+Use the data file `data.MoNbTa_CSRO` to calculate the lattice parameters and elastic constants at 0 K, 300 K, 600 K, 900 K, and 1200 K. Also calculate the GSFE at 0 K.
 
 Use the same method for CoCrNi. Remember to modify the input files accordingly and use the appropriate potential.
 
-In particular, the trial lattice parameter is 3.135 Angstrom. When calculating the lattice parameter at 0 K, change line 44 of `lmp_0K.in` to
+In particular, the initial trial lattice parameter is 3.135 Angstrom, but after running LAMMPS simulations, it might change. To new trial lattice parameter can be calculated by
+
+	(lx/(10*sqrt(6.)/2.)+ly/(46*sqrt(3.))+lz/(14*sqrt(2.)))/3.
+
+Also, when calculating the lattice parameter at 0 K, change line 44 of `lmp_0K.in` to
 
 	variable lat_para equal (lx/(10*sqrt(6.)/2.)+ly/(46*sqrt(3.))+lz/(14*sqrt(2.)))/3.
+
+#### Warren-Cowley parameter calculation
+
+Build a new directory named `WC` and move three files there: `cn.out` from the last LAMMPS simulation, `cn.sh`, and `csro.sh`.
+
+Run
+
+	sh cn.sh
+	
+Then you will find a new directory `cn` and one or more `rdf.*.dat` files in it. Then move `csro.sh` into the `cn` directory and execute it, i.e.,
+
+	move csro.sh cn/
+	sh csro.sh
+	
+Then you will find a file named `csro.a1.dat`, which is what we need. The 2nd to 7th numbers in that file are a\_MoMo, a\_MoNb, a\_MoTa, a\_NbNb, a\_NbTa, a\_TaTa, respectively. These are Warren-Cowley (WC) parameters.
+
+In fact, you can calculate the WC parameters for random MoNbTa too. To do that, in `lmp_mdmc.in`,
+
+- Lines 3 and 4. Change the two large numbers to zero
+- Linne 25. Change the data file name to `data.MoNbTa_random`
+
+Then run a LAMMPS simulation using the modified `lmp_mdmc.in`, `data.MoNbTa_random`, and `CrMoNbTaVW_Xu2022.eam.alloy`.
+
+Using all WC parameters to make a plot similar to Figure 2(d) of [this paper](http://dx.doi.org/10.1016/j.actamat.2020.08.044).
 
 ### Pure metals
 

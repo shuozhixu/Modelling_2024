@@ -1,7 +1,7 @@
 # general variables
 variable	temperature equal 1500 #change this to the temperature of interest
 variable	nsteps_run equal 1200000
-#variable	nsteps_npt equal 20000
+variable	nsteps_npt equal 20000
 
 # variables for 'fix sgcmc'
 variable	nsteps_mc     equal 20
@@ -45,10 +45,10 @@ fix		mc all sgcmc ${nsteps_mc} ${swap_fraction} ${temperature_mc} ${deltamu1} ${
 		randseed 73291438 &
 		variance ${kappa} ${target_concentration1} ${target_concentration2}
 
-fix cn all ave/time 10000 1 10000 c_2[*] file cn.out mode vector
+fix cn all ave/time 10000 1 10000 c_2[*] file cn_ft.out mode vector
 
 # set up output
-thermo		10
+thermo		100
 thermo_style	custom step cpu temp atoms etotal  pe press &
 		lx ly lz f_mc[1] f_mc[2] f_mc[3] f_mc[4] f_mc[5] 
 thermo_modify	flush yes
@@ -56,13 +56,13 @@ dump 		1 all custom 400000 mc.*.dump id type x y z
 
 run		${nsteps_run}
 
-write_data      data.MoNbTa_CSRO   #######?
+write_data      data.MoNbTa_CSRO_HT   #######?
 
-#uncompute 2
+uncompute 2
 unfix  integrate
-#unfix  mc
-#unfix  cn
-#undump 1
+unfix  mc
+unfix  cn
+undump 1
 
 # ------------------------- SRO ---------------------------------
 compute 1 all coord/atom cutoff 3.0 * 1 2 3                   # 1st shell
@@ -74,23 +74,40 @@ variable aNbNb1     atom  (c_1[3]/c_1[1]-1/3)/(1-1/3)
 variable aNbTa1     atom  (1-c_1[4]*3/c_1[1])+(1-c_1[3]*3/c_1[1])      #aNbTa1
 variable aTaTa1     atom  (c_1[4]/c_1[1]-1/3)/(1-1/3)
 
-#fix		integrate all npt &
+fix		integrate all npt &
 		temp ${temperature} 1 1.7 &
 		aniso 0 0 1.5
 
-dump            2 all custom 1 dump.* id type x y z vx vy vz v_aMoMo1 v_aMoNb1 v_aMoTa1 v_aNbNb1 v_aNbTa1 v_aTaTa1
+dump            1 all custom 1000 dump.*.npt id type x y z vx vy vz v_aMoMo1 v_aMoNb1 v_aMoTa1 v_aNbNb1 v_aNbTa1 v_aTaTa1
 dump_modify     1 sort id
 
 compute 2 all rdf 300 * * 1 1 1 2 1 3 2 1 2 2 2 3 3 1 3 2 3 3
-fix 1 all ave/time 100 1 100 c_2[*] file rdf.1200000.dat mode vector
+fix 1 all ave/time 10000 1 10000 c_2[*] file rdf.${nsteps_run}.dat mode vector
 
-thermo		1
+thermo		100
 thermo_style	custom step temp atoms pe press lx ly lz 
 thermo_modify	flush yes
-run		0
+run		${nsteps_npt}
 
-#uncompute 1
-#unfix integrate
-#undump 1
+uncompute 1
+uncompute 2
+unfix integrate
+unfix 1
+undump 1
 
-print           "All done"
+write_data      data.MoNbTa_CSRO_LT
+
+velocity all set 0 0 0
+
+min_style cg
+
+fix 0 all box/relax aniso 0 vmax 0.001
+minimize 0 1e-2 100000 100000
+unfix 0
+
+write_data      data.MoNbTa_CSRO
+
+reset_timestep 0
+compute 2 all rdf 300 * * 1 1 1 2 1 3 2 1 2 2 2 3 3 1 3 2 3 3
+fix 1 all ave/time 10000 1 10000 c_2[*] file cn.out mode vector
+run 0
