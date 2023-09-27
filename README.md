@@ -178,7 +178,9 @@ CoCrNi contains only one pure metal, Ni, that has the same lattice as the alloy.
 
 For CoCrNi, [Jian et al.](http://dx.doi.org/10.1016/j.actamat.2020.08.044) built all atomistc structures, and so we directly used them. For Ni, however, we need to build the atomistic structure ourselves. The first step is to install [Atomsk](https://atomsk.univ-lille.fr).
 
-Run the atomsk script, `atomsk_Ni.sh`, which can be found in `CoCrNi/ni/` in this GitHub repository, to build a Ni structure named `data.Ni`.
+Run the atomsk script, `atomsk_Ni.sh`, which can be found in `CoCrNi/ni/` in this GitHub repository, to build a Ni structure named `data.Ni`, by
+
+	sh atomsk_Ni.sh
 
 Then use the data file and the same potential file to calculate its lattice parameters and elastic constants at 0 K and 300 K. Also calculate its GSFE at 0 K.
 
@@ -237,7 +239,7 @@ Use the data file `data.MoNbTa_CSRO` to calculate the lattice parameters and ela
 
 Use the same method for CoCrNi. Remember to modify the input files accordingly and use the appropriate potential.
 
-In particular, the initial trial lattice parameter is 3.135 Angstrom, but after running LAMMPS simulations, it might change. To new trial lattice parameter can be calculated by
+In particular, the initial trial lattice parameter is 3.135 Angstrom, but after running LAMMPS simulations, it might change. The new trial lattice parameter can be calculated by
 
 	(lx/(10*sqrt(6.)/2.)+ly/(46*sqrt(3.))+lz/(14*sqrt(2.)))/3.
 
