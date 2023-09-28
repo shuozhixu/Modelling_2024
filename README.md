@@ -202,7 +202,7 @@ In the data file, change the masses section to
 
 All results for random MoNbTa have been calculated. They are summarized in the file `MoNbTa/random/data_random.txt` in this GitHub repository. Most results were based on the [EAM potential](http://dx.doi.org/10.1016/j.commatsci.2021.110942) while those at 0 K were also based on the [MTP](http://dx.doi.org/10.1038/s41524-023-01046-z). We can compare the two potentials for properties at 0 K in the paper.
 
-#### Warren-Cowley (WC) parameter calculation
+#### Warren-Cowley (WC) parameter
 
 First, calculate the radial distribution functions (RDF) for random MoNbTa. To do that, run a LAMMPS simulation with three files `data.MoNbTa_random`, `CrMoNbTaVW_Xu2022.eam.alloy`, and `lmp_mdmc.in`. The last file is from the `MoNbTa/csro/` directory in this GitHub repository and should be modified as follows:
 
@@ -223,7 +223,16 @@ Then you will find a new directory `cn` and one or more `rdf.*.dat` files in it.
 	cd cn/
 	sh csro.sh
 	
-Then you will find a file named `csro.a1.dat`, which is what we need. The 2nd to 7th numbers in that file are $\alpha$\_MoMo, $\alpha$\_MoNb, $\alpha$\_MoTa, $\alpha$\_NbNb, $\alpha$\_NbTa, $\alpha$\_TaTa, respectively. These are WC parameters.
+Then you will find a file named `csro.a1.dat`, which is what we need. The 2nd to 7th numbers in that file are &alpha;\_MoMo, &alpha;\_MoNb, &alpha;\_MoTa, &alpha;\_NbNb, &alpha;\_NbTa, and &alpha;\_TaTa, respectively. These are WC parameters.
+
+#### Melting point
+
+Use the method described in Section 3.1 of [this paper](https://doi.org/10.1117/12.2635100) to determine whether MoNbTa melts at 1500 K. For this purpose, make two changes to the `lmp_mdmc.in`:
+
+- Line 3. Change the large number at the end to `0`
+- Line 4. Change the large number at the end to `200000` 
+
+Run the simulation with the modified `lmp_mdmc.in`, `data.MoNbTa_random`, and `CrMoNbTaVW_Xu2022.eam.alloy`. Once it is finished, load the output data file `data.MoNbTa_CSRO_LT` into OVITO, and then [calculate RDF in OVITO](https://www.ovito.org/manual/reference/pipelines/modifiers/coordination_analysis.html). If the material does not melt at 1500 K, increase the temperature in line 2 of `lmp_mdmc` to `2000` or `2500` or `3000`, and rerun the simulation.
 
 ### MoNbTa with CSRO
 
@@ -254,11 +263,9 @@ Use OVITO to check the file `data.MoNbTa_CSRO_HT` to see if the three elements a
 
 Another thing to check is whether the energy converges to a constant. For that, plot two curves, one using `etotal` as the _y_ axis and `step` as the _x_ axis, another using `pe` as the _y_ axis and `step` as the _x_ axis. You can find `etotal`, `pe`, and `step` in the log file. If both energies approach a constant as `step` increases, the two numbers are good. The curves may look like Figure 1(a) of [this paper](https://doi.org/10.1073/pnas.1808660115), which is for CoCrNi.
 
-Note: to determine the two chemical potential differences, the temperature needs to be higher than the melting point. [A previous paper](http://dx.doi.org/10.1063/5.0116898) on two refractory MPEAs used 1500 K, which might be sufficient for MoNbTa. You can use the method described in Section 3.1 of [this paper](https://doi.org/10.1117/12.2635100) to determine whether MoNbTa melts at 1500 K. For this purpose, The radial distribution function can be [calculated in OVITO](https://www.ovito.org/manual/reference/pipelines/modifiers/coordination_analysis.html). If the material does not melt at 1500 K, let me know.
-
 Once the two chemical potential differences are identified, change the temperature in line 2 from `1500` to `300`. Then redo the calculation, which will eventually produce a file `data.MoNbTa_CSRO`, which is the CSRO structure annealed at 300 K, and a file `cn.out`.
 
-#### Target quantities calculation
+#### Some quantities
 
 Use the data file `data.MoNbTa_CSRO` to calculate the lattice parameters and elastic constants at 0 K, 300 K, 600 K, 900 K, and 1200 K. Also calculate the GSFE at 0 K.
 
@@ -272,7 +279,7 @@ Also, when calculating the lattice parameter at 0 K, change line 44 of `lmp_0K.i
 
 	variable lat_para equal (lx/(10*sqrt(6.)/2.)+ly/(46*sqrt(3.))+lz/(14*sqrt(2.)))/3.
 
-#### WC parameter calculation
+#### WC parameter
 
 Follow the steps in the random MoNbTa case to calculate the WC parameters in the CSRO MoNbTa structure.
 
