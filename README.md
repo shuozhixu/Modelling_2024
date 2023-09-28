@@ -223,7 +223,7 @@ Then you will find a new directory `cn` and one or more `rdf.*.dat` files in it.
 	cd cn/
 	sh csro.sh
 	
-Then you will find a file named `csro.a1.dat`, which is what we need. The 2nd to 7th numbers in that file are $\alpha$\_MoMo, $\alpha$\_MoNb, $\alpha$\_MoTa, $\alpha$\_NbNb, $\alpha$\_NbTa, $\alpha$\_TaTa, respectively. These are WC parameters.
+Then you will find a file named `csro.a1.dat`, which is what we need. The 2nd to 7th numbers in that file are $\alpha$ \_MoMo, $\alpha$\_MoNb, $\alpha$\_MoTa, $\alpha$\_NbNb, $\alpha$\_NbTa, $\alpha$\_TaTa, respectively. These are WC parameters.
 
 ### MoNbTa with CSRO
 
