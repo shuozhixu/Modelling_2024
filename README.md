@@ -232,7 +232,7 @@ Use the method described in Section 3.1 of [this paper](https://doi.org/10.1117/
 - Line 3. Change the large number at the end to `0`
 - Line 4. Change the large number at the end to `200000` 
 
-Run the simulation with the modified `lmp_mdmc.in`, `data.MoNbTa_random`, and `CrMoNbTaVW_Xu2022.eam.alloy`. Once it is finished, load the output data file `data.MoNbTa_CSRO_LT` into OVITO, and then [calculate RDF in OVITO](https://www.ovito.org/manual/reference/pipelines/modifiers/coordination_analysis.html). If the material does not melt at 1500 K, increase the temperature in line 2 of `lmp_mdmc` to `2000` or `2500` or `3000`, and rerun the simulation.
+Run the simulation with the modified `lmp_mdmc.in`, `data.MoNbTa_random`, and `CrMoNbTaVW_Xu2022.eam.alloy`. Once it is finished, load the output data file `data.MoNbTa_CSRO_LT` into OVITO, and then [calculate RDF in OVITO](https://www.ovito.org/manual/reference/pipelines/modifiers/coordination_analysis.html). If the material does not melt at 1500 K, increase the temperature in line 2 of `lmp_mdmc.in` to `2000` or `2500` or `3000`, and rerun the simulation.
 
 ### MoNbTa with CSRO
 
