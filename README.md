@@ -188,6 +188,8 @@ In line 6 of `lmp_mp.in`, the trial melting point is set as 1200 K.
 
 Repeat the steps above until you find the actual melting point, which should lead to a curve that neither increases nor decreases.
 
+Note: Save the data for each curve because eventually you will need to plot multiple curves like in Figure 2(b) of [this paper](http://dx.doi.org/10.1098/rspa.2017.0084).
+
 #### CoCrNi with CSRO
 
 Follow the procedures above, except that
