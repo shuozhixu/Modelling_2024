@@ -3,6 +3,7 @@ atom_style	atomic
 dimension	  3
 boundary	p p p 
 
+variable liquidt equal 3500
 variable trialmp equal 1200
 
 #variable latparam equal 5.4653
@@ -69,13 +70,13 @@ group		liquid1 region liquid
 
 fix		nvt1 solidup1 nvt temp ${trialmp} ${trialmp} 0.1
 fix		nvt11 soliddown1 nvt temp ${trialmp} ${trialmp} 0.1
-fix		nvt2 liquid1 nvt temp ${trialmp} 4000 0.1
+fix		nvt2 liquid1 nvt temp ${trialmp} ${liquidt} 0.1
 
 run		100000
 reset_timestep    0
 unfix		nvt2
 
-fix		npt5 liquid1 npt temp 4000 ${trialmp} 0.1 z 0 0 1 
+fix		npt5 liquid1 npt temp ${liquidt} ${trialmp} 0.1 z 0 0 1 
 
 run		500000
 reset_timestep    0
