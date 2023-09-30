@@ -76,7 +76,7 @@ run		100000
 reset_timestep    0
 unfix		nvt2
 
-fix		npt5 liquid1 npt temp ${liquidt} ${trialmp} 0.1 z 0 0 1 
+fix		npt5 liquid1 npt temp ${liquidt} ${trialmp} 0.1 y 0 0 1 
 
 run		500000
 reset_timestep    0
@@ -85,7 +85,7 @@ unfix		npt5
 unfix		nvt1
 unfix		nvt11
 
-fix		npt6 all npt temp ${trialmp} ${trialmp} 0.1 z 0 0 1 
+fix		npt6 all npt temp ${trialmp} ${trialmp} 0.1 y 0 0 1 
 fix		2 all momentum 10 linear 1 1 1 angular
 fix		3 all recenter INIT INIT INIT units box
 
