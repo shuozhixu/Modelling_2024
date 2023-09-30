@@ -1,0 +1,101 @@
+runits		metal
+atom_style	atomic
+dimension	  3
+boundary	p p p 
+
+variable trialmp equal 1200
+
+#variable latparam equal 5.4653
+
+# ----------------------- ATOM DEFINITION ----------------------------
+#lattice		diamond ${latparam}
+#region		whole block 0 12 0 12 0 60
+#create_box	2 whole
+#lattice 	diamond ${latparam} orient x 1 0 0 orient y 0 1 0 orient z 0 0 1
+#create_atoms	1 region whole
+
+read_data	data.CoCrNi_gsfe_random
+
+#pair_style	tersoff	
+#pair_coeff 	* * SiC_Erhart-Albe.tersoff Si Si
+
+pair_style      eam/alloy
+pair_coeff      * * CoCrNi.lammps.eam Ni Co Cr
+
+neighbor	0.3 bin
+neigh_modify    delay   10
+
+#mass		1 28.0855
+#mass		2 28.0855
+
+timestep	0.001
+
+velocity all create 300 85493389 mom yes rot yes dist uniform
+fix		npt1 all npt temp 300 300 0.1 iso 0 0 1 
+
+thermo_style custom step temp vol pe etotal vol press enthalpy
+thermo		1000
+run		50000
+reset_timestep    0
+unfix		npt1
+
+#fix		npt2 all npt temp 200 300 0.1 iso 0 0 1 
+#run		30000
+#reset_timestep    0
+#unfix		npt2
+
+fix		npt3 all npt temp 300 ${trialmp} 0.1 iso 0 0 1 
+run		100000
+reset_timestep    0
+unfix		npt3
+
+fix		npt4 all npt temp ${trialmp} ${trialmp} 0.1 iso 0 0 1 
+run		50000
+reset_timestep    0
+unfix		npt4
+
+region		solidup block INF INF INF 40 INF INF units box
+group		solidup1 region solidup
+
+region		soliddown block INF INF 90 INF INF INF units box
+group		soliddown1 region soliddown
+
+region		liquid block INF INF INF 40 90 INF units box
+group		liquid1 region liquid
+
+#set		group solidup1 type 1
+#set		group soliddown1 type 1
+#set		group liquid1 type 2
+
+fix		nvt1 solidup1 nvt temp ${trialmp} ${trialmp} 0.1
+fix		nvt11 soliddown1 nvt temp ${trialmp} ${trialmp} 0.1
+fix		nvt2 liquid1 nvt temp ${trialmp} 4000 0.1
+
+run		100000
+reset_timestep    0
+unfix		nvt2
+
+fix		npt5 liquid1 npt temp 4000 ${trialmp} 0.1 z 0 0 1 
+
+run		500000
+reset_timestep    0
+
+unfix		npt5
+unfix		nvt1
+unfix		nvt11
+
+fix		npt6 all npt temp ${trialmp} ${trialmp} 0.1 z 0 0 1 
+fix		2 all momentum 10 linear 1 1 1 angular
+fix		3 all recenter INIT INIT INIT units box
+
+#variable	Temperature equal temp
+#variable	nAtoms equal count(all)
+#variable	Pe equal pe
+variable	pea equal pe/count(all)
+variable	etime equal step*0.001/1000
+
+fix		temp_out all ave/time 500 20 10000 v_etime temp v_pea ave window 2 file plot.out 
+
+dump		1 all custom 1000000 dump.* id type x y z
+
+run		10000000

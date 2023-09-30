@@ -2,14 +2,15 @@
 
 ## Foreword
 
-The purpose of this project is to calculate the basic structural parameters (including lattice parameter and elastic constants) and generalized stacking fault energies (GSFE) of four equal-molar multi-principal element alloys (MPEAs). The effects of chemical short-range order (CSRO) and temperature will be considered.
+The purpose of this project is to calculate the basic structural parameters (including lattice parameter and elastic constants), generalized stacking fault energies (GSFE), and melting point of four equal-molar multi-principal element alloys (MPEAs). The effects of chemical short-range order (CSRO) will be considered.
 
 Please read the following journal articles to understand how the aforementioned material properties can be calculated.
 
-\[Pure metals\]:
+\[Elemental materials\]:
 
 - Xiaowang Wang, Shuozhi Xu, Wu-Rong Jian, Xiang-Guo Li, Yanqing Su, Irene J. Beyerlein, [Generalized stacking fault energies and Peierls stresses in refractory body-centered cubic metals from machine learning-based interatomic potentials,](http://dx.doi.org/10.1016/j.commatsci.2021.110364) Comput. Mater. Sci. 192 (2021) 110364
 - Yanqing Su, Shuozhi Xu, Irene J. Beyerlein, [Density functional theory calculations of generalized stacking fault energy surfaces for eight face-centered cubic transition metals](http://dx.doi.org/10.1063/1.5115282), J. Appl. Phys. 126 (2019) 105112
+- Saeed Zare Chavoshi, Shuozhi Xu, Saurav Goel, [Addressing the discrepancy of finding equilibrium melting point of silicon using MD simulations](http://dx.doi.org/10.1098/rspa.2017.0084), Proc. R. Soc. A 473 (2017) 20170084
 
 \[Random alloys\]:
 
@@ -40,13 +41,13 @@ Note: if you use sbatch files from [LAMMPSatOU](https://github.com/ANSHURAJ11/LA
 
 Please, each time you run a new type of simulation, create a new directory.
 
-Four MPEAs will be considered. No new calculations are needed for the last two alloys. Data are presented here so that you will include them in the paper.
+Four MPEAs will be considered.
 
 ## CoCrNi
 
 Note: All files for calculations can be found in the `CoCrNi` directory in this GitHub repository, except the data files which can be [here](https://drive.google.com/drive/folders/13xaI274U-xIsBN8h_TY_eohsXxedEwFE?usp=sharing). The reason is that the data files are too large for GitHub.
 
-All data files are from [this paper](http://dx.doi.org/10.1016/j.actamat.2020.08.044), which should be cited.
+All data files are from [this paper](http://dx.doi.org/10.1016/j.actamat.2020.08.044).
 
 ### Lattice parameters at 0 K
 
@@ -156,7 +157,7 @@ Once the simulation is finished, rename the output file to `lmp_300K.out` and up
 
 #### Random CoCrNi
 
-Run the simulation with files `lmp_gsfe.in`, `data.CoCrNi_gsfe_random`, and `CoCrNi.lammps.eam`.
+Run the simulation with files `lmp_gsfe.in`, `data.CoCrNi_gsfe_random`, and `CoCrNi.lammps.eam`. The first file can be found in the directory `CoCrNi/gsfe/` in this GitHub repository.
 
 Once it is finished, you will find a file `gsfe_ori`, which should contain 3001 lines, with the first one being
 
@@ -166,11 +167,33 @@ Then run `sh gsfe_curve.in` in the terminal to generate a new file `gsfe`. Plot 
 
 #### CoCrNi with CSRO
 
-Repeat the steps above, except that
+Follow the procedures above, except that
 
 - Use the data file `data.CoCrNi_gsfe_350KMDMC` instead
 - Change the word `random` to `350KMDMC` in line 14 of the file `lmp_gsfe.in`
 - Change the number `3.5564` to `3.561` in line 51 of the file `lmp_gsfe.in`
+
+### Melting point
+
+#### Random CoCrNi
+
+Run the simulation with files `lmp_mp.in`, `data.CoCrNi_gsfe_random`, and `CoCrNi.lammps.eam`. The first file can be found in the directory `CoCrNi/melting_point/` in this GitHub repository.
+
+Once it is finished, you will find a file `plot.out`. Plot its 1st and 3rd column as the _x_ and _y_ axes, respectively. It may look like one of the curves in Figure 2(b) of [this paper](http://dx.doi.org/10.1098/rspa.2017.0084).
+
+In line 6 of `lmp_mp.in`, the trial melting point is set as 1200 K.
+
+- If 1200 K is lower than the actual melting point, the curve you plot will decrease. Then increase the number in line 6 and rerun the job.
+- If 1200 K is higher than the actual melting point, the curve you plot will increase. Then decrease the number in line 6 and resubmit the job.
+
+Repeat the steps above until you find the actual melting point, which should lead to a curve that neither increases nor decreases.
+
+#### CoCrNi with CSRO
+
+Follow the procedures above, except that
+
+- Use the data file `data.CoCrNi_gsfe_350KMDMC` instead
+- Change the word `random` to `350KMDMC` in line 17 of the file `lmp_mp.in`
 
 ### Pure metal
 
@@ -182,7 +205,7 @@ Run the atomsk script, `atomsk_Ni.sh`, which can be found in `CoCrNi/ni/` in thi
 
 	sh atomsk_Ni.sh
 
-Then use the data file and the same potential file to calculate its lattice parameters and elastic constants at 0 K and 300 K. Also calculate its GSFE at 0 K.
+Then use the data file and the same potential file to calculate its lattice parameters and elastic constants at 0 K and 300 K. Also calculate its GSFE at 0 K and its melting point.
 
 Note: The trial lattice parameter is 3.5564 Angstrom. When calculating the lattice parameter at 0 K, in line 44 of `lmp_0K.in`, change the three numbers 54, 63, and 45, to 30, 30, and 10, respectively. This is because different cell sizes are used here.
 
@@ -200,7 +223,7 @@ In the data file, change the masses section to
 		2   92.90638000    # Nb
 		3   180.94788000   # Ta
 
-All results for random MoNbTa have been calculated. They are summarized in the file `MoNbTa/random/data_random.txt` in this GitHub repository. Most results were based on the [EAM potential](http://dx.doi.org/10.1016/j.commatsci.2021.110942) while those at 0 K were also based on the [MTP](http://dx.doi.org/10.1038/s41524-023-01046-z). We can compare the two potentials for properties at 0 K in the paper.
+Lattice parameter, elastic constants, and GSFE of random MoNbTa have been calculated. They are summarized in the file `MoNbTa/random/data_random.txt` in this GitHub repository. Most results were based on the [EAM potential](http://dx.doi.org/10.1016/j.commatsci.2021.110942) while those at 0 K were also based on the [MTP](http://dx.doi.org/10.1038/s41524-023-01046-z). We can compare the two potentials for properties at 0 K in the paper.
 
 #### Warren-Cowley (WC) parameter
 
@@ -225,14 +248,14 @@ Then you will find a new directory `cn` and one or more `rdf.*.dat` files in it.
 	
 Then you will find a file named `csro.a1.dat`, which is what we need. The 2nd to 7th numbers in that file are &alpha;\_MoMo, &alpha;\_MoNb, &alpha;\_MoTa, &alpha;\_NbNb, &alpha;\_NbTa, and &alpha;\_TaTa, respectively. These are WC parameters.
 
-#### Melting point
+[//]: # (#### Melting point)
 
-Use the method described in Section 3.1 of [this paper](https://doi.org/10.1117/12.2635100) to determine whether MoNbTa melts at 1500 K. For this purpose, make two changes to the `lmp_mdmc.in`:
+[//]: # (Use the method described in Section 3.1 of [this paper](https://doi.org/10.1117/12.2635100) to determine whether MoNbTa melts at 1500 K. For this purpose, make two changes to the `lmp_mdmc.in`:)
 
-- Line 3. Change the large number at the end to `0`
-- Line 4. Change the large number at the end to `200000` 
+[//]: # (- Line 3. Change the large number at the end to `0`)
+[//]: # (- Line 4. Change the large number at the end to `200000`) 
 
-Run the simulation with the modified `lmp_mdmc.in`, `data.MoNbTa_random`, and `CrMoNbTaVW_Xu2022.eam.alloy`. Once it is finished, load the output data file `data.MoNbTa_CSRO_LT` into OVITO, and then [calculate RDF in OVITO](https://www.ovito.org/manual/reference/pipelines/modifiers/coordination_analysis.html). If the material does not melt at 1500 K, increase the temperature in line 2 of `lmp_mdmc.in` to `2000` or `2500` or `3000`, and rerun the simulation.
+[//]: # (Run the simulation with the modified `lmp_mdmc.in`, `data.MoNbTa_random`, and `CrMoNbTaVW_Xu2022.eam.alloy`. Once it is finished, load the output data file `data.MoNbTa_CSRO_LT` into OVITO, and then [calculate RDF in OVITO](https://www.ovito.org/manual/reference/pipelines/modifiers/coordination_analysis.html). If the material does not melt at 1500 K, increase the temperature in line 2 of `lmp_mdmc.in` to `2000` or `2500` or `3000`, and rerun the simulation.)
 
 ### MoNbTa with CSRO
 
@@ -261,13 +284,13 @@ How are they determined? Follow the procedure described in Section B.2 of [this 
 
 Use OVITO to check the file `data.MoNbTa_CSRO_HT` to see if the three elements are almost equal-molar. If they are far from equal-molar, cancel the job (if it is still running), modify the two numbers in lines 10 and 11 of `lmp_mdmc.in`, and run the simulation again. Iteratively adjust the two numbers until the structure in `data.MoNbTa_CSRO_HT` is almost equal-molar. Note that it does not have to be exactly equal-molar.
 
-Another thing to check is whether the energy converges to a constant. For that, plot two curves, one using `etotal` as the _y_ axis and `step` as the _x_ axis, another using `pe` as the _y_ axis and `step` as the _x_ axis. You can find `etotal`, `pe`, and `step` in the log file. If both energies approach a constant as `step` increases, the two numbers are good. The curves may look like Figure 1(a) of [this paper](https://doi.org/10.1073/pnas.1808660115), which is for CoCrNi.
-
 Once the two chemical potential differences are identified, change the temperature in line 2 from `1500` to `300`. Then redo the calculation, which will eventually produce a file `data.MoNbTa_CSRO`, which is the CSRO structure annealed at 300 K, and a file `cn.out`.
 
-#### Some quantities
+You can also check whether the potential energy converges to a constant. For that, plot a curve with `pe` as the _y_ axis and `step` as the _x_ axis. You can find `pe` and `step` in the log file; only use the data in the first run. The curve may look like Figure 1(a) of [this paper](https://doi.org/10.1073/pnas.1808660115), which is for CoCrNi.
 
-Use the data file `data.MoNbTa_CSRO` to calculate the lattice parameters and elastic constants at 0 K, 300 K, 600 K, 900 K, and 1200 K. Also calculate the GSFE at 0 K.
+#### Material properties
+
+Use the data file `data.MoNbTa_CSRO` to calculate its lattice parameters and elastic constants at 0 K, 300 K, 600 K, 900 K, and 1200 K. Also calculate its GSFE at 0 K and its melting point.
 
 Use the same method for CoCrNi. Remember to modify the input files accordingly and use the appropriate potential.
 
@@ -289,13 +312,13 @@ Eventually, use all WC parameters to make a plot similar to Figure 2(d) of [this
 
 MoNbTa contains three pure metals having the same lattice as the alloy. It would be interesting to compare the temperature effect between them and the MPEA.
 
-Results are in `Mo.txt`, `Nb.txt`, and `Ta.txt`, respectively. They were studied at 0 K, 300 K, 600 K, 900 K, and 1200 K, respectively. The only exception is that Nb becomes unstable at 1200 K so there is no data for that case.
+Lattice parameters, elastic constants, and USFEs of the three pure metals are in `Mo.txt`, `Nb.txt`, and `Ta.txt`. They were studied at 0 K, 300 K, 600 K, 900 K, and 1200 K, respectively. The only exception is that Nb becomes unstable at 1200 K so there is no data for that case.
 
 ## HfMoNbTaTi
 
-Data at 0 K were taken from [this paper](http://dx.doi.org/10.1063/5.0116898). Need to cite it. Data at finite temperatures are newly calculated for the current project. In all cases, simulation cells with size D (see Table II of the paper) were used.
+Data at 0 K were taken from [this paper](http://dx.doi.org/10.1063/5.0116898). Data at finite temperatures are newly calculated for the current project. In all cases, simulation cells with size D (see Table II of the paper) were used.
 
-Results are summarized in the directory `HfMoNbTaTi` in this GitHub repository. USFEs, taken on the \{110\} plane, are in units of mJ/m<sup>2</sup>.
+Lattice parameters, elastic constants, and USFEs are summarized in the directory `HfMoNbTaTi` in this GitHub repository. USFEs, taken on the \{110\} plane, are in units of mJ/m<sup>2</sup>.
 
 #### Random HfMoNbTaTi
 
@@ -315,6 +338,14 @@ The material 900KMDMC was studied at 0 K and 900 K, respectively. Results are in
 
 Data at 0 K were taken from [this paper](http://dx.doi.org/10.1063/5.0116898). Need to cite it. Data at finite temperatures are newly calculated for the current project. In all cases, simulation cells with size D (see Table II of the paper) were used.
 
-Results are summarized in the directory `HfNbTaTiZr` in this GitHub repository. USFEs, taken on the \{110\} plane, are in units of mJ/m<sup>2</sup>.
+Lattice parameters, elastic constants, and USFEs are summarized in the directory `HfNbTaTiZr` in this GitHub repository. USFEs, taken on the \{110\} plane, are in units of mJ/m<sup>2</sup>.
 
 Note that only random HfNbTaTiZr is considered, and the results are in `data_random.txt`.
+
+## References
+
+If you use any files from this GitHub repository, please cite
+
+- Shuozhi Xu, Wu-Rong Jian, Irene J. Beyerlein, [Ideal simple shear strengths of two HfNbTaTi-based quinary refractory multi-principal element alloys](http://dx.doi.org/10.1063/5.0116898), APL Mater. 10 (2022) 111107
+- Wu-Rong Jian, Zhuocheng Xie, Shuozhi Xu, Yanqing Su, Xiaohu Yao, Irene J. Beyerlein, [Effects of lattice distortion and chemical short-range order on the mechanisms of deformation in medium entropy alloy CoCrNi](http://dx.doi.org/10.1016/j.actamat.2020.08.044), Acta Mater. 199 (2020) 352--369
+- Saeed Zare Chavoshi, Shuozhi Xu, Saurav Goel, [Addressing the discrepancy of finding equilibrium melting point of silicon using MD simulations](http://dx.doi.org/10.1098/rspa.2017.0084), Proc. R. Soc. A 473 (2017) 20170084
