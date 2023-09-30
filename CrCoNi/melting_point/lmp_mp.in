@@ -1,4 +1,4 @@
-runits		metal
+units		metal
 atom_style	atomic
 dimension	  3
 boundary	p p p 
@@ -60,7 +60,7 @@ group		solidup1 region solidup
 region		soliddown block INF INF 90 INF INF INF units box
 group		soliddown1 region soliddown
 
-region		liquid block INF INF INF 40 90 INF units box
+region		liquid block INF INF 40 90 INF INF units box
 group		liquid1 region liquid
 
 #set		group solidup1 type 1
@@ -88,13 +88,13 @@ fix		npt6 all npt temp ${trialmp} ${trialmp} 0.1 z 0 0 1
 fix		2 all momentum 10 linear 1 1 1 angular
 fix		3 all recenter INIT INIT INIT units box
 
-#variable	Temperature equal temp
+variable	tempv equal temp
 #variable	nAtoms equal count(all)
 #variable	Pe equal pe
 variable	pea equal pe/count(all)
 variable	etime equal step*0.001/1000
 
-fix		temp_out all ave/time 500 20 10000 v_etime temp v_pea ave window 2 file plot.out 
+fix		temp_out all ave/time 500 20 10000 v_etime v_tempv v_pea ave window 2 file plot.out 
 
 dump		1 all custom 1000000 dump.* id type x y z
 

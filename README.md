@@ -179,12 +179,12 @@ Follow the procedures above, except that
 
 Run the simulation with files `lmp_mp.in`, `data.CoCrNi_gsfe_random`, and `CoCrNi.lammps.eam`. The first file can be found in the directory `CoCrNi/melting_point/` in this GitHub repository.
 
-Once it is finished, you will find a file `plot.out`. Plot its 1st and 3rd column as the _x_ and _y_ axes, respectively. It may look like one of the curves in Figure 2(b) of [this paper](http://dx.doi.org/10.1098/rspa.2017.0084).
+Once it is finished, you will find a file `plot.out`. Plot its 2nd and 4th column as the _x_ and _y_ axes, respectively. It may look like one of the curves in Figure 2(b) of [this paper](http://dx.doi.org/10.1098/rspa.2017.0084).
 
 In line 6 of `lmp_mp.in`, the trial melting point is set as 1200 K.
 
-- If 1200 K is lower than the actual melting point, the curve you plot will decrease. Then increase the number in line 6 and rerun the job.
-- If 1200 K is higher than the actual melting point, the curve you plot will increase. Then decrease the number in line 6 and resubmit the job.
+- If 1200 K is lower than the actual melting point, the curve you plot will decrease. Then increase the number in line 6 and rerun the simulation.
+- If 1200 K is higher than the actual melting point, the curve you plot will increase. Then decrease the number in line 6 and rerun the simulation.
 
 Repeat the steps above until you find the actual melting point, which should lead to a curve that neither increases nor decreases.
 
