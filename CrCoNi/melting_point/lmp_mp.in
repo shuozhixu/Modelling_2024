@@ -95,7 +95,7 @@ variable	tempv equal temp
 variable	pea equal pe/count(all)
 variable	etime equal step*0.001/1000
 
-fix		temp_out all ave/time 500 20 10000 v_etime v_tempv v_pea ave window 2 file plot.out 
+fix		temp_out all ave/time 500 20 10000 v_etime v_tempv v_pea ave window 2 file avePE.out 
 
 dump		1 all custom 1000000 dump.* id type x y z
 
