@@ -265,7 +265,7 @@ Then you will find a file named `csro.a1.dat`, which is what we need. The 2nd to
 
 ##### Semi-grand canonical ensemble
 
-The first step is to determine the chemical potential difference between Mo and Nb, and that between Mo and Ta, respectively. To this end, run hybrid molecular dynamics (MD) and Monte Carlo (MC) simulations in semi-grand canonical (SGC) ensemble using `lmp_sgc.in` and `CrMoNbTaVW_Xu2022.eam.alloy`.
+The first step is to determine the chemical potential difference between Mo and Nb, and that between Mo and Ta, respectively. To this end, run Monte Carlo (MC) simulations in semi-grand canonical (SGC) ensemble using `lmp_sgc.in` and `CrMoNbTaVW_Xu2022.eam.alloy`.
 
 Once the simulation is finished, you will find a file `statistics.dat`, which should contain one line:
 
@@ -290,7 +290,7 @@ Next, make two changes to `data.Mo`:
 		
 		Atoms # atomic
 
-Next, run a hybrid MC/MC simulation in variance constrained semi-grand canonical (VC-SGC) ensemble using `lmp_vcsgc.in`, `data.Mo`, and `CrMoNbTaVW_Xu2022.eam.alloy`.
+Next, run a hybrid MD/MC simulation in variance constrained semi-grand canonical (VC-SGC) ensemble using `lmp_vcsgc.in`, `data.Mo`, and `CrMoNbTaVW_Xu2022.eam.alloy`.
 
 Once the simulation is finished, you will find a file `data.MoNbTa_CSRO`, which is the CSRO structure annealed at 300 K, and a file `cn.out`.
 
