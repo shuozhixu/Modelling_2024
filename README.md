@@ -2,7 +2,7 @@
 
 ## Foreword
 
-The purpose of this project is to calculate the basic structural parameters (including lattice parameter and elastic constants), generalized stacking fault energies (GSFE), and melting point of four equal-molar multi-principal element alloys (MPEAs). The effects of chemical short-range order (CSRO) will be considered.
+The purpose of this project is to calculate the basic structural parameters (including lattice parameter and elastic constants), and generalized stacking fault energies (GSFE) of four equal-molar multi-principal element alloys (MPEAs). The effects of chemical short-range order (CSRO) will be considered.
 
 Please read the following journal articles to understand how the aforementioned material properties can be calculated.
 
@@ -10,7 +10,6 @@ Please read the following journal articles to understand how the aforementioned 
 
 - Xiaowang Wang, Shuozhi Xu, Wu-Rong Jian, Xiang-Guo Li, Yanqing Su, Irene J. Beyerlein, [Generalized stacking fault energies and Peierls stresses in refractory body-centered cubic metals from machine learning-based interatomic potentials,](http://dx.doi.org/10.1016/j.commatsci.2021.110364) Comput. Mater. Sci. 192 (2021) 110364
 - Yanqing Su, Shuozhi Xu, Irene J. Beyerlein, [Density functional theory calculations of generalized stacking fault energy surfaces for eight face-centered cubic transition metals](http://dx.doi.org/10.1063/1.5115282), J. Appl. Phys. 126 (2019) 105112
-- Saeed Zare Chavoshi, Shuozhi Xu, Saurav Goel, [Addressing the discrepancy of finding equilibrium melting point of silicon using MD simulations](http://dx.doi.org/10.1098/rspa.2017.0084), Proc. R. Soc. A 473 (2017) 20170084
 
 \[Random alloys\]:
 
@@ -173,30 +172,6 @@ Follow the procedures above, except that
 - Change the word `random` to `350KMDMC` in line 14 of the file `lmp_gsfe.in`
 - Change the number `3.5564` to `3.561` in line 51 of the file `lmp_gsfe.in`
 
-### Melting point
-
-#### Random CoCrNi
-
-Run the simulation with files `lmp_mp.in`, `data.CoCrNi_gsfe_random`, and `CoCrNi.lammps.eam`. The first file can be found in the directory `CoCrNi/melting_point/` in this GitHub repository.
-
-Once it is finished, you will find a file `avePE.out`. Plot its 2nd and 4th column as the _x_ and _y_ axes, respectively. It should look like one of the curves in Figure 2(b) of [this paper](http://dx.doi.org/10.1098/rspa.2017.0084).
-
-In line 6 of `lmp_mp.in`, the trial melting point is set as 1200 K.
-
-- If 1200 K is lower than the actual melting point, the curve you plot will decrease. Then increase the last number in line 6 and rerun the simulation.
-- If 1200 K is higher than the actual melting point, the curve you plot will increase. Then decrease the last number in line 6 and rerun the simulation.
-
-Repeat the steps above until you find the actual melting point, which should lead to a curve that neither increases nor decreases.
-
-Note: Save the data for each curve because eventually you will need to plot multiple curves like those in Figure 2(b) of [this paper](http://dx.doi.org/10.1098/rspa.2017.0084).
-
-#### CoCrNi with CSRO
-
-Follow the procedures above, except that
-
-- Use the data file `data.CoCrNi_gsfe_350KMDMC` instead
-- Change the word `random` to `350KMDMC` in line 17 of the file `lmp_mp.in`
-
 ### Pure metal
 
 CoCrNi contains only one pure metal, Ni, that has the same lattice as the alloy. It would be interesting to compare the temperature effect between it and the MPEA.
@@ -207,7 +182,7 @@ Run the atomsk script, `atomsk_Ni.sh`, which can be found in `CoCrNi/ni/` in thi
 
 	sh atomsk_Ni.sh
 
-Then use the data file and the same potential file to calculate its lattice parameters and elastic constants at 0 K and 300 K. Also calculate its GSFE at 0 K and its melting point.
+Then use the data file and the same potential file to calculate its lattice parameters and elastic constants at 0 K and 300 K. Also calculate its GSFE at 0 K.
 
 Note: The trial lattice parameter is 3.5564 Angstrom. When calculating the lattice parameter at 0 K, in line 44 of `lmp_0K.in`, change the three numbers 54, 63, and 45, to 30, 30, and 10, respectively. This is because different cell sizes are used here.
 
@@ -250,15 +225,6 @@ Then you will find a new directory `cn` and one or more `rdf.*.dat` files in it.
 	
 Then you will find a file named `csro.a1.dat`, which is what we need. The 2nd to 7th numbers in that file are &alpha;\_MoMo, &alpha;\_MoNb, &alpha;\_MoTa, &alpha;\_NbNb, &alpha;\_NbTa, and &alpha;\_TaTa, respectively. These are WC parameters.
 
-[//]: # (#### Melting point)
-
-[//]: # (Use the method described in Section 3.1 of [this paper](https://doi.org/10.1117/12.2635100) to determine whether MoNbTa melts at 1500 K. For this purpose, make two changes to the `lmp_mdmc.in`:)
-
-[//]: # (- Line 3. Change the large number at the end to `0`)
-[//]: # (- Line 4. Change the large number at the end to `200000`) 
-
-[//]: # (Run the simulation with the modified `lmp_mdmc.in`, `data.MoNbTa_random`, and `CrMoNbTaVW_Xu2022.eam.alloy`. Once it is finished, load the output data file `data.MoNbTa_CSRO_LT` into OVITO, and then [calculate RDF in OVITO](https://www.ovito.org/manual/reference/pipelines/modifiers/coordination_analysis.html). If the material does not melt at 1500 K, increase the temperature in line 2 of `lmp_mdmc.in` to `2000` or `2500` or `3000`, and rerun the simulation.)
-
 ### MoNbTa with CSRO
 
 #### Build the CSRO structure
@@ -298,7 +264,7 @@ You can also check whether the potential energy converges to a constant. For tha
 
 #### Material properties
 
-Use the data file `data.MoNbTa_CSRO` to calculate its lattice parameters and elastic constants at 0 K, 300 K, 600 K, 900 K, and 1200 K. Also calculate its GSFE at 0 K and its melting point.
+Use the data file `data.MoNbTa_CSRO` to calculate its lattice parameters and elastic constants at 0 K, 300 K, 600 K, 900 K, and 1200 K. Also calculate its GSFE at 0 K.
 
 Use the same method for CoCrNi. Remember to modify the input files accordingly and use the appropriate potential.
 
@@ -356,4 +322,3 @@ If you use any files from this GitHub repository, please cite
 
 - Shuozhi Xu, Wu-Rong Jian, Irene J. Beyerlein, [Ideal simple shear strengths of two HfNbTaTi-based quinary refractory multi-principal element alloys](http://dx.doi.org/10.1063/5.0116898), APL Mater. 10 (2022) 111107
 - Wu-Rong Jian, Zhuocheng Xie, Shuozhi Xu, Yanqing Su, Xiaohu Yao, Irene J. Beyerlein, [Effects of lattice distortion and chemical short-range order on the mechanisms of deformation in medium entropy alloy CoCrNi](http://dx.doi.org/10.1016/j.actamat.2020.08.044), Acta Mater. 199 (2020) 352--369
-- Saeed Zare Chavoshi, Shuozhi Xu, Saurav Goel, [Addressing the discrepancy of finding equilibrium melting point of silicon using MD simulations](http://dx.doi.org/10.1098/rspa.2017.0084), Proc. R. Soc. A 473 (2017) 20170084
