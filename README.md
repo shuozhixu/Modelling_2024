@@ -263,7 +263,19 @@ Then you will find a file named `csro.a1.dat`, which is what we need. The 2nd to
 
 #### Build the CSRO structure
 
-Run the atomsk script, `atomsk_Mo.sh`, which can be found in `MoNbTa/csro/` in this GitHub repository, to build a Mo structure named `data.Mo`.
+##### Semi-grand canonical ensemble
+
+The first step is to determine the chemical potential difference between Mo and Nb, and that between Mo and Ta, respectively. To this end, run hybrid molecular dynamics (MD) and Monte Carlo (MC) simulations in semi-grand canonical (SGC) ensemble using `lmp_sgc.in` and `CrMoNbTaVW_Xu2022.eam.alloy`.
+
+Once the simulation is finished, you will find a file `statistics.dat`, which should contain one line:
+
+	0.021 -0.32 0.0045 0.34  0.6555
+
+The first two numbers are the two energy differences you provided in lines 10 and 11 of `lmp_sgc.in`, while the last three numbers are the concentrations of Mo, Nb, and Ta, respectively. Since they are not close to equal-molar, modify the two numbers in lines 10 and 11 of `lmp_sgc.in`, and run the simulation again. You can make the modification in the same folder and a new line will be appended to `statistics.dat` once the new simulation is finished. Iteratively adjust the two numbers until the material is almost equal-molar. Note that it does not have to be exactly equal-molar. The procedure is similar to what is described in Section B.2 of [this paper](https://doi.org/10.1016/j.actamat.2019.12.031).
+
+##### Variance constrained semi-grand canonical ensemble
+
+Once the two chemical potential differences are identified, change the two chemical energy differences in lines 10 and 11 in file `lmp_vcsgc.in` to the correct values. Then run the atomsk script, `atomsk_Mo.sh` to build a Mo structure named `data.Mo`.
 
 Next, make two changes to `data.Mo`:
 
@@ -278,15 +290,9 @@ Next, make two changes to `data.Mo`:
 		
 		Atoms # atomic
 
-Then build MoNbTa with CSRO by running hybrid molecular dynamics (MD) and Monte Carlo (MC) simulations using `lmp_mdmc.in`, `data.Mo`, and `CrMoNbTaVW_Xu2022.eam.alloy`.
+Next, run a hybrid MC/MC simulation in variance constrained semi-grand canonical (VC-SGC) ensemble using `lmp_vcsgc.in`, `data.Mo`, and `CrMoNbTaVW_Xu2022.eam.alloy`.
 
-By default, in `lmp_mdmc.in`, the two numbers at the end of lines 10 and 11 are 0.021 and -0.32, respectively. They are the chemical potential difference between Co and Ni, and that between Cr and Ni, respectively, in CoCrNi. Here, the two numbers need to be modified because MoNbTa is being studied.
-
-How are they determined? Follow the procedure described in Section B.2 of [this paper](https://doi.org/10.1016/j.actamat.2019.12.031). Each LAMMPS simulation will create a series of `mc.*.dump` files and eventually three `data.MoNbTa_CSRO_*` files.
-
-Use OVITO to check the file `data.MoNbTa_CSRO_HT` to see if the three elements are almost equal-molar. If they are far from equal-molar, cancel the job (if it is still running), modify the two numbers in lines 10 and 11 of `lmp_mdmc.in`, and run the simulation again. Iteratively adjust the two numbers until the structure in `data.MoNbTa_CSRO_HT` is almost equal-molar. Note that it does not have to be exactly equal-molar.
-
-Once the two chemical potential differences are identified, change the temperature in line 2 from `1500` to `300`. Then redo the calculation, which will eventually produce a file `data.MoNbTa_CSRO`, which is the CSRO structure annealed at 300 K, and a file `cn.out`.
+Once the simulation is finished, you will find a file `data.MoNbTa_CSRO`, which is the CSRO structure annealed at 300 K, and a file `cn.out`.
 
 You can also check whether the potential energy converges to a constant. For that, plot a curve with `pe` as the _y_ axis and `step` as the _x_ axis. You can find `pe` and `step` in the log file; only use the data in the first run. The curve may look like Figure 1(a) of [this paper](https://doi.org/10.1073/pnas.1808660115), which is for CoCrNi.
 

@@ -1,0 +1,63 @@
+# general variables
+variable	temperature equal 1500 #change this to the temperature of interest
+variable	size equal 10
+variable	nMDMC equal 30000 
+
+# variables for 'fix atom/swap'
+variable        nMD equal 20
+variable        swapsPerMD equal atoms/4
+variable    seed equal round(random(1,100000000,71354269))
+variable	MUNb equal 0.021
+variable	MUTa equal -0.32
+
+# general settings
+units		metal
+atom_style	atomic
+
+# set up structure
+boundary	p p p
+lattice		bcc 3.243
+region		box block 0 ${size}  0 ${size}  0 ${size}
+create_box	3 box
+create_atoms	1 box
+reset_timestep	0
+timestep	0.0025
+
+# set up interaction
+pair_style eam/alloy
+pair_coeff * * CrMoNbTaVW_Xu2022.eam.alloy Mo Nb Ta #change to proper elements
+
+# change these masses accordingly
+mass 1  95.96000000
+mass 2  92.90638000
+mass 3  180.94788000
+
+# initialize velocities
+variable	double_temp equal ${temperature}*2
+velocity	all create ${double_temp} 32456781 dist gaussian #choose a random number
+
+# what and how to run
+fix 1 all npt temp ${temperature} ${temperature} 0.1 iso 0 0 0.5
+fix 2 all atom/swap ${nMD} ${swapsPerMD} ${seed} ${temperature} semi-grand yes types 1 2 3 mu 0 ${MUNb} ${MUTa}
+
+# set up output
+thermo		100
+thermo_style	custom step cpu temp atoms etotal  pe ke  press lx ly lz f_2[1] f_2[2]		
+thermo_modify	flush yes
+dump 		1 all custom 1000 sgc.*.dump id type x y z
+
+run             ${nMDMC}
+
+group Mo type 1
+group Nb type 2
+group Ta type 3
+#group Fe type 3
+#group Cu type 4
+
+variable fMo equal count(Mo)/atoms
+variable fNb equal count(Nb)/atoms
+variable fTa equal count(Ta)/atoms
+#variable fFe equal count(Fe)/atoms
+#variable fCu equal count(Cu)/atoms
+
+print "${MUNb} ${MUTa} ${fMo} ${fNb}  ${fTa}" append statistics.dat

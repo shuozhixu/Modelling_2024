@@ -1,5 +1,5 @@
 # general variables
-variable	temperature equal 1500 #change this to the temperature of interest
+variable	temperature equal 300 #change this to the temperature of interest
 variable	nsteps_run equal 1200000
 variable	nsteps_npt equal 20000
 
