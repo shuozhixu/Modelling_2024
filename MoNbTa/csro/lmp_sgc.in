@@ -7,8 +7,8 @@ variable	nMDMC equal 30000
 variable        nMD equal 20
 variable        swapsPerMD equal atoms/4
 variable    seed equal round(random(1,100000000,71354269))
-variable	MUNb equal 0.021
-variable	MUTa equal -0.32
+variable	MUNb equal -0.021
+variable	MUTa equal 0.32
 
 # general settings
 units		metal

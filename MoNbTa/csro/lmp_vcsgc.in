@@ -7,8 +7,8 @@ variable	nsteps_npt equal 20000
 variable	nsteps_mc     equal 20
 variable	swap_fraction equal 0.25
 variable	temperature_mc equal ${temperature}
-variable	deltamu1 equal 0.021 
-variable	deltamu2 equal -0.32 
+variable	deltamu1 equal -0.021 
+variable	deltamu2 equal 0.32 
 variable	target_concentration1 equal 0.3333333333333333
 variable	target_concentration2 equal 0.3333333333333333
 variable	kappa equal 1e3
