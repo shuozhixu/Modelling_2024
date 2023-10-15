@@ -1,0 +1,931 @@
+begin lammps
+the job is 16337387
+LAMMPS (2 Aug 2023)
+Lattice spacing in x,y,z = 5.43 5.43 5.43
+Reading data file ...
+  orthogonal box = (-0.033907709 -0.039878405 -0.045239903) to (271.90232 274.72566 277.51978)
+  2 by 2 by 5 MPI processor grid
+  reading atoms ...
+  1837080 atoms
+  reading velocities ...
+  1837080 velocities
+  read_data CPU = 30.533 seconds
+Changing box ...
+  orthogonal box = (-348.25199 -0.039878405 -0.045239903) to (620.12041 274.72566 277.51978)
+  orthogonal box = (-348.25199 -351.88093 -0.045239903) to (620.12041 626.56671 277.51978)
+  orthogonal box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456)
+Changing box ...
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456) with tilt (0 0 0)
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 6.88
+  ghost atom cutoff = 6.88
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair eam/alloy, perpetual
+      attributes: half, newton on
+      pair build: half/nsq/newton
+      stencil: none
+      bin: none
+Setting up cg style minimization ...
+  Unit style    : metal
+  Current step  : 0
+WARNING: Energy due to 3 extra global DOFs will be included in minimizer energies
+ (../min.cpp:225)
+Per MPI rank memory allocation (min/avg/max) = 28.95 | 28.95 | 28.95 Mbytes
+   Step          Temp          PotEng         Press           Pxx            Pyy            Pzz            Pxy            Pxz            Pyz             Lx             Ly             Lz           Volume    
+         0   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44764      988.41667      9.3652646e+08
+         1   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44764      988.41667      9.3652646e+08
+Loop time of 0.0632919 on 20 procs for 1 steps with 1837080 atoms
+
+81.0% CPU use with 20 MPI tasks x no OpenMP threads
+
+Minimization stats:
+  Stopping criterion = search direction is not downhill
+  Energy initial, next-to-last, final = 
+       1331399.7563959    1331399.7563959    1331399.7563959
+  Force two-norm initial, final = 0 0
+  Force max component initial, final = 0 0
+  Final line search alpha, max atom move = 0 0
+  Iterations, force evaluations = 1 0
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.0060692  | 0.006314   | 0.0065214  |   0.2 |  9.98
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0.0008268  | 0.00098701 | 0.0011917  |   0.0 |  1.56
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.05599    |            |       | 88.46
+
+Nlocal:          91854 ave       91854 max       91854 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+Nghost:          12370 ave       12498 max       12289 min
+Histogram: 2 3 5 4 0 1 1 2 1 1
+Neighs:              0 ave           0 max           0 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0
+Neighbor list builds = 0
+Dangerous builds = 0
+Displacing atoms ...
+System init for write_restart ...
+
+The 'box' command has been removed and will be ignored
+
+Reading restart file ...
+  restart file = 2 Aug 2023, LAMMPS = 2 Aug 2023
+  restoring atom style atomic from restart
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456) with tilt (0 0 0)
+  2 by 2 by 5 MPI processor grid
+  pair style eam/alloy stores no restart info
+  1837080 atoms
+  read_restart CPU = 1.706 seconds
+Changing box ...
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.11944 626.56671 632.9456) with tilt (0 0 0)
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.11944 626.56671 632.9456) with tilt (0 0 0)
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.11944 626.56671 632.9456) with tilt (0 0 0)
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 6.88
+  ghost atom cutoff = 6.88
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair eam/alloy, perpetual
+      attributes: half, newton on
+      pair build: half/nsq/newton
+      stencil: none
+      bin: none
+Setting up cg style minimization ...
+  Unit style    : metal
+  Current step  : 1
+Per MPI rank memory allocation (min/avg/max) = 28.95 | 28.95 | 28.95 Mbytes
+   Step          Temp          PotEng         Press           Pxx            Pyy            Pzz            Pxy            Pxz            Pyz             Lx             Ly             Lz           Volume    
+         1   0              1331399.8      0              0              0              0              0              0              0              968.37143      978.44764      988.41667      9.3652552e+08
+         2   0              1331399.8      0              0              0              0              0              0              0              968.37143      978.44764      988.41667      9.3652552e+08
+Loop time of 0.0406381 on 20 procs for 1 steps with 1837080 atoms
+
+82.1% CPU use with 20 MPI tasks x no OpenMP threads
+
+Minimization stats:
+  Stopping criterion = search direction is not downhill
+  Energy initial, next-to-last, final = 
+       1331399.7563959    1331399.7563959    1331399.7563959
+  Force two-norm initial, final = 0 0
+  Force max component initial, final = 0 0
+  Final line search alpha, max atom move = 0 0
+  Iterations, force evaluations = 1 0
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.012766   | 0.013248   | 0.017088   |   0.8 | 32.60
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0.00071057 | 0.0034552  | 0.0078227  |   4.1 |  8.50
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.02393    |            |       | 58.90
+
+Nlocal:          91854 ave       91854 max       91854 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+Nghost:          12370 ave       12498 max       12289 min
+Histogram: 2 3 5 4 0 1 1 2 1 1
+Neighs:              0 ave           0 max           0 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0
+Neighbor list builds = 0
+Dangerous builds = 0
+
+The 'box' command has been removed and will be ignored
+
+Reading restart file ...
+  restart file = 2 Aug 2023, LAMMPS = 2 Aug 2023
+  restoring atom style atomic from restart
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456) with tilt (0 0 0)
+  2 by 2 by 5 MPI processor grid
+  pair style eam/alloy stores no restart info
+  1837080 atoms
+  read_restart CPU = 1.461 seconds
+Changing box ...
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12138 626.56671 632.9456) with tilt (0 0 0)
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12138 626.56671 632.9456) with tilt (0 0 0)
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12138 626.56671 632.9456) with tilt (0 0 0)
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 6.88
+  ghost atom cutoff = 6.88
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair eam/alloy, perpetual
+      attributes: half, newton on
+      pair build: half/nsq/newton
+      stencil: none
+      bin: none
+Setting up cg style minimization ...
+  Unit style    : metal
+  Current step  : 1
+Per MPI rank memory allocation (min/avg/max) = 28.95 | 28.95 | 28.95 Mbytes
+   Step          Temp          PotEng         Press           Pxx            Pyy            Pzz            Pxy            Pxz            Pyz             Lx             Ly             Lz           Volume    
+         1   0              1331399.8      0              0              0              0              0              0              0              968.37337      978.44764      988.41667      9.365274e+08 
+         2   0              1331399.8      0              0              0              0              0              0              0              968.37337      978.44764      988.41667      9.365274e+08 
+Loop time of 0.125498 on 20 procs for 1 steps with 1837080 atoms
+
+78.3% CPU use with 20 MPI tasks x no OpenMP threads
+
+Minimization stats:
+  Stopping criterion = search direction is not downhill
+  Energy initial, next-to-last, final = 
+       1331399.7563959    1331399.7563959    1331399.7563959
+  Force two-norm initial, final = 0 0
+  Force max component initial, final = 0 0
+  Final line search alpha, max atom move = 0 0
+  Iterations, force evaluations = 1 0
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.0058559  | 0.0069148  | 0.023934   |   4.7 |  5.51
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0.0006586  | 0.011562   | 0.02482    |   9.1 |  9.21
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.107      |            |       | 85.28
+
+Nlocal:          91854 ave       91854 max       91854 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+Nghost:          12370 ave       12498 max       12289 min
+Histogram: 2 3 5 4 0 1 1 2 1 1
+Neighs:              0 ave           0 max           0 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0
+Neighbor list builds = 0
+Dangerous builds = 0
+
+The 'box' command has been removed and will be ignored
+
+Reading restart file ...
+  restart file = 2 Aug 2023, LAMMPS = 2 Aug 2023
+  restoring atom style atomic from restart
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456) with tilt (0 0 0)
+  2 by 2 by 5 MPI processor grid
+  pair style eam/alloy stores no restart info
+  1837080 atoms
+  read_restart CPU = 0.590 seconds
+Changing box ...
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56573 632.9456) with tilt (0 0 0)
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56573 632.9456) with tilt (0 0 0)
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 6.88
+  ghost atom cutoff = 6.88
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair eam/alloy, perpetual
+      attributes: half, newton on
+      pair build: half/nsq/newton
+      stencil: none
+      bin: none
+Setting up cg style minimization ...
+  Unit style    : metal
+  Current step  : 1
+Per MPI rank memory allocation (min/avg/max) = 28.95 | 28.95 | 28.95 Mbytes
+   Step          Temp          PotEng         Press           Pxx            Pyy            Pzz            Pxy            Pxz            Pyz             Lx             Ly             Lz           Volume    
+         1   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44666      988.41667      9.3652552e+08
+         2   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44666      988.41667      9.3652552e+08
+Loop time of 0.0409471 on 20 procs for 1 steps with 1837080 atoms
+
+85.6% CPU use with 20 MPI tasks x no OpenMP threads
+
+Minimization stats:
+  Stopping criterion = search direction is not downhill
+  Energy initial, next-to-last, final = 
+       1331399.7563959    1331399.7563959    1331399.7563959
+  Force two-norm initial, final = 0 0
+  Force max component initial, final = 0 0
+  Final line search alpha, max atom move = 0 0
+  Iterations, force evaluations = 1 0
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.0055564  | 0.0094862  | 0.013158   |   2.2 | 23.17
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0.0066347  | 0.012763   | 0.020508   |   4.2 | 31.17
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.0187     |            |       | 45.66
+
+Nlocal:          91854 ave       91854 max       91854 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+Nghost:        12370.1 ave       12498 max       12289 min
+Histogram: 2 3 5 4 0 1 1 2 1 1
+Neighs:              0 ave           0 max           0 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0
+Neighbor list builds = 0
+Dangerous builds = 0
+
+The 'box' command has been removed and will be ignored
+
+Reading restart file ...
+  restart file = 2 Aug 2023, LAMMPS = 2 Aug 2023
+  restoring atom style atomic from restart
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456) with tilt (0 0 0)
+  2 by 2 by 5 MPI processor grid
+  pair style eam/alloy stores no restart info
+  1837080 atoms
+  read_restart CPU = 0.642 seconds
+Changing box ...
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56769 632.9456) with tilt (0 0 0)
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56769 632.9456) with tilt (0 0 0)
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 6.88
+  ghost atom cutoff = 6.88
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair eam/alloy, perpetual
+      attributes: half, newton on
+      pair build: half/nsq/newton
+      stencil: none
+      bin: none
+Setting up cg style minimization ...
+  Unit style    : metal
+  Current step  : 1
+Per MPI rank memory allocation (min/avg/max) = 28.95 | 28.95 | 28.95 Mbytes
+   Step          Temp          PotEng         Press           Pxx            Pyy            Pzz            Pxy            Pxz            Pyz             Lx             Ly             Lz           Volume    
+         1   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44861      988.41667      9.365274e+08 
+         2   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44861      988.41667      9.365274e+08 
+Loop time of 0.0875582 on 20 procs for 1 steps with 1837080 atoms
+
+80.4% CPU use with 20 MPI tasks x no OpenMP threads
+
+Minimization stats:
+  Stopping criterion = search direction is not downhill
+  Energy initial, next-to-last, final = 
+       1331399.7563959    1331399.7563959    1331399.7563959
+  Force two-norm initial, final = 0 0
+  Force max component initial, final = 0 0
+  Final line search alpha, max atom move = 0 0
+  Iterations, force evaluations = 1 0
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.011345   | 0.020943   | 0.028982   |   3.4 | 23.92
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0.0046904  | 0.015538   | 0.029219   |   5.9 | 17.75
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.05108    |            |       | 58.34
+
+Nlocal:          91854 ave       91854 max       91854 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+Nghost:          12370 ave       12498 max       12289 min
+Histogram: 2 3 5 4 0 1 1 2 1 1
+Neighs:              0 ave           0 max           0 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0
+Neighbor list builds = 0
+Dangerous builds = 0
+
+The 'box' command has been removed and will be ignored
+
+Reading restart file ...
+  restart file = 2 Aug 2023, LAMMPS = 2 Aug 2023
+  restoring atom style atomic from restart
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456) with tilt (0 0 0)
+  2 by 2 by 5 MPI processor grid
+  pair style eam/alloy stores no restart info
+  1837080 atoms
+  read_restart CPU = 0.506 seconds
+Changing box ...
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.94462) with tilt (0 0 0)
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 6.88
+  ghost atom cutoff = 6.88
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair eam/alloy, perpetual
+      attributes: half, newton on
+      pair build: half/nsq/newton
+      stencil: none
+      bin: none
+Setting up cg style minimization ...
+  Unit style    : metal
+  Current step  : 1
+Per MPI rank memory allocation (min/avg/max) = 28.95 | 28.95 | 28.95 Mbytes
+   Step          Temp          PotEng         Press           Pxx            Pyy            Pzz            Pxy            Pxz            Pyz             Lx             Ly             Lz           Volume    
+         1   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44764      988.41568      9.3652552e+08
+         2   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44764      988.41568      9.3652552e+08
+Loop time of 0.0381367 on 20 procs for 1 steps with 1837080 atoms
+
+83.6% CPU use with 20 MPI tasks x no OpenMP threads
+
+Minimization stats:
+  Stopping criterion = search direction is not downhill
+  Energy initial, next-to-last, final = 
+       1331399.7563959    1331399.7563959    1331399.7563959
+  Force two-norm initial, final = 0 0
+  Force max component initial, final = 0 0
+  Final line search alpha, max atom move = 0 0
+  Iterations, force evaluations = 1 0
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.0042002  | 0.0080181  | 0.015941   |   3.7 | 21.02
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0.0023116  | 0.0096795  | 0.013387   |   2.8 | 25.38
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.02044    |            |       | 53.59
+
+Nlocal:          91854 ave       91854 max       91854 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+Nghost:          12370 ave       12498 max       12289 min
+Histogram: 2 3 5 4 0 1 1 2 1 1
+Neighs:              0 ave           0 max           0 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0
+Neighbor list builds = 0
+Dangerous builds = 0
+
+The 'box' command has been removed and will be ignored
+
+Reading restart file ...
+  restart file = 2 Aug 2023, LAMMPS = 2 Aug 2023
+  restoring atom style atomic from restart
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456) with tilt (0 0 0)
+  2 by 2 by 5 MPI processor grid
+  pair style eam/alloy stores no restart info
+  1837080 atoms
+  read_restart CPU = 0.465 seconds
+Changing box ...
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.94659) with tilt (0 0 0)
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 6.88
+  ghost atom cutoff = 6.88
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair eam/alloy, perpetual
+      attributes: half, newton on
+      pair build: half/nsq/newton
+      stencil: none
+      bin: none
+Setting up cg style minimization ...
+  Unit style    : metal
+  Current step  : 1
+Per MPI rank memory allocation (min/avg/max) = 28.95 | 28.95 | 28.95 Mbytes
+   Step          Temp          PotEng         Press           Pxx            Pyy            Pzz            Pxy            Pxz            Pyz             Lx             Ly             Lz           Volume    
+         1   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44764      988.41766      9.365274e+08 
+         2   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44764      988.41766      9.365274e+08 
+Loop time of 0.0856416 on 20 procs for 1 steps with 1837080 atoms
+
+80.7% CPU use with 20 MPI tasks x no OpenMP threads
+
+Minimization stats:
+  Stopping criterion = search direction is not downhill
+  Energy initial, next-to-last, final = 
+       1331399.7563959    1331399.7563959    1331399.7563959
+  Force two-norm initial, final = 0 0
+  Force max component initial, final = 0 0
+  Final line search alpha, max atom move = 0 0
+  Iterations, force evaluations = 1 0
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.01128    | 0.016351   | 0.020099   |   2.0 | 19.09
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0.00064103 | 0.0086721  | 0.019622   |   7.2 | 10.13
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.06062    |            |       | 70.78
+
+Nlocal:          91854 ave       91854 max       91854 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+Nghost:          12370 ave       12498 max       12289 min
+Histogram: 2 3 5 4 0 1 1 2 1 1
+Neighs:              0 ave           0 max           0 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0
+Neighbor list builds = 0
+Dangerous builds = 0
+
+The 'box' command has been removed and will be ignored
+
+Reading restart file ...
+  restart file = 2 Aug 2023, LAMMPS = 2 Aug 2023
+  restoring atom style atomic from restart
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456) with tilt (0 0 0)
+  2 by 2 by 5 MPI processor grid
+  pair style eam/alloy stores no restart info
+  1837080 atoms
+  read_restart CPU = 0.532 seconds
+Changing box ...
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456) with tilt (0 0 -0.00098841667)
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 6.88
+  ghost atom cutoff = 6.88
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair eam/alloy, perpetual
+      attributes: half, newton on
+      pair build: half/nsq/newton
+      stencil: none
+      bin: none
+Setting up cg style minimization ...
+  Unit style    : metal
+  Current step  : 1
+Per MPI rank memory allocation (min/avg/max) = 28.95 | 28.95 | 28.95 Mbytes
+   Step          Temp          PotEng         Press           Pxx            Pyy            Pzz            Pxy            Pxz            Pyz             Lx             Ly             Lz           Volume    
+         1   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44764      988.41667      9.3652646e+08
+         2   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44764      988.41667      9.3652646e+08
+Loop time of 0.0397592 on 20 procs for 1 steps with 1837080 atoms
+
+81.4% CPU use with 20 MPI tasks x no OpenMP threads
+
+Minimization stats:
+  Stopping criterion = search direction is not downhill
+  Energy initial, next-to-last, final = 
+       1331399.7563959    1331399.7563959    1331399.7563959
+  Force two-norm initial, final = 0 0
+  Force max component initial, final = 0 0
+  Final line search alpha, max atom move = 0 0
+  Iterations, force evaluations = 1 0
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.010121   | 0.01405    | 0.018906   |   2.2 | 35.34
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0.0006509  | 0.0048168  | 0.0094329  |   3.9 | 12.11
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.02089    |            |       | 52.55
+
+Nlocal:          91854 ave       91854 max       91854 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+Nghost:          12370 ave       12498 max       12289 min
+Histogram: 2 3 5 4 0 1 1 2 1 1
+Neighs:              0 ave           0 max           0 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0
+Neighbor list builds = 0
+Dangerous builds = 0
+
+The 'box' command has been removed and will be ignored
+
+Reading restart file ...
+  restart file = 2 Aug 2023, LAMMPS = 2 Aug 2023
+  restoring atom style atomic from restart
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456) with tilt (0 0 0)
+  2 by 2 by 5 MPI processor grid
+  pair style eam/alloy stores no restart info
+  1837080 atoms
+  read_restart CPU = 0.564 seconds
+Changing box ...
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456) with tilt (0 0 0.00098841667)
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 6.88
+  ghost atom cutoff = 6.88
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair eam/alloy, perpetual
+      attributes: half, newton on
+      pair build: half/nsq/newton
+      stencil: none
+      bin: none
+Setting up cg style minimization ...
+  Unit style    : metal
+  Current step  : 1
+Per MPI rank memory allocation (min/avg/max) = 28.95 | 28.95 | 28.95 Mbytes
+   Step          Temp          PotEng         Press           Pxx            Pyy            Pzz            Pxy            Pxz            Pyz             Lx             Ly             Lz           Volume    
+         1   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44764      988.41667      9.3652646e+08
+         2   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44764      988.41667      9.3652646e+08
+Loop time of 0.0744895 on 20 procs for 1 steps with 1837080 atoms
+
+81.5% CPU use with 20 MPI tasks x no OpenMP threads
+
+Minimization stats:
+  Stopping criterion = search direction is not downhill
+  Energy initial, next-to-last, final = 
+       1331399.7563959    1331399.7563959    1331399.7563959
+  Force two-norm initial, final = 0 0
+  Force max component initial, final = 0 0
+  Final line search alpha, max atom move = 0 0
+  Iterations, force evaluations = 1 0
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.0071768  | 0.012203   | 0.01457    |   2.0 | 16.38
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0.0010082  | 0.0055786  | 0.01672    |   6.0 |  7.49
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.05671    |            |       | 76.13
+
+Nlocal:          91854 ave       91854 max       91854 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+Nghost:          12370 ave       12498 max       12289 min
+Histogram: 2 3 5 4 0 1 1 2 1 1
+Neighs:              0 ave           0 max           0 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0
+Neighbor list builds = 0
+Dangerous builds = 0
+
+The 'box' command has been removed and will be ignored
+
+Reading restart file ...
+  restart file = 2 Aug 2023, LAMMPS = 2 Aug 2023
+  restoring atom style atomic from restart
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456) with tilt (0 0 0)
+  2 by 2 by 5 MPI processor grid
+  pair style eam/alloy stores no restart info
+  1837080 atoms
+  read_restart CPU = 0.652 seconds
+Changing box ...
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456) with tilt (0 -0.00098841667 0)
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 6.88
+  ghost atom cutoff = 6.88
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair eam/alloy, perpetual
+      attributes: half, newton on
+      pair build: half/nsq/newton
+      stencil: none
+      bin: none
+Setting up cg style minimization ...
+  Unit style    : metal
+  Current step  : 1
+Per MPI rank memory allocation (min/avg/max) = 28.95 | 28.95 | 28.95 Mbytes
+   Step          Temp          PotEng         Press           Pxx            Pyy            Pzz            Pxy            Pxz            Pyz             Lx             Ly             Lz           Volume    
+         1   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44764      988.41667      9.3652646e+08
+         2   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44764      988.41667      9.3652646e+08
+Loop time of 0.044399 on 20 procs for 1 steps with 1837080 atoms
+
+81.6% CPU use with 20 MPI tasks x no OpenMP threads
+
+Minimization stats:
+  Stopping criterion = search direction is not downhill
+  Energy initial, next-to-last, final = 
+       1331399.7563959    1331399.7563959    1331399.7563959
+  Force two-norm initial, final = 0 0
+  Force max component initial, final = 0 0
+  Final line search alpha, max atom move = 0 0
+  Iterations, force evaluations = 1 0
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.010858   | 0.014595   | 0.020024   |   2.7 | 32.87
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0.00061989 | 0.0084325  | 0.013162   |   4.1 | 18.99
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.02137    |            |       | 48.14
+
+Nlocal:          91854 ave       91854 max       91854 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+Nghost:          12370 ave       12498 max       12289 min
+Histogram: 2 3 5 4 0 1 1 2 1 1
+Neighs:              0 ave           0 max           0 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0
+Neighbor list builds = 0
+Dangerous builds = 0
+
+The 'box' command has been removed and will be ignored
+
+Reading restart file ...
+  restart file = 2 Aug 2023, LAMMPS = 2 Aug 2023
+  restoring atom style atomic from restart
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456) with tilt (0 0 0)
+  2 by 2 by 5 MPI processor grid
+  pair style eam/alloy stores no restart info
+  1837080 atoms
+  read_restart CPU = 0.428 seconds
+Changing box ...
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456) with tilt (0 0.00098841667 0)
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 6.88
+  ghost atom cutoff = 6.88
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair eam/alloy, perpetual
+      attributes: half, newton on
+      pair build: half/nsq/newton
+      stencil: none
+      bin: none
+Setting up cg style minimization ...
+  Unit style    : metal
+  Current step  : 1
+Per MPI rank memory allocation (min/avg/max) = 28.95 | 28.95 | 28.95 Mbytes
+   Step          Temp          PotEng         Press           Pxx            Pyy            Pzz            Pxy            Pxz            Pyz             Lx             Ly             Lz           Volume    
+         1   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44764      988.41667      9.3652646e+08
+         2   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44764      988.41667      9.3652646e+08
+Loop time of 0.0648133 on 20 procs for 1 steps with 1837080 atoms
+
+89.8% CPU use with 20 MPI tasks x no OpenMP threads
+
+Minimization stats:
+  Stopping criterion = search direction is not downhill
+  Energy initial, next-to-last, final = 
+       1331399.7563959    1331399.7563959    1331399.7563959
+  Force two-norm initial, final = 0 0
+  Force max component initial, final = 0 0
+  Final line search alpha, max atom move = 0 0
+  Iterations, force evaluations = 1 0
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.0065988  | 0.016187   | 0.023803   |   4.8 | 24.97
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0.00065936 | 0.008859   | 0.015798   |   5.8 | 13.67
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.03977    |            |       | 61.36
+
+Nlocal:          91854 ave       91854 max       91854 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+Nghost:          12370 ave       12498 max       12289 min
+Histogram: 2 3 5 4 0 1 1 2 1 1
+Neighs:              0 ave           0 max           0 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0
+Neighbor list builds = 0
+Dangerous builds = 0
+
+The 'box' command has been removed and will be ignored
+
+Reading restart file ...
+  restart file = 2 Aug 2023, LAMMPS = 2 Aug 2023
+  restoring atom style atomic from restart
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456) with tilt (0 0 0)
+  2 by 2 by 5 MPI processor grid
+  pair style eam/alloy stores no restart info
+  1837080 atoms
+  read_restart CPU = 0.675 seconds
+Changing box ...
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456) with tilt (-0.00097844764 0 0)
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 6.88
+  ghost atom cutoff = 6.88
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair eam/alloy, perpetual
+      attributes: half, newton on
+      pair build: half/nsq/newton
+      stencil: none
+      bin: none
+Setting up cg style minimization ...
+  Unit style    : metal
+  Current step  : 1
+Per MPI rank memory allocation (min/avg/max) = 28.95 | 28.95 | 28.95 Mbytes
+   Step          Temp          PotEng         Press           Pxx            Pyy            Pzz            Pxy            Pxz            Pyz             Lx             Ly             Lz           Volume    
+         1   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44764      988.41667      9.3652646e+08
+         2   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44764      988.41667      9.3652646e+08
+Loop time of 0.0446492 on 20 procs for 1 steps with 1837080 atoms
+
+85.1% CPU use with 20 MPI tasks x no OpenMP threads
+
+Minimization stats:
+  Stopping criterion = search direction is not downhill
+  Energy initial, next-to-last, final = 
+       1331399.7563959    1331399.7563959    1331399.7563959
+  Force two-norm initial, final = 0 0
+  Force max component initial, final = 0 0
+  Final line search alpha, max atom move = 0 0
+  Iterations, force evaluations = 1 0
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.010386   | 0.016698   | 0.024391   |   4.1 | 37.40
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0.00061843 | 0.0092516  | 0.015168   |   5.3 | 20.72
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.0187     |            |       | 41.88
+
+Nlocal:          91854 ave       91854 max       91854 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+Nghost:          12370 ave       12498 max       12289 min
+Histogram: 2 3 5 4 0 1 1 2 1 1
+Neighs:              0 ave           0 max           0 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0
+Neighbor list builds = 0
+Dangerous builds = 0
+
+The 'box' command has been removed and will be ignored
+
+Reading restart file ...
+  restart file = 2 Aug 2023, LAMMPS = 2 Aug 2023
+  restoring atom style atomic from restart
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456) with tilt (0 0 0)
+  2 by 2 by 5 MPI processor grid
+  pair style eam/alloy stores no restart info
+  1837080 atoms
+  read_restart CPU = 0.561 seconds
+Changing box ...
+  triclinic box = (-348.25199 -351.88093 -355.47107) to (620.12041 626.56671 632.9456) with tilt (0.00097844764 0 0)
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 6.88
+  ghost atom cutoff = 6.88
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair eam/alloy, perpetual
+      attributes: half, newton on
+      pair build: half/nsq/newton
+      stencil: none
+      bin: none
+Setting up cg style minimization ...
+  Unit style    : metal
+  Current step  : 1
+Per MPI rank memory allocation (min/avg/max) = 28.95 | 28.95 | 28.95 Mbytes
+   Step          Temp          PotEng         Press           Pxx            Pyy            Pzz            Pxy            Pxz            Pyz             Lx             Ly             Lz           Volume    
+         1   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44764      988.41667      9.3652646e+08
+         2   0              1331399.8      0              0              0              0              0              0              0              968.3724       978.44764      988.41667      9.3652646e+08
+Loop time of 0.0812821 on 20 procs for 1 steps with 1837080 atoms
+
+82.5% CPU use with 20 MPI tasks x no OpenMP threads
+
+Minimization stats:
+  Stopping criterion = search direction is not downhill
+  Energy initial, next-to-last, final = 
+       1331399.7563959    1331399.7563959    1331399.7563959
+  Force two-norm initial, final = 0 0
+  Force max component initial, final = 0 0
+  Final line search alpha, max atom move = 0 0
+  Iterations, force evaluations = 1 0
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.007644   | 0.01471    | 0.022048   |   3.3 | 18.10
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0.0033902  | 0.013347   | 0.024252   |   5.3 | 16.42
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.05323    |            |       | 65.48
+
+Nlocal:          91854 ave       91854 max       91854 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+Nghost:          12370 ave       12498 max       12289 min
+Histogram: 2 3 5 4 0 1 1 2 1 1
+Neighs:              0 ave           0 max           0 min
+Histogram: 20 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0
+Neighbor list builds = 0
+Dangerous builds = 0
+=========================================
+Components of the Elastic Constant Tensor
+=========================================
+Elastic Constant C11all = 0 GPa
+Elastic Constant C22all = 0 GPa
+Elastic Constant C33all = 0 GPa
+Elastic Constant C12all = 0 GPa
+Elastic Constant C13all = 0 GPa
+Elastic Constant C23all = 0 GPa
+Elastic Constant C44all = 0 GPa
+Elastic Constant C55all = 0 GPa
+Elastic Constant C66all = 0 GPa
+Elastic Constant C14all = 0 GPa
+Elastic Constant C15all = 0 GPa
+Elastic Constant C16all = 0 GPa
+Elastic Constant C24all = 0 GPa
+Elastic Constant C25all = 0 GPa
+Elastic Constant C26all = 0 GPa
+Elastic Constant C34all = 0 GPa
+Elastic Constant C35all = 0 GPa
+Elastic Constant C36all = 0 GPa
+Elastic Constant C45all = 0 GPa
+Elastic Constant C46all = 0 GPa
+Elastic Constant C56all = 0 GPa
+=========================================
+Average properties for a cubic crystal
+=========================================
+Bulk Modulus = 0 GPa
+Shear Modulus 1 = 0 GPa
+Shear Modulus 2 = 0 GPa
+ERROR on proc 0: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+Last command: Poisson Ratio = ${poissonratio
+ERROR on proc 3: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+Last command: Poisson Ratio = ${poissonratio
+ERROR on proc 5: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+Last command: Poisson Ratio = ${poissonratio
+ERROR on proc 8: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+Last command: Poisson Ratio = ${poissonratio
+ERROR on proc 9: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+Last command: Poisson Ratio = ${poissonratio
+ERROR on proc 10: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+Last command: Poisson Ratio = ${poissonratio
+ERROR on proc 11: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+Last command: Poisson Ratio = ${poissonratio
+ERROR on proc 12: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+Last command: Poisson Ratio = ${poissonratio
+ERROR on proc 13: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+Last command: Poisson Ratio = ${poissonratio
+ERROR on proc 14: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+Last command: Poisson Ratio = ${poissonratio
+ERROR on proc 15: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+Last command: Poisson Ratio = ${poissonratio
+ERROR on proc 16: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+Last command: Poisson Ratio = ${poissonratio
+ERROR on proc 17: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+ERROR on proc 18: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+Last command: Poisson Ratio = ${poissonratio
+ERROR on proc 19: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+Last command: Poisson Ratio = ${poissonratio
+ERROR on proc 1: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+Last command: Poisson Ratio = ${poissonratio
+ERROR on proc 4: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+Last command: Poisson Ratio = ${poissonratio
+ERROR on proc 6: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+Last command: Poisson Ratio = ${poissonratio
+Last command: Poisson Ratio = ${poissonratio
+ERROR on proc 2: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+Last command: Poisson Ratio = ${poissonratio
+ERROR on proc 7: Variable poissonratio: Divide by 0 in variable formula (../variable.cpp:2254)
+Last command: Poisson Ratio = ${poissonratio
+lammps out
