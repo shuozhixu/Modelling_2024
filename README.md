@@ -310,11 +310,25 @@ The material 900KMDMC was studied at 0 K and 900 K, respectively. Results are in
 
 ## HfNbTaTiZr
 
-Data at 0 K were taken from [this paper](http://dx.doi.org/10.1063/5.0116898). Need to cite it. Data at finite temperatures are newly calculated for the current project. In all cases, simulation cells with size D (see Table II of the paper) were used.
+Data at 0 K were taken from [this paper](http://dx.doi.org/10.1063/5.0116898). Data at finite temperatures are newly calculated for the current project. In all cases, simulation cells with size D (see Table II of the paper) were used.
 
 Lattice parameters, elastic constants, and USFEs are summarized in the directory `HfNbTaTiZr` in this GitHub repository. USFEs, taken on the \{110\} plane, are in units of mJ/m<sup>2</sup>.
 
-Note that only random HfNbTaTiZr is considered, and the results are in `data_random.txt`.
+#### Random HfMoNbTaTi
+
+The random material was studied at 0 K, 300 K, 600 K, 900 K, and 1200 K, respectively. Results are in `data_random.txt`.
+
+#### HfMoNbTaTi with CSRO
+
+Following [this paper](http://dx.doi.org/10.1063/5.0116898), four levels of CSRO were considered, with the material annealed at 300 K, 600 K, and 900 K, respectively. In what follows, let's call them 300KMDMC, 600KMDMC, 900KMDMC, respectively.
+
+All materials were studied at 0 K only.
+
+Results for the material 300KMDMC are in `data_300KMDMC.txt`.
+
+Results for the material 600KMDMC are in `data_600KMDMC.txt`.
+
+Results for the material 900KMDMC are in `data_900KMDMC.txt`.
 
 ## References
 
