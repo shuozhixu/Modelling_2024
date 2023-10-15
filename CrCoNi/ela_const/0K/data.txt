@@ -1,0 +1,13 @@
+Random
+
+C11 = 251.644 GPa
+C12 = 178.246 GPa
+C44 = 95.134 GPa
+
+------
+
+350KMDMC
+
+C11 =  GPa
+C12 =  GPa
+C44 =  GPa

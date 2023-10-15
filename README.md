@@ -73,6 +73,8 @@ Run the simulation. Once it is finished, you will find a new file `a_E`. The fir
 
 ### Elastic constants at 0 K
 
+Results, based on the [100]-[010]-[001] system, are in the file `CoCrNi/ela_const/0K/data.txt`. 
+
 #### Random CoCrNi
 
 Run the simulation with files `in.elastic`, `displace.mod`, `init.mod`, `potential.mod`, `min.CoCrNi_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
@@ -82,7 +84,7 @@ Once it is finished, you will find an output file, `*.out`, at the end of which 
 	Elastic Constant C11all = 309.979695007998 GPa
 	Elastic Constant C22all = 310.087578803684 GPa
 
-Rename that file to `lmp_random.out` and upload it to the `CoCrNi/ela_const/0K` directory. 
+Since the elastic constants are in the [1-10]-[11-2]-[111] system, they should be [converted](https://github.com/shuozhixu/elastic_tensor) to those in the [100]-[010]-[001] system.
 
 #### CoCrNi with CSRO
 
@@ -90,7 +92,7 @@ The simulation requires files `in.elastic`, `displace.mod`, `init.mod`, `potenti
 
 - Change the last number (by default 1.) of line 50 to the correct ratio identified in the prior lattice parameter calculation, i.e., the first of the three numbers you recorded for the CSRO case.
 
-Run the simulation. Once it is finished, rename the newly generated output file to `lmp_350KMDMC.out` and upload it to the `CoCrNi/ela_const/0K` directory.
+Since the elastic constants are in the [1-10]-[11-2]-[111] system, they should be [converted](https://github.com/shuozhixu/elastic_tensor) to those in the [100]-[010]-[001] system.
 
 ### Lattice parameters at 300 K
 
@@ -131,6 +133,8 @@ Again, the newly generated file `data.relax` will be used later in elastic const
 
 ### Elastic constants at 300 K
 
+Results are in the file `CoCrNi/ela_const/300K/data.txt`. 
+
 #### Random CoCrNi
 
 Run the simulation with files `in.elastic`, `init.in`, `potential.in`, `output.in`, `final_output.in`, `data.relax`, and `CoCrNi.lammps.eam`. Note that the file `data.relax` is the one you got from the `Lattice parameters at 300 K - Random CoCrNi` calculation.
@@ -142,7 +146,7 @@ Once it is finished, go to the end of the output file, and you will see
 
 which are smaller than those calculated at 0 K, as expected.
 
-Rename the file to `lmp_random.out` and upload it to the `CoCrNi/ela_const/300K` directory. 
+Since the elastic constants are in the [1-10]-[11-2]-[111] system, they should be [converted](https://github.com/shuozhixu/elastic_tensor) to those in the [100]-[010]-[001] system.
 
 #### CoCrNi with CSRO
 
@@ -150,7 +154,7 @@ Repeat the steps above, except that
 
 - Use the `data.relax` file from the `Lattice parameters at 300 K - CoCrNi with CSRO` calculation instead
 
-Once the simulation is finished, rename the output file to `lmp_300K.out` and upload it to the `CoCrNi/ela_const/300K` directory.
+Since the elastic constants are in the [1-10]-[11-2]-[111] system, they should be [converted](https://github.com/shuozhixu/elastic_tensor) to those in the [100]-[010]-[001] system.
 
 ### GSFE at 0 K
 
@@ -266,7 +270,9 @@ You can also check whether the potential energy converges to a constant. For tha
 
 Use the data file `data.MoNbTa_CSRO` to calculate its lattice parameters and elastic constants at 0 K, 300 K, 600 K, 900 K, and 1200 K. Also calculate its GSFE at 0 K.
 
-Use the same method for CoCrNi. Remember to modify the input files accordingly and use the appropriate potential.
+Note that the calculated elastic constants are in the [11-2]-[111]-[1-10] system, and so they should be [converted](https://github.com/shuozhixu/elastic_tensor) to those in the [100]-[010]-[001] system.
+
+In all calculations, use the same method for CoCrNi. Remember to modify the input files accordingly and use the appropriate potential.
 
 In particular, the initial trial lattice parameter is 3.135 Angstrom, but after running LAMMPS simulations, it might change. The new trial lattice parameter can be calculated by
 
