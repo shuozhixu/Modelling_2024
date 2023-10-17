@@ -8,6 +8,6 @@ C44 = 95.134 GPa
 
 350KMDMC
 
-C11 =  GPa
-C12 =  GPa
-C44 =  GPa
+C11 = 259.065 GPa
+C12 = 190.348 GPa
+C44 = 100.61 GPa
