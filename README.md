@@ -33,12 +33,12 @@ To finish this project, at least three packages are needed.
 ) and [this page](https://docs.lammps.org/compute_born_matrix.html).
 - MC package. This is to generate materials with chemical short-range order at a given temperature. [This paper](http://dx.doi.org/10.1103/PhysRevB.85.184203) should be cited if one uses this package.
 
-Note: if you use sbatch files from [LAMMPSatOU](https://github.com/ANSHURAJ11/LAMMPSatOU), you may need to change the walltime (default: 12 hours) and/or number of cores (default: 16). For this project, I recommend
+Note: if we use sbatch files from [LAMMPSatOU](https://github.com/ANSHURAJ11/LAMMPSatOU), we may want to change the walltime (default: 12 hours) and/or number of cores (default: 16). For this project, we use
 
 	#SBATCH --time=200:00:00
 	#SBATCH --ntasks=32
 
-Please, each time you run a new type of simulation, create a new directory.
+Each time we run a new type of simulation, create a new directory.
 
 Four MPEAs will be considered.
 
@@ -54,9 +54,9 @@ All data files are from [this paper](http://dx.doi.org/10.1016/j.actamat.2020.08
 
 Run the simulation with files `lmp_0K.in`, `min.CoCrNi_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
 
-Once it is finished, you will find a new file `a_E`. The first column is the ratio of the trial lattice parameter to 3.5564, the second column is the trial lattice parameter itself, in units of Anstrong, the thrid column is the cohesive energy, in units of eV. If you plot a curve with the second column as the x axis and the third column as the y axis, the curve should look like the ones in Figure 1(a) of [this paper](http://dx.doi.org/10.1016/j.commatsci.2021.110942).
+Once it is finished, we will find a new file `a_E`. The first column is the ratio of the trial lattice parameter to 3.5564, the second column is the trial lattice parameter itself, in units of Anstrong, the thrid column is the cohesive energy, in units of eV. If we plot a curve with the second column as the x axis and the third column as the y axis, the curve should look like the ones in Figure 1(a) of [this paper](http://dx.doi.org/10.1016/j.commatsci.2021.110942).
 
-Then run `sh min.sh` to find out the trial lattice parameter corresponding to the lowest cohesive energy (i.e., the minimum on that curve), and that would be the actual lattice parameter. Specifically, you will see
+Then run `sh min.sh` to find out the trial lattice parameter corresponding to the lowest cohesive energy (i.e., the minimum on that curve), and that would be the actual lattice parameter. Specifically, we will see
 
 	1 3.55644549888703 -4.32151351854507
 
@@ -69,7 +69,7 @@ The simulation requires files
 
 - Line 10. Change the word `random` to `350KMDMC`, i.e., to match the new data file's name.
 
-Run the simulation. Once it is finished, you will find a new file `a_E`. The first column is the ratio of the trial lattice parameter to 3.561; the other two columns have the same meaning as the random case. Repeat the remaining steps in the random case and record the three numbers for the CoCrNi with CSRO.
+Run the simulation. Once it is finished, we will find a new file `a_E`. The first column is the ratio of the trial lattice parameter to 3.561; the other two columns have the same meaning as the random case. Repeat the remaining steps in the random case and record the three numbers for the CoCrNi with CSRO.
 
 ### Elastic constants at 0 K
 
@@ -79,7 +79,7 @@ Results, based on the [100]-[010]-[001] system, are in the file `CoCrNi/ela_cons
 
 Run the simulation with files `in.elastic`, `displace.mod`, `init.mod`, `potential.mod`, `min.CoCrNi_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
 
-Once it is finished, you will find an output file, `*.out`, at the end of which you will find values of C11all, C12all etc. Specifically, you will see
+Once it is finished, we will find an output file, `*.out`, at the end of which we will find values of C11all, C12all etc. Specifically, we will see
 
 	Elastic Constant C11all = 309.979695007998 GPa
 	Elastic Constant C22all = 310.087578803684 GPa
@@ -90,7 +90,7 @@ Since the elastic constants are in the [1-10]-[11-2]-[111] system, they should b
 
 The simulation requires files `in.elastic`, `displace.mod`, `init.mod`, `potential.mod`, `min.CoCrNi_27nmx_27nmy_27nmz_350KMDMC.dat`, and `CoCrNi.lammps.eam`. Make one change in `init.mod`:
 
-- Change the last number (by default 1.) of line 50 to the correct ratio identified in the prior lattice parameter calculation, i.e., the first of the three numbers you recorded for the CSRO case.
+- Change the last number (by default 1.) of line 50 to the correct ratio identified in the prior lattice parameter calculation, i.e., the first of the three numbers we recorded for the CSRO case.
 
 Since the elastic constants are in the [1-10]-[11-2]-[111] system, they should be [converted](https://github.com/shuozhixu/elastic_tensor) to those in the [100]-[010]-[001] system.
 
@@ -102,7 +102,7 @@ Run the simulation with files `lmp_300K.in`, `min.CoCrNi_27nmx_27nmy_27nmz_rando
 
 Once it is finished, go to the file `log.lammps` and find the first block of data that starts with a line `Step Lx Ly Lz`. The first column of the data block starts from 0, increasing in increment of 100, and stops at 10000.
 
-In fact, you will find that the first line of the block is
+In fact, we will find that the first line of the block is
 
 	0    271.59916    274.41197     277.1948
 	
@@ -116,9 +116,9 @@ First, calculate the lattice parameter at the last step 10000, using
 
 where Lx', Ly', and Lz' are taken at the step 10000, while Lx, Ly, and Lz are taken at step 0. Record the result.
 
-Then repeat the equation above, but using Lx', Ly', and Lz' at steps 9900, 9800 , ..., and 9100, respectively. In total, you get ten lattice parameters. Calculate the mean of the ten numbers, and that is the ratio of the lattice parameter for random CoCrNi at 300 K to the trial lattice parameter, 3.5564 Angstrom.
+Then repeat the equation above, but using Lx', Ly', and Lz' at steps 9900, 9800 , ..., and 9100, respectively. In total, we get ten lattice parameters. Calculate the mean of the ten numbers, and that is the ratio of the lattice parameter for random CoCrNi at 300 K to the trial lattice parameter, 3.5564 Angstrom.
 
-You will also find a newly generated file `data.relax`, which will be used later in elastic constants calculations.
+We will also find a newly generated file `data.relax`, which will be used later in elastic constants calculations.
 
 #### CoCrNi with CSRO
 
@@ -137,9 +137,9 @@ Results are in the file `CoCrNi/ela_const/300K/data.txt`.
 
 #### Random CoCrNi
 
-Run the simulation with files `in.elastic`, `init.in`, `potential.in`, `output.in`, `final_output.in`, `data.relax`, and `CoCrNi.lammps.eam`. Note that the file `data.relax` is the one you got from the `Lattice parameters at 300 K - Random CoCrNi` calculation.
+Run the simulation with files `in.elastic`, `init.in`, `potential.in`, `output.in`, `final_output.in`, `data.relax`, and `CoCrNi.lammps.eam`. Note that the file `data.relax` is the one we got from the `Lattice parameters at 300 K - Random CoCrNi` calculation.
 
-Once it is finished, go to the end of the output file, and you will see
+Once it is finished, go to the end of the output file, and we will see
 
 	Elastic Constant C11 = 298.291596568703 GPa
 	Elastic Constant C22 = 297.341418727254 GPa
@@ -162,7 +162,7 @@ Since the elastic constants are in the [1-10]-[11-2]-[111] system, they should b
 
 Run the simulation with files `lmp_gsfe.in`, `data.CoCrNi_gsfe_random`, and `CoCrNi.lammps.eam`. The first file can be found in the directory `CoCrNi/gsfe/` in this GitHub repository.
 
-Once it is finished, you will find a file `gsfe_ori`, which should contain 3001 lines, with the first one being
+Once it is finished, we will find a file `gsfe_ori`, which should contain 3001 lines, with the first one being
 
 	0 -374943.444563279
 
@@ -213,7 +213,7 @@ First, calculate the radial distribution functions (RDF) for random MoNbTa. To d
 - Lines 3 and 4. Change the two large numbers to zero
 - Linne 25. Change the data file name to `data.MoNbTa_random`
 
-Once the simulation is finished, you will find a file `cn.out`, which contains RDF information.
+Once the simulation is finished, we will find a file `cn.out`, which contains RDF information.
 
 Then build a new directory named `WCP_random` and move three files there: `cn.out`, `cn.sh`, and `csro.sh`. The last two files can be found in the `MoNbTa/wc/` directory in this GitHub repository.
 
@@ -221,13 +221,13 @@ Run
 
 	sh cn.sh
 	
-Then you will find a new directory `cn` and one or more `rdf.*.dat` files in it. Then move `csro.sh` into the `cn` directory and execute it, i.e.,
+Then we will find a new directory `cn` and one or more `rdf.*.dat` files in it. Then move `csro.sh` into the `cn` directory and execute it, i.e.,
 
 	move csro.sh cn/
 	cd cn/
 	sh csro.sh
 	
-Then you will find a file named `csro.a1.dat`, which is what we need. The 2nd to 7th numbers in that file are &alpha;\_MoMo, &alpha;\_MoNb, &alpha;\_MoTa, &alpha;\_NbNb, &alpha;\_NbTa, and &alpha;\_TaTa, respectively. These are WC parameters.
+Then we will find a file named `csro.a1.dat`, which is what we need. The 2nd to 7th numbers in that file are &alpha;\_MoMo, &alpha;\_MoNb, &alpha;\_MoTa, &alpha;\_NbNb, &alpha;\_NbTa, and &alpha;\_TaTa, respectively. These are WC parameters.
 
 ### MoNbTa with CSRO
 
@@ -237,11 +237,11 @@ Then you will find a file named `csro.a1.dat`, which is what we need. The 2nd to
 
 The first step is to determine the chemical potential difference between Mo and Nb, and that between Mo and Ta, respectively. To this end, run Monte Carlo (MC) simulations in semi-grand canonical (SGC) ensemble using `lmp_sgc.in` and `CrMoNbTaVW_Xu2022.eam.alloy`.
 
-Once the simulation is finished, you will find a file `statistics.dat`, which should contain one line:
+Once the simulation is finished, we will find a file `statistics.dat`, which should contain one line:
 
 	-0.021 0.32 0 0.0005  0.9995
 
-The first two numbers are the two energy differences you provided in lines 10 and 11 of `lmp_sgc.in`, while the last three numbers are the concentrations of Mo, Nb, and Ta, respectively. Since they are not close to equal-molar, modify the two numbers in lines 10 and 11 of `lmp_sgc.in`, and run the simulation again. You can make the modification in the same folder and a new line will be appended to `statistics.dat` once the new simulation is finished. Iteratively adjust the two numbers until the material is almost equal-molar. Note that it does not have to be exactly equal-molar. The procedure is similar to what is described in Section B.2 of [this paper](https://doi.org/10.1016/j.actamat.2019.12.031).
+The first two numbers are the two energy differences we provided in lines 10 and 11 of `lmp_sgc.in`, while the last three numbers are the concentrations of Mo, Nb, and Ta, respectively. Since they are not close to equal-molar, modify the two numbers in lines 10 and 11 of `lmp_sgc.in`, and run the simulation again. We can make the modification in the same folder and a new line will be appended to `statistics.dat` once the new simulation is finished. Iteratively adjust the two numbers until the material is almost equal-molar. Note that it does not have to be exactly equal-molar. The procedure is similar to what is described in Section B.2 of [this paper](https://doi.org/10.1016/j.actamat.2019.12.031).
 
 ##### Variance constrained semi-grand canonical ensemble
 
@@ -262,9 +262,9 @@ Next, make two changes to `data.Mo`:
 
 Next, run a hybrid MD/MC simulation in variance constrained semi-grand canonical (VC-SGC) ensemble using `lmp_vcsgc.in`, `data.Mo`, and `CrMoNbTaVW_Xu2022.eam.alloy`.
 
-Once the simulation is finished, you will find a file `data.MoNbTa_CSRO`, which is the CSRO structure annealed at 300 K, and a file `cn.out`.
+Once the simulation is finished, we will find a file `data.MoNbTa_CSRO`, which is the CSRO structure annealed at 300 K, and a file `cn.out`.
 
-You can also check whether the potential energy converges to a constant. For that, plot a curve with `pe` as the _y_ axis and `step` as the _x_ axis. You can find `pe` and `step` in the log file; only use the data in the first run. The curve may look like Figure 1(a) of [this paper](https://doi.org/10.1073/pnas.1808660115), which is for CoCrNi.
+We can also check whether the potential energy converges to a constant. For that, plot a curve with `pe` as the _y_ axis and `step` as the _x_ axis. We can find `pe` and `step` in the log file; only use the data in the first run. The curve may look like Figure 1(a) of [this paper](https://doi.org/10.1073/pnas.1808660115), which is for CoCrNi.
 
 #### Material properties
 
