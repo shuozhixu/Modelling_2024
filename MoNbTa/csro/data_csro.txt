@@ -18,9 +18,9 @@ C44 = 78.06 GPa
 
 600 K - EAM
 
-C11 =  GPa
-C12 =  GPa
-C44 =  GPa
+C11 = 277.88 GPa
+C12 = 155.09 GPa
+C44 = 76.29 GPa
 
 ------
 
