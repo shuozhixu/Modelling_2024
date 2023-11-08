@@ -276,11 +276,17 @@ In all calculations, use the same method for CoCrNi. Remember to modify the inpu
 
 In particular, the initial trial lattice parameter is 3.135 Angstrom, but after running LAMMPS simulations, it might change. The new trial lattice parameter can be calculated by
 
-	(lx/(10*sqrt(6.)/2.)+ly/(46*sqrt(3.))+lz/(14*sqrt(2.)))/3.
+	(lx/(10*sqrt(6.))+ly/(46*sqrt(3.)/2.)+lz/(14*sqrt(2.)))/3.
+	
+where `lx`, `ly`, and `lz` can be found in the data file `data.MoNbTa_CSRO`, i.e.,
 
-Also, when calculating the lattice parameter at 0 K, change line 44 of `lmp_0K.in` to
+	lx = xhi - xlo
+	ly = yhi - ylo
+	lz = zhi - zlo
 
-	variable lat_para equal (lx/(10*sqrt(6.)/2.)+ly/(46*sqrt(3.))+lz/(14*sqrt(2.)))/3.
+In particular, when calculating the lattice parameter at 0 K, change line 44 of `lmp_0K.in` to
+
+	variable lat_para equal (lx/(10*sqrt(6.))+ly/(46*sqrt(3.)/2.)+lz/(14*sqrt(2.)))/3.
 
 #### WC parameter
 
