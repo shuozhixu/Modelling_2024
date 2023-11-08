@@ -274,7 +274,9 @@ Note that the calculated elastic constants are in the [11-2]-[111]-[1-10] system
 
 In all calculations, use the same method for CoCrNi. Remember to modify the input files accordingly and use the appropriate potential.
 
-In particular, the initial trial lattice parameter is 3.135 Angstrom, but after running LAMMPS simulations, it might change. The new trial lattice parameter can be calculated by
+###### Lattice parameters
+
+The initial trial lattice parameter is 3.135 Angstrom, but after running LAMMPS simulations, it might change. The new trial lattice parameter can be calculated by
 
 	(lx/(10*sqrt(6.))+ly/(46*sqrt(3.)/2.)+lz/(14*sqrt(2.)))/3.
 	
@@ -284,7 +286,7 @@ where `lx`, `ly`, and `lz` can be found in the data file `data.MoNbTa_CSRO`, i.e
 	ly = yhi - ylo
 	lz = zhi - zlo
 
-In particular, when calculating the lattice parameter at 0 K, change line 44 of `lmp_0K.in` to
+In particular, when calculating the lattice parameter at 0 K, additionally change line 44 of `lmp_0K.in` to
 
 	variable lat_para equal (lx/(10*sqrt(6.))+ly/(46*sqrt(3.)/2.)+lz/(14*sqrt(2.)))/3.
 
