@@ -19,3 +19,39 @@ C12 = 141.375 GPa
 C44 = 81.181 GPa
 
 USFE = 669.611 ± 27.5973
+
+------
+
+600 K
+
+a0 =  A
+
+C11 =  GPa
+C12 =  GPa
+C44 =  GPa
+
+USFE =  ± 
+
+------
+
+900 K
+
+a0 =  A
+
+C11 =  GPa
+C12 =  GPa
+C44 =  GPa
+
+USFE =  ± 
+
+------
+
+1200 K
+
+a0 =  A
+
+C11 =  GPa
+C12 =  GPa
+C44 =  GPa
+
+USFE =  ± 
