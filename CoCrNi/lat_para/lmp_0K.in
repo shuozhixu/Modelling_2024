@@ -41,7 +41,7 @@ change_box all x scale $d y scale $d z scale $d remap
 thermo          1
 thermo_style    custom step lx ly lz pe etotal
 
-variable lat_para equal (lx/(54*sqrt(2.))+ly/(63*sqrt(6.)/2)+lz/(45*sqrt(3.)))/3.
+variable lat_para equal (lx/(108*sqrt(2.)/2.)+ly/(63*sqrt(6.)/2)+lz/(45*sqrt(3.)))/3.
 
 variable eatom equal etotal/count(all)
 
