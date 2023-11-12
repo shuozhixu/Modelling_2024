@@ -208,7 +208,7 @@ Lattice parameter, elastic constants, and GSFE of random MoNbTa have been calcul
 
 #### Warren-Cowley (WC) parameter
 
-First, calculate the radial distribution functions (RDF) for random MoNbTa. To do that, run a LAMMPS simulation with three files `data.MoNbTa_random`, `CrMoNbTaVW_Xu2022.eam.alloy`, and `lmp_mdmc.in`. The last file is from the `MoNbTa/csro/` directory in this GitHub repository and should be modified as follows:
+First, calculate the radial distribution functions (RDF) for random MoNbTa. To do that, run a LAMMPS simulation with three files `data.MoNbTa_random`, `CrMoNbTaVW_Xu2022.eam.alloy`, and `lmp_mdmc.in`. The second file can be found in [another GitHub repository](https://github.com/shuozhixu/CMS_2022). The last file is from the `MoNbTa/csro/` directory in this GitHub repository and should be modified as follows:
 
 - Lines 3 and 4. Change the two large numbers to zero
 - Linne 25. Change the data file name to `data.MoNbTa_random`
