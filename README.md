@@ -304,7 +304,7 @@ Lattice parameters, elastic constants, and USFEs of the three pure metals are in
 
 ## HfMoNbTaTi
 
-Data at 0 K were taken from [this paper](http://dx.doi.org/10.1063/5.0116898). Data at finite temperatures are newly calculated for the current project. In all cases, simulation cells with size D (see Table II of the paper) were used.
+Calculations at 0 K were performed when preparing [this paper](http://dx.doi.org/10.1063/5.0116898), although USFE data were not reported there. All data at finite temperatures are newly calculated for the current project. In all cases, simulation cells with size D (see Table II of the paper) were used.
 
 Lattice parameters, elastic constants, and USFEs are summarized in the directory `HfMoNbTaTi` in this GitHub repository. USFEs, taken on the \{110\} plane, are in units of mJ/m<sup>2</sup>.
 
@@ -320,7 +320,7 @@ All materials were studied at 0 K, 300 K, 600 K, 900 K, and 1200 K, respectively
 
 ## HfNbTaTiZr
 
-Data at 0 K were taken from [this paper](http://dx.doi.org/10.1063/5.0116898). Data at finite temperatures are newly calculated for the current project. In all cases, simulation cells with size D (see Table II of the paper) were used.
+Calculations at 0 K were performed when preparing [this paper](http://dx.doi.org/10.1063/5.0116898), although USFE data were not reported there. All data at finite temperatures are newly calculated for the current project. In all cases, simulation cells with size D (see Table II of the paper) were used.
 
 Lattice parameters, elastic constants, and USFEs are summarized in the directory `HfNbTaTiZr` in this GitHub repository. USFEs, taken on the \{110\} plane, are in units of mJ/m<sup>2</sup>.
 
