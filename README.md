@@ -188,7 +188,7 @@ Run the atomsk script, `atomsk_Ni.sh`, which can be found in `CoCrNi/ni/` in thi
 
 Then use the data file and the same potential file to calculate its lattice parameters and elastic constants at 0 K, 300 K, 600 K, 900 K, and 1200 K. Also calculate its GSFE at 0 K.
 
-Note: The trial lattice parameter is 3.5564 Angstrom. When calculating the lattice parameter at 0 K, in line 44 of `lmp_0K.in`, change the three numbers 54, 63, and 45, to 30, 30, and 10, respectively. This is because different cell sizes are used here.
+Note: The trial lattice parameter is 3.5564 Angstrom. When calculating the lattice parameter at 0 K, in line 44 of `lmp_0K.in`, change the three numbers 54, 63, and 45, to 30, 30, and 10, respectively. That is because different cell sizes are used here.
 
 ## MoNbTa
 
