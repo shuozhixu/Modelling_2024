@@ -54,7 +54,7 @@ All data files are from [this paper](http://dx.doi.org/10.1016/j.actamat.2020.08
 
 Run the simulation with files `lmp_0K.in`, `min.CoCrNi_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
 
-Once it is finished, we will find a new file `a_E`. The first column is the ratio of the trial lattice parameter to 3.5564, the second column is the trial lattice parameter itself, in units of Anstrong, the thrid column is the cohesive energy, in units of eV. If we plot a curve with the second column as the x axis and the third column as the y axis, the curve should look like the ones in Figure 1(a) of [this paper](http://dx.doi.org/10.1016/j.commatsci.2021.110942).
+Once it is finished, we will find a new file `a_E`. The first column is the ratio of the trial lattice parameter to 3.5564, the second column is the trial lattice parameter itself, in units of Angstrom, the thrid column is the cohesive energy, in units of eV. If we plot a curve with the second column as the x axis and the third column as the y axis, the curve should look like the ones in Figure 1(a) of [this paper](http://dx.doi.org/10.1016/j.commatsci.2021.110942).
 
 Then run `sh min.sh` to find out the trial lattice parameter corresponding to the lowest cohesive energy (i.e., the minimum on that curve), and that would be the actual lattice parameter. Specifically, we will see
 
@@ -269,13 +269,17 @@ Once all calculations are finished, edit line 14 of the file `gsfe_curve.sh`; by
 
 	16021.8/(lx*lz)
 
+where `16021.8` is to convert the unit from eV to mJ, while `1/(lx*lz)` is to divide the energy by area.
+
 Then generate the GSFE curve file `gsfe` by
 
 	sh gsfe_curve.sh
 
 The USFE is the maximum GSFE value.
 
-Note: we only calculated a single GSFE curve here. [A previous paper](http://dx.doi.org/10.1016/j.intermet.2020.106844) found that a large number of GSFE curves need to be calculated to obtain a good mean USFE value, if the cross-sectional area within the shift plane is small, which it is in our case.
+Note: we have calculated only a single GSFE curve here. [A previous paper](http://dx.doi.org/10.1016/j.intermet.2020.106844) found that multiple GSFE curves need to be calculated to obtain a good mean USFE value, if the cross-sectional area within the shift plane is small, which it is in our case.
+
+To obtain other GSFE curves on other shift plane, please change the last number (by default `5`) at the end of line 12 of `build.sh` to `4` and `6`, respectively. And redo everything. That way, you will get two more GSFE curves, and hence two more USFE values. Calculate the mean USFF value based on the three USFE values and report the mean value in the paper.
 
 ### MoNbTa with CSRO
 
