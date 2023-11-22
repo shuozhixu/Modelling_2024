@@ -231,7 +231,7 @@ Then we will find a file named `csro.a1.dat`, which is what we need. The 2nd to 
 
 #### Density functional theory
 
-Density functional theory (DFT) calculations will be conducted using VASP to calculate the lattice parameters and GSFE of random MoNbTa.
+Density functional theory (DFT) calculations will be conducted using VASP to calculate the lattice parameter and GSFE of random MoNbTa.
 
 ##### Lattice parameter
 
@@ -261,7 +261,7 @@ Third, edit line 14 of the file `gsfe_curve.sh`; by default, `c` equals 1, chang
 
 	16021.8/(lx*lz)
 
-where `16021.8` is to convert the unit from eV to mJ, while `1/(lx*lz)` is to divide the energy by area.
+where `1/(lx*lz)` is to divide the energy by area, and `16021.8` is to convert the unit from eV/angstrom<sup>2</sup> to mJ/m<sup>2</sup>. 
 
 Fourth, build 41 subdirectories by
 
