@@ -3,11 +3,12 @@
 # Cite: S. Xu, E. Hwang, W. Jian, Y. Su, I.J. Beyerlein, Intermetallics 124 (2020) 106844
 
 usage="""
-        Usage: bcc_gsfe_poscar.py tx tz vacuum     
-               tx - displacement of top block of atoms in the x direction
-               tz - displacement of top block of atoms in the z direction
-               vacuum - thickness of vacuum added along the y direction
-        Example: bcc_gsfe_poscar.py 1. 2. 12.
+        Usage: bcc_gsfe_poscar.py tx tz vacuum shift    
+               tx (float) - displacement of top block of atoms in the x direction
+               tz (float) - displacement of top block of atoms in the z direction
+               vacuum (float) - thickness of vacuum added along the y direction
+               shift (int) - above which plane along the y direction is the top block
+        Example: bcc_gsfe_poscar.py 1. 2. 12. 5
 """
 
 import os
@@ -15,11 +16,6 @@ import re
 import sys
 import math
 import numpy as np
-# Default setting
-a = 4.0
-nx = 1
-ny = 1
-nz = 1
 
 def get_direct():
   xa = []; ya = []; za = []; ly = []
@@ -48,7 +44,7 @@ def get_direct():
   for i in range(0, len(tmp3)):
     tmp5 += tmp3[i]
   numoftype = tmp3.tolist(); tmp4 = np.cumsum(tmp3); num_end = tmp4.tolist()
-  print(tmp5)
+#  print(tmp5)
   sortnum = [numoftype[i] for i in index_sort];sortnum_end = [num_end[i] for i in index_sort]
   newindex = list(range(sortnum_end[0]-sortnum[0],sortnum_end[0]))
   newindex += list(range(sortnum_end[1]-sortnum[1],sortnum_end[1]))
@@ -141,10 +137,11 @@ def addvacuum(ya,vacuum):
   return ya
 
 # Main Program
-if len(sys.argv) > 3:
+if len(sys.argv) > 4:
   tx=float(sys.argv[1])
   tz=float(sys.argv[2])
   vacuum=float(sys.argv[3])
+  shiftp=int(sys.argv[4])
 
   if not os.path.isfile("POSCAR_0"):
     print("Error: This script need POSCAR_0 as seed POSCAR file!!!")
@@ -158,7 +155,7 @@ if len(sys.argv) > 3:
 #  xa,ya,za,ly = faultplaneshift2mid(xa,ya,za,ly,plane)
 # reassinging layers
   xa,ya,za,ly = assign_layers(xa,ya,za)
-  xa,ya,za = shift(vec1,ly,5,xa[:],ya[:],za[:],[1.,1.,1.])
+  xa,ya,za = shift(vec1,ly,shiftp,xa[:],ya[:],za[:],[1.,1.,1.])
   xa,ya,za = periodicBC(xa,ya,za,[1.,1.,1.])
 #  xa,ya,za,ly = assign_layers(xa,ya,za)
 # add vacuum in the y direction
