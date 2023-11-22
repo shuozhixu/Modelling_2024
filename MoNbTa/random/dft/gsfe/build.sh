@@ -9,7 +9,7 @@ do
   cd $i
   cp ../POSCAR_0 .
   cp ../bcc_gsfe_poscar.py .
-  python bcc_gsfe_poscar.py 0.0 ${tz} 12.
+  python bcc_gsfe_poscar.py 0.0 ${tz} 12. 5
   rm POSCAR_0
   cd ..
 done
