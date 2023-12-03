@@ -14,3 +14,4 @@ ALGO = F
 #KPAR = 1
 #NCORE = 64
 #NPAR = 4
+ISYM = -1
