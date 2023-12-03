@@ -261,9 +261,11 @@ Third, submit the job by
 
 	sbatch vasp.batch
 
-Once the calculation is finished, open the file `OUTCAR`. The elastic constants are below the line `TOTAL ELASTIC MODULI (kBar)` in that file. You may convert the constants from kBar to GPa following
+Once the calculation is finished, open the file `OUTCAR`. The elastic constants are below the line `TOTAL ELASTIC MODULI (kBar)` in that file. The constants can converted from kBar to GPa following
 
 	1 kBar = 0.1 GPa
+
+Also, since the calculated elastic constants are in the [11-2]-[111]-[1-10] system they should be [converted](https://github.com/shuozhixu/elastic_tensor) to those in the [100]-[010]-[001] system.
 
 ##### GSFE
 
