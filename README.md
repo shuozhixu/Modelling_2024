@@ -112,7 +112,7 @@ while the last line is
 
 First, calculate the lattice parameter at the last step 10000, using
 
-(Lx'/Lx + Ly'/Ly + Lz'/Lz)/3
+	(Lx'/Lx + Ly'/Ly + Lz'/Lz)/3
 
 where Lx', Ly', and Lz' are taken at the step 10000, while Lx, Ly, and Lz are taken at step 0. Record the result.
 
@@ -213,21 +213,21 @@ First, calculate the radial distribution functions (RDF) for random MoNbTa. To d
 - Lines 3 and 4. Change the two large numbers to zero
 - Linne 25. Change the data file name to `data.MoNbTa_random`
 
-Once the simulation is finished, we will find a file `cn.out`, which contains RDF information.
+Once the simulation is finished, we will find a file `cn.out`, which contains RDF information. Based on the information, one can calculate the WC parameters. The codes used are not shared here.
 
-Then build a new directory named `WCP_random` and move three files there: `cn.out`, `cn.sh`, and `csro.sh`. The last two files can be found in the `MoNbTa/wc/` directory in this GitHub repository.
+[//]: # (Then build a new directory named `WCP_random` and move three files there: `cn.out`, `cn.sh`, and `csro.sh`. The last two files can be found in the `MoNbTa/wc/` directory in this GitHub repository.)
 
-Run
+[//]: # (Run)
 
-	sh cn.sh
+[//]: # (sh cn.sh)
 	
-Then we will find a new directory `cn` and one or more `rdf.*.dat` files in it. Then move `csro.sh` into the `cn` directory and execute it, i.e.,
+[//]: # (Then we will find a new directory `cn` and one or more `rdf.*.dat` files in it. Then move `csro.sh` into the `cn` directory and execute it, i.e.,)
 
-	move csro.sh cn/
-	cd cn/
-	sh csro.sh
+[//]: # (	move csro.sh cn/)
+[//]: # (	cd cn/)
+[//]: # (	sh csro.sh)
 	
-Then we will find a file named `csro.a1.dat`, which is what we need. The 2nd to 7th numbers in that file are &alpha;\_MoMo, &alpha;\_MoNb, &alpha;\_MoTa, &alpha;\_NbNb, &alpha;\_NbTa, and &alpha;\_TaTa, respectively. These are WC parameters.
+[//]: # (Then we will find a file named `csro.a1.dat`, which is what we need. The 2nd to 7th numbers in that file are &alpha;\_MoMo, &alpha;\_MoNb, &alpha;\_MoTa, &alpha;\_NbNb, &alpha;\_NbTa, and &alpha;\_TaTa, respectively. These are WC parameters.)
 
 #### Density functional theory
 
