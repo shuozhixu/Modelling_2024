@@ -168,7 +168,7 @@ Once it is finished, we will find a file `gsfe_ori`, which should contain 101 li
 
 Then run `sh gsfe_curve.in` in the terminal to generate a new file `gsfe`.
 
-Note: we have calculated only a single GSFE curve here. [A previous paper](http://dx.doi.org/10.1016/j.intermet.2020.106844) found that multiple GSFE curves need to be calculated to obtain a good mean GSFE curve, if the cross-sectional area within the shift plane is small, which it is in our case.
+Note: we have calculated only a single GSFE curve here. [A previous paper](http://dx.doi.org/10.1016/j.intermet.2020.106844) found that multiple GSFE curves need to be calculated to obtain a good mean GSFE curve.
 
 To obtain other GSFE curves on other shift planes, please change the last integer (by default 1) in line 34 of `lmp_gsfe.in` to `2`, `3`, ..., `20`. Eventually, we will have 20 GSFE curves.
 
@@ -350,7 +350,7 @@ Note that the calculated elastic constants are in the [11-2]-[111]-[1-10] system
 
 In all calculations, use the same method for CoCrNi. Remember to modify the input files accordingly and use the appropriate potential.
 
-###### Lattice parameters
+##### Lattice parameters
 
 The initial trial lattice parameter is 3.135 Angstrom, but after running LAMMPS simulations, it might change. The new trial lattice parameter can be calculated by
 
@@ -365,6 +365,18 @@ where `lx`, `ly`, and `lz` can be found in the data file `data.MoNbTa_CSRO`, i.e
 In particular, when calculating the lattice parameter at 0 K, additionally change line 44 of `lmp_0K.in` to
 
 	variable lat_para equal (lx/(10*sqrt(6.))+ly/(46*sqrt(3.)/2.)+lz/(14*sqrt(2.)))/3.
+	
+##### GSFE
+
+Based on the file `lmp_gsfe.in` for CoCrNi, make the following changes:
+
+- line 13. Use the data file for MoNbTa
+- line 17. Use the potential file for MoNbTa
+- line 32. Use the lattice parameter for MoNbTa
+- line 35. Change the last part to `${tmp2}-1.+${latparam}/sqrt(2.)*(${d}-10)`
+- line 57. Change the last part to `(${latparam}*sqrt(3)/2)/${stepn}`
+
+Then iteratively change the value of `d` in line 34 to obtain 20 GSFE curves.
 
 #### WC parameter
 
