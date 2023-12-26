@@ -170,7 +170,7 @@ Then run `sh gsfe_curve.in` in the terminal to generate a new file `gsfe`.
 
 Note: we have calculated only a single GSFE curve here. [A previous paper](http://dx.doi.org/10.1016/j.intermet.2020.106844) found that multiple GSFE curves need to be calculated to obtain a good mean GSFE curve.
 
-To obtain other GSFE curves on other shift planes, please change the last integer (by default 1) in line 34 of `lmp_gsfe.in` to `2`, `3`, ..., `20`. Eventually, we will have 20 GSFE curves.
+To obtain other GSFE curves on other shift planes, please change the last integer (by default 1) in line 34 of `lmp_gsfe.in` to `2`, `3`, ..., `20`, respectively. And run 19 more simulations. Then we will have 20 GSFE curves.
 
 #### CoCrNi with CSRO
 
