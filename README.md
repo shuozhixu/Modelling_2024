@@ -33,7 +33,7 @@ To finish this project, at least three packages are needed.
 ) and [this page](https://docs.lammps.org/compute_born_matrix.html).
 - MC package. This is to generate materials with chemical short-range order at a given temperature. [This paper](http://dx.doi.org/10.1103/PhysRevB.85.184203) should be cited if one uses this package.
 
-Note: if we use sbatch files from [LAMMPSatOU](https://github.com/ANSHURAJ11/LAMMPSatOU), we may want to change the walltime (default: 12 hours) and/or number of cores (default: 16). For this project, we use
+Note: if we use the sbatch files from [LAMMPSatOU](https://github.com/ANSHURAJ11/LAMMPSatOU), we may want to change the walltime (default: 12 hours) and/or number of cores (default: 16). For this project, we use
 
 	#SBATCH --time=200:00:00
 	#SBATCH --ntasks=32
@@ -162,19 +162,25 @@ Since the elastic constants are in the [1-10]-[11-2]-[111] system, they should b
 
 Run the simulation with files `lmp_gsfe.in`, `data.CoCrNi_gsfe_random`, and `CoCrNi.lammps.eam`. The first file can be found in the directory `CoCrNi/gsfe/` in this GitHub repository.
 
-Once it is finished, we will find a file `gsfe_ori`, which should contain 3001 lines, with the first one being
+Once it is finished, we will find a file `gsfe_ori`, which should contain 101 lines, with the first one being
 
 	0 -374943.444563279
 
-Then run `sh gsfe_curve.in` in the terminal to generate a new file `gsfe`. Plot a curve using its first and second columns as the _x_ and _y_ axes, respectively. Bring it to our meeting for discussion.
+Then run `sh gsfe_curve.in` in the terminal to generate a new file `gsfe`.
+
+Note: we have calculated only a single GSFE curve here. [A previous paper](http://dx.doi.org/10.1016/j.intermet.2020.106844) found that multiple GSFE curves need to be calculated to obtain a good mean GSFE curve, if the cross-sectional area within the shift plane is small, which it is in our case.
+
+To obtain other GSFE curves on other shift planes, please change the last integer (by default 1) in line 34 of `lmp_gsfe.in` to `2`, `3`, ..., `20`. Eventually, we will have 20 GSFE curves.
 
 #### CoCrNi with CSRO
 
 Follow the procedures above, except that
 
 - Use the data file `data.CoCrNi_gsfe_350KMDMC` instead
-- Change the word `random` to `350KMDMC` in line 14 of the file `lmp_gsfe.in`
-- Change the number `3.5564` to `3.561` in line 51 of the file `lmp_gsfe.in`
+- Change the word `random` to `350KMDMC` in line 13 of the file `lmp_gsfe.in`
+- Change the number `3.5564` to `3.561` in line 32 of the file `lmp_gsfe.in`
+
+Similarly, we need to obtain 20 GSFE curves.
 
 ### Pure metal
 
@@ -295,9 +301,7 @@ Once all calculations are finished, generate the GSFE curve file `gsfe` by
 
 The USFE is the maximum GSFE value.
 
-Note: we have calculated only a single GSFE curve here. [A previous paper](http://dx.doi.org/10.1016/j.intermet.2020.106844) found that multiple GSFE curves need to be calculated to obtain a good mean USFE value, if the cross-sectional area within the shift plane is small, which it is in our case.
-
-To obtain other GSFE curves on other shift planes, please change the last number (by default `5`) at the end of line 12 of `build.sh` to `3`, `4`, `6`, and `7`, respectively. Then copy all necessary files into four directories: `gsfe-3`, `gsfe-4`, `gsfe-6`, and `gsfe-7`.
+So far, we have calculated only a single GSFE curve. To obtain other GSFE curves on other shift planes, please change the last number (by default `5`) at the end of line 12 of `build.sh` to `3`, `4`, `6`, and `7`, respectively. Then copy all necessary files into four directories: `gsfe-3`, `gsfe-4`, `gsfe-6`, and `gsfe-7`.
 
 In each directory, run `sh build.sh` and `sh run.sh`; then when all calculations are finished, run `sh gsfe_curve.sh`. That way, you will get four more GSFE curves, and hence four more USFE values. Calculate the mean USFF value based on the five USFE values and report the mean value in the paper.
 

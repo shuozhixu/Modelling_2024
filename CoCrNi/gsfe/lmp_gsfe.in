@@ -1,4 +1,4 @@
-#This is the file to calculate the <112> GSFE curve. Along this curve, there are 101*30 data points. orient [1-10] [11-2] [111], x, y, z
+#This is the file to calculate the <112> GSFE curve. Along this curve, there are 101 data points. orient [1-10] [11-2] [111], x, y, z
 
 #shell   mkdir      dump
 
@@ -23,15 +23,19 @@ neigh_modify    delay   10
 thermo          1000
 thermo_style    custom step etotal
 
-variable        tmp0 equal "zlo+6"      ##### 8>5.8799999999999999 (potential cutoff), variable
+variable        tmp0 equal "zlo+6"      ##### 6>5.8799999999999999 (potential cutoff), variable
 variable        zlo0 equal ${tmp0}
 variable        tmp1 equal "zhi-6"
 variable        zhi0 equal ${tmp1}
 variable        tmp2 equal "(zlo+zhi)/2"
-variable        zmid equal ${tmp2}
+
+variable        latparam equal 3.5564             #variable 
+
+variable        d equal 1
+variable        zmid equal ${tmp2}+${latparam}/sqrt(3.)*(${d}-10)
 
 region		upbound block INF INF INF INF ${zhi0} INF units box    
-region		lobound block INF INF INF INF INF ${zlo0} units box      
+region		lobound block INF INF INF INF INF ${zlo0} units box     
 
 group		upbound region upbound
 group		lobound region lobound
@@ -44,11 +48,9 @@ region		lower block INF INF INF INF INF ${zmid} units box      #variable
 group		top region upper
 group		bot region lower
 
-variable        Nslip equal 30                   #the number of periods
+variable        Nslip equal 1                   #the number of periods
 variable        stepn equal 100
 variable        stepm equal ${Nslip}*${stepn}+1
-
-variable        latparam equal 3.5564             #variable
 
 variable        area equal lx*ly
 
