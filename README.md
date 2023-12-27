@@ -192,9 +192,36 @@ Run the atomsk script, `atomsk_Ni.sh`, which can be found in `CoCrNi/ni/` in thi
 
 	sh atomsk_Ni.sh
 
-Then use the data file and the same potential file to calculate its lattice parameters and elastic constants at 0 K, 300 K, 600 K, 900 K, and 1200 K. Also calculate its GSFE at 0 K.
+Then use the data file and the same potential file to calculate its lattice parameters, elastic constants, and GSFE at 0 K, 300 K, 600 K, 900 K, and 1200 K. Remember to 
+
+#### Lattice parameter
 
 Note: The trial lattice parameter is 3.5564 Angstrom. When calculating the lattice parameter at 0 K, in line 44 of `lmp_0K.in`, change the three numbers 54, 63, and 45, to 30, 30, and 10, respectively. That is because different cell sizes are used here.
+
+#### GSFE
+
+For GSFE at 0 K, make the following two changes in the `lmp_gsfe.in` file
+
+- line 17. Delete `Co` and `Cr`
+- line 32. Use the correct lattice parameter for Ni at 0 K
+
+For GSFE at finite temperatures, make the following three changes to the `lmp_gsfe.in` file:
+
+- line 17. Delete `Co` and `Cr`
+- line 32. Use the correct lattice parameter for Ni at the specified temperature
+- add the following lines immediately before the first `displace_atoms` command (note: there are two of them):
+
+		variable        myTemp equal 300
+		neighbor        0.3     bin
+		neigh_modify    delay   10
+		thermo          1
+		velocity        all create ${myTemp} 1917
+		thermo_style    custom step lx ly lz
+		fix 1 all npt temp ${myTemp} ${myTemp} 0.1 iso 0. 0. 1.
+		run 10000
+		unfix 1
+
+	In the first line above, the default temperature is 300. Change it to 600, 900, and 1200, respectively, in the corresponding calculation.
 
 ## MoNbTa
 
