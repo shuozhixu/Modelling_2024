@@ -217,7 +217,7 @@ For GSFE at finite temperatures, make the following three changes to the `lmp_gs
 		thermo          1
 		velocity        all create ${myTemp} 1917
 		thermo_style    custom step lx ly lz
-		fix 1 all npt temp ${myTemp} ${myTemp} 0.1 iso 0. 0. 1.
+		fix 1 all npt temp ${myTemp} ${myTemp} 0.1 x 0. 0. 1. y 0. 0. 1.
 		run 10000
 		unfix 1
 
