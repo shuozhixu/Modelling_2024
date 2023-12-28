@@ -54,7 +54,7 @@ All data files are from [this paper](http://dx.doi.org/10.1016/j.actamat.2020.08
 
 Run the simulation with files `lmp_0K.in`, `min.CoCrNi_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
 
-Once it is finished, we will find a new file `a_E`. The first column is the ratio of the trial lattice parameter to 3.5564, the second column is the trial lattice parameter itself, in units of Angstrom, the thrid column is the cohesive energy, in units of eV. If we plot a curve with the second column as the _x_ axis and the third column as the _y_ axis, the curve should look like the ones in Figure 1(a) of [this paper](http://dx.doi.org/10.1016/j.commatsci.2021.110942).
+Once it is finished, we will find a new file `a_E`. The first column is the ratio of the trial lattice parameter to 3.5564, the second column is the trial lattice parameter itself, in units of Angstrom, and the third column is the cohesive energy, in units of eV. If we plot a curve with the second column as the _x_ axis and the third column as the _y_ axis, the curve should look like the ones in Figure 1(a) of [this paper](http://dx.doi.org/10.1016/j.commatsci.2021.110942).
 
 Then run `sh min.sh` to find out the trial lattice parameter corresponding to the lowest cohesive energy (i.e., the minimum on that curve), and that would be the actual lattice parameter. Specifically, we will see
 
@@ -100,7 +100,7 @@ Since the elastic constants are in the [1-10]-[11-2]-[111] system, they should b
 
 Run the simulation with files `lmp_300K.in`, `min.CoCrNi_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
 
-Once it is finished, go to the file `log.lammps` and find the first block of data that starts with a line `Step Lx Ly Lz`. The first column of the data block starts from 0, increasing in increment of 100, and stops at 10000.
+Once it is finished, go to the file `log.lammps` and find the first block of data that starts with a line `Step Lx Ly Lz`. The first column of the data block starts from 0, increasing in increments of 100, and stops at 10000.
 
 In fact, we will find that the first line of the block is
 
@@ -114,9 +114,9 @@ First, calculate the lattice parameter at the last step 10000, using
 
 	(Lx'/Lx + Ly'/Ly + Lz'/Lz)/3
 
-where Lx', Ly', and Lz' are taken at the step 10000, while Lx, Ly, and Lz are taken at step 0. Record the result.
+where Lx', Ly', and Lz' are taken at step 10000, while Lx, Ly, and Lz are taken at step 0. Record the result.
 
-Then repeat the equation above, but using Lx', Ly', and Lz' at steps 9900, 9800 , ..., and 9100, respectively. In total, we get ten lattice parameters. Calculate the mean of the ten numbers, and that is the ratio of the lattice parameter for random CoCrNi at 300 K to the trial lattice parameter, 3.5564 Angstrom.
+Then repeat the equation above, but using Lx', Ly', and Lz' at steps 9900, 9800, ..., and 9100, respectively. In total, we get ten lattice parameters. Calculate the mean of the ten numbers, and that is the ratio of the lattice parameter for random CoCrNi at 300 K to the trial lattice parameter, 3.5564 Angstrom.
 
 We will also find a newly generated file `data.relax`, which will be used later in elastic constants calculations.
 
@@ -237,7 +237,7 @@ In the data file, change the masses section to
 		2   92.90638000    # Nb
 		3   180.94788000   # Ta
 
-Lattice parameter, elastic constants, and GSFE of random MoNbTa have been calculated. They are summarized in the file `MoNbTa/random/data_random.txt` in this GitHub repository. Most results were based on the [EAM potential](http://dx.doi.org/10.1016/j.commatsci.2021.110942) while those at 0 K were also based on the [MTP](http://dx.doi.org/10.1038/s41524-023-01046-z).
+The lattice parameter, elastic constants, and GSFE of random MoNbTa have been calculated. They are summarized in the file `MoNbTa/random/data_random.txt` in this GitHub repository. Most results were based on the [EAM potential](http://dx.doi.org/10.1016/j.commatsci.2021.110942) while those at 0 K were also based on the [MTP](http://dx.doi.org/10.1038/s41524-023-01046-z).
 
 #### Warren-Cowley (WC) parameter
 
@@ -278,7 +278,7 @@ Second, submit the job by
 
 	sbatch vasp.batch
 
-Once the calculation is finished, open the file `CONTCAR` and record `lx`, `ly`, and `lz` which appear in the line 3, line 4, and line 5, respectively. The lattice parameter can be calculated by
+Once the calculation is finished, open the file `CONTCAR` and record `lx`, `ly`, and `lz` which appear in line 3, line 4, and line 5, respectively. The lattice parameter can be calculated by
 
 	(lx/sqrt(6)+ly/(sqrt(2)*6)+lz/sqrt(3))/3
 
@@ -338,7 +338,7 @@ In each directory, run `sh build.sh` and `sh run.sh`; then when all calculations
 
 ##### Semi-grand canonical ensemble
 
-The first step is to determine the chemical potential difference between Mo and Nb, and that between Mo and Ta, respectively. To this end, run Monte Carlo (MC) simulations in semi-grand canonical (SGC) ensemble using `lmp_sgc.in` and `CrMoNbTaVW_Xu2022.eam.alloy`.
+The first step is to determine the chemical potential difference between Mo and Nb, and that between Mo and Ta, respectively. To this end, run Monte Carlo (MC) simulations in a semi-grand canonical (SGC) ensemble using `lmp_sgc.in` and `CrMoNbTaVW_Xu2022.eam.alloy`.
 
 Once the simulation is finished, we will find a file `statistics.dat`, which should contain one line:
 
