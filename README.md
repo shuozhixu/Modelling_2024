@@ -33,6 +33,14 @@ To finish this project, at least three packages are needed.
 ) and [this page](https://docs.lammps.org/compute_born_matrix.html).
 - MC package. This is to generate materials with chemical short-range order at a given temperature. [This paper](http://dx.doi.org/10.1103/PhysRevB.85.184203) should be cited if one uses this package.
 
+To build LAMMPS with these three packages, use the file `lmp_mbecmc.sh`. First, cd to any directory on OSCER, e.g., \$HOME, then
+
+	sh lmp_mbecmc.sh
+
+Note that the second command in `lmp_mbecmc.sh` will load a module. If one cannot load it, try `module purge` first.
+
+Once the `sh` run is finished, we will find a file `lmp_mpi` in the `lammps_mbecmc/src` directory on OSCER. And that is the LAMMPS executable with MANYBODY, EXTRA-COMPUTE, and MC packages.
+
 Note: if we use the sbatch files from [LAMMPSatOU](https://github.com/ANSHURAJ11/LAMMPSatOU), we may want to change the walltime (default: 12 hours) and/or number of cores (default: 16). For this project, we use
 
 	#SBATCH --time=200:00:00
@@ -348,7 +356,7 @@ The first two numbers are the two energy differences we provided in lines 10 and
 
 ##### Variance constrained semi-grand canonical ensemble
 
-Once the two chemical potential differences are identified, change the two chemical energy differences in lines 10 and 11 in file `lmp_vcsgc.in` to the correct values. Then run the atomsk script, `atomsk_Mo.sh` to build a Mo structure named `data.Mo`.
+Once the two chemical potential differences are identified, change the two chemical potential differences in lines 10 and 11 in file `lmp_vcsgc.in` to the correct values. Then run the atomsk script, `atomsk_Mo.sh` to build a Mo structure named `data.Mo`.
 
 Next, make two changes to `data.Mo`:
 
