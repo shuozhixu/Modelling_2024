@@ -52,7 +52,7 @@ Four MPEAs will be considered.
 
 ## CoCrNi
 
-Note: All files for calculations can be found in the `CoCrNi` directory in this GitHub repository, except the data files which can be [here](https://drive.google.com/drive/folders/13xaI274U-xIsBN8h_TY_eohsXxedEwFE?usp=sharing). The reason is that the data files are too large for GitHub.
+Note: All files for calculations can be found in the `CoCrNi` directory in this GitHub repository, except the data files which can be found [here](https://drive.google.com/drive/folders/13xaI274U-xIsBN8h_TY_eohsXxedEwFE?usp=sharing). The reason is that the data files are too large for GitHub.
 
 All data files are from [this paper](http://dx.doi.org/10.1016/j.actamat.2020.08.044).
 
