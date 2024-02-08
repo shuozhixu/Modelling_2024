@@ -77,7 +77,7 @@ on the screen. Record these three numbers. These are for random CoCrNi.
 #### CoCrNi with CSRO
 
 The simulation requires files 
-`lmp_0K.in`, `min.CoCrNi_27nmx_27nmy_27nmz_350KMDMC.dat`, and `CoCrNi.lammps.eam`. Make one change in `lmp_lat.in`:
+`lmp_0K.in`, `min.CoCrNi_27nmx_27nmy_27nmz_350KMDMC.dat`, and `CoCrNi.lammps.eam`. Make one change in `lmp_0K.in`:
 
 - Line 10. Change the word `random` to `350KMDMC`, i.e., to match the new data file's name.
 
