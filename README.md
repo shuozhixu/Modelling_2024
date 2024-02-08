@@ -62,7 +62,11 @@ All data files are from [this paper](http://dx.doi.org/10.1016/j.actamat.2020.08
 
 Run the simulation with files `lmp_0K.in`, `min.CoCrNi_27nmx_27nmy_27nmz_random.dat`, and `CoCrNi.lammps.eam`.
 
-Once it is finished, we will find a new file `a_E`. The first column is the ratio of the trial lattice parameter to 3.5564, the second column is the trial lattice parameter itself, in units of Angstrom, and the third column is the cohesive energy, in units of eV. If we plot a curve with the second column as the _x_ axis and the third column as the _y_ axis, the curve should look like the ones in Figure 1(a) of [this paper](http://dx.doi.org/10.1016/j.commatsci.2021.110942).
+Once it is finished, we will find a new file `a_E`. Run the following script in the terminal
+
+	awk NF a_E > new_aE
+
+Then we will find a new file `new_aE`. The first column is the ratio of the trial lattice parameter to 3.5564, the second column is the trial lattice parameter itself, in units of Angstrom, and the third column is the cohesive energy, in units of eV. If we plot a curve with the second column as the _x_ axis and the third column as the _y_ axis, the curve should look like the ones in Figure 1(a) of [this paper](http://dx.doi.org/10.1016/j.commatsci.2021.110942).
 
 Then run `sh min.sh` to find out the trial lattice parameter corresponding to the lowest cohesive energy (i.e., the minimum on that curve), and that would be the actual lattice parameter. Specifically, we will see
 
@@ -77,7 +81,7 @@ The simulation requires files
 
 - Line 10. Change the word `random` to `350KMDMC`, i.e., to match the new data file's name.
 
-Run the simulation. Once it is finished, we will find a new file `a_E`. The first column is the ratio of the trial lattice parameter to 3.561; the other two columns have the same meaning as the random case. Repeat the remaining steps in the random case and record the three numbers for the CoCrNi with CSRO.
+Run the simulation. Once it is finished, run `awk NF a_E > new_aE` in the terminal to generate a file `new_aE`. The first column is the ratio of the trial lattice parameter to 3.561; the other two columns have the same meaning as the random case. Repeat the remaining steps in the random case and record the three numbers for the CoCrNi with CSRO.
 
 ### Elastic constants at 0 K
 
