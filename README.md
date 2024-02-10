@@ -81,7 +81,7 @@ The simulation requires files
 
 - Line 10. Change the word `random` to `350KMDMC`, i.e., to match the new data file's name.
 
-Run the simulation. Once it is finished, run `awk NF a_E > new_aE` in the terminal to generate a file `new_aE`. The first column is the ratio of the trial lattice parameter to 3.561; the other two columns have the same meaning as the random case. Repeat the remaining steps in the random case and record the three numbers for the CoCrNi with CSRO.
+Run the simulation. Once it is finished, run `awk NF a_E > new_aE` in the terminal to generate a file `new_aE`. The first column is the ratio of the trial lattice parameter to 3.561; the other two columns have the same meaning as the random case. Repeat the remaining steps in the random case and record the three numbers for CoCrNi with CSRO.
 
 ### Elastic constants at 0 K
 
