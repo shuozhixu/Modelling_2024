@@ -356,7 +356,7 @@ Once the simulation is finished, we will find a file `statistics.dat`, which sho
 
 	-0.021 0.32 0 0.0005  0.9995
 
-The first two numbers are the two energy differences we provided in lines 10 and 11 of `lmp_sgc.in`, while the last three numbers are the concentrations of Mo, Nb, and Ta, respectively. Since they are not close to equal-molar, modify the two numbers in lines 10 and 11 of `lmp_sgc.in`, and run the simulation again. We can make the modification in the same folder and a new line will be appended to `statistics.dat` once the new simulation is finished. Iteratively adjust the two numbers until the material is almost equal-molar. Note that it does not have to be exactly equal-molar. The procedure is similar to what is described in Section B.2 of [this paper](https://doi.org/10.1016/j.actamat.2019.12.031).
+The first two numbers are the two energy differences we provided in lines 10 and 11 of `lmp_sgc.in`, while the last three numbers are the concentrations of Mo, Nb, and Ta, respectively. Since they are not close to equal-molar, modify the two numbers in lines 10 and 11 of `lmp_sgc.in`, and run the simulation again. We can make the modification in the same folder and a new line will be appended to `statistics.dat` once the new simulation is finished. Therefore, no need to delete the file `statistics.dat` each time we submit a new job. Iteratively adjust the two numbers until the material is almost equal-molar. Note that it does not have to be exactly equal-molar. The procedure is similar to what is described in Section B.2 of [this paper](https://doi.org/10.1016/j.actamat.2019.12.031).
 
 ##### Variance constrained semi-grand canonical ensemble
 
