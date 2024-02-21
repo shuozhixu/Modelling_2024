@@ -31,7 +31,7 @@ To finish this project, at least three packages are needed.
 - MANYBODY package. This is to use the manybody potential such as the embedded-atom method potential.
 - EXTRA-COMPUTE package. This is to calculate the elastic constants at finite temperatures using the Born matrix method. To learn more, please visit [this page](https://docs.lammps.org/Howto_elastic.html
 ) and [this page](https://docs.lammps.org/compute_born_matrix.html).
-- MC package. This is to generate materials with chemical short-range order at a given temperature. [This paper](http://dx.doi.org/10.1103/PhysRevB.85.184203) should be cited if one uses this package.
+- MC package. This is to generate materials with chemical short-range order at a given temperature. [This paper](http://dx.doi.org/10.1103/PhysRevB.85.184203) and [this paper](https://doi.org/10.1103/PhysRevB.86.134204) should be cited if one uses this package.
 
 To build LAMMPS with these three packages, use the file `lmp_mbecmc.sh`. First, cd to any directory on OSCER, e.g., \$HOME, then
 
@@ -356,7 +356,7 @@ Once the simulation is finished, we will find a file `statistics.dat`, which sho
 
 	-0.021 0.32 0 0.0005  0.9995
 
-The first two numbers are the two chemical potential differences we provided in lines 10 and 11 of `lmp_sgc.in`, while the last three numbers are the concentrations of Mo, Nb, and Ta, respectively. Since they are not close to equal-molar, modify the two numbers in lines 10 and 11 of `lmp_sgc.in`, and run the simulation again. We can make the modification in the same folder and a new line will be appended to `statistics.dat` once the new simulation is finished. Therefore, no need to delete the file `statistics.dat` each time we submit a new job. Iteratively adjust the two numbers until the material is almost equal-molar. Note that it does not have to be exactly equal-molar. The procedure is similar to what is described in Section B.2 of [this paper](https://doi.org/10.1016/j.actamat.2019.12.031).
+The first two numbers are the two chemical potential differences we provided in lines 10 and 11 of `lmp_sgc.in`, while the last three numbers are the concentrations of Mo, Nb, and Ta, respectively. Since they are not close to equal-molar, modify the two numbers in lines 10 and 11 of `lmp_sgc.in`, and run the simulation again. We can make the modification in the same folder and a new line will be appended to `statistics.dat` once the new simulation is finished. Therefore, no need to delete the file `statistics.dat` each time we submit a new job. Iteratively adjust the two numbers until the material is almost equal-molar, meaning that the three concentrations should be between 3.18 and 3.48 simultaneously. The procedure is similar to what is described in Section B.2 of [this paper](https://doi.org/10.1016/j.actamat.2019.12.031).
 
 ##### Variance constrained semi-grand canonical ensemble
 
