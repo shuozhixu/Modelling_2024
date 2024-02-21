@@ -17,6 +17,7 @@ Please read the following journal articles to understand how the aforementioned 
 - Shuozhi Xu, Arjun S. Kulathuvayal, Liming Xiong, Yanqing Su, [Effects of ferromagnetism in ab initio calculations of basic structural parameters of Fe-A (A = Mo, Nb, Ta, V, or W) random binary alloys](http://dx.doi.org/10.1140/epjb/s10051-022-00431-9), Eur. Phys. J. B 95 (2022) 167
 - Rebecca A. Romero, Shuozhi Xu, Wu-Rong Jian, Irene J. Beyerlein, C.V. Ramana, [Atomistic calculations of the local slip resistances in four refractory multi-principal element alloys](http://dx.doi.org/10.1016/j.ijplas.2021.103157), Int. J. Plast. 149 (2022) 103157
 - Shuozhi Xu, Saeed Zare Chavoshi, Yanqing Su, [On calculations of basic structural parameters in multi-principal element alloys using small atomistic models](http://dx.doi.org/10.1016/j.commatsci.2021.110942), Comput. Mater. Sci. 202 (2022) 110942
+- Shuozhi Xu, Emily Hwang, Wu-Rong Jian, Yanqing Su, Irene J. Beyerlein, [Atomistic calculations of the generalized stacking fault energies in two refractory multi-principal element alloys](http://dx.doi.org/10.1016/j.intermet.2020.106844), Intermetallics 124 (2020) 106844
 
 \[Alloys with CSRO\]:
 
@@ -461,10 +462,8 @@ Following [this paper](http://dx.doi.org/10.1063/5.0116898), four levels of CSRO
 
 All materials were studied at 0 K only. Results are in `data_300KMDMC.txt`, `data_600KMDMC.txt`, and `data_900KMDMC.txt`.
 
-## References
+## Reference
 
 If you use any files from this GitHub repository, please cite
 
-- Shuozhi Xu, Wu-Rong Jian, Irene J. Beyerlein, [Ideal simple shear strengths of two HfNbTaTi-based quinary refractory multi-principal element alloys](http://dx.doi.org/10.1063/5.0116898), APL Mater. 10 (2022) 111107
-- Wu-Rong Jian, Zhuocheng Xie, Shuozhi Xu, Yanqing Su, Xiaohu Yao, Irene J. Beyerlein, [Effects of lattice distortion and chemical short-range order on the mechanisms of deformation in medium entropy alloy CoCrNi](http://dx.doi.org/10.1016/j.actamat.2020.08.044), Acta Mater. 199 (2020) 352--369
-- Shuozhi Xu, Emily Hwang, Wu-Rong Jian, Yanqing Su, Irene J. Beyerlein, [Atomistic calculations of the generalized stacking fault energies in two refractory multi-principal element alloys](http://dx.doi.org/10.1016/j.intermet.2020.106844), Intermetallics 124 (2020) 106844
+- Subah Mubassira, Wu-Rong Jian, Shuozhi Xu, [Effects of chemical short‑range order and temperature on basic structure parameters and stacking fault energies in multi‑principal element alloys](http://dx.doi.org/10.1063/5.0116898), Modelling x (2024) y
