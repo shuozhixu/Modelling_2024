@@ -18,7 +18,7 @@ C11 = 307.17 GPa
 C12 = 159.46 GPa
 C44 = 77.51 GPa
 
-mean USFE = 879.023 mJ/m^2
+mean USFE = 865.43 mJ/m^2
 
 ------
 
