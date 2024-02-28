@@ -468,4 +468,4 @@ All materials were studied at 0 K only. Results are in `data_300KMDMC.txt`, `dat
 
 If you use any files from this GitHub repository, please cite
 
-- Subah Mubassira, Wu-Rong Jian, Shuozhi Xu, [Effects of chemical short‑range order and temperature on basic structure parameters and stacking fault energies in multi‑principal element alloys](http://dx.doi.org/10.1063/5.0116898), Modelling x (2024) y
+- Subah Mubassira, Wu-Rong Jian, Shuozhi Xu, [Effects of chemical short‑range order and temperature on basic structure parameters and stacking fault energies in multi‑principal element alloys](https://doi.org/10.3390/modelling5010019), Modelling 5 (2024) 352--366
