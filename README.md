@@ -21,6 +21,7 @@ Please read the following journal articles to understand how the aforementioned 
 
 \[Alloys with CSRO\]:
 
+- Hui Zheng, Lauren T.W. Fey, Xiang-Guo Li, Yong-Jie Hu, Liang Qi, Chi Chen, Shuozhi Xu, Irene J. Beyerlein, Shyue Ping Ong, [Multi-scale investigation of short-range order and dislocation glide in MoNbTi and TaNbTi multi-principal element alloys](http://dx.doi.org/10.1038/s41524-023-01046-z), npj Comput. Mater. 9 (2023) 89
 - Shuozhi Xu, Wu-Rong Jian, Irene J. Beyerlein, [Ideal simple shear strengths of two HfNbTaTi-based quinary refractory multi-principal element alloys](http://dx.doi.org/10.1063/5.0116898), APL Mater. 10 (2022) 111107
 
 ## LAMMPS
