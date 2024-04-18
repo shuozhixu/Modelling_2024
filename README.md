@@ -33,7 +33,7 @@ To finish this project, at least three packages are needed.
 - MANYBODY package. This is to use the manybody potential such as the embedded-atom method potential.
 - EXTRA-COMPUTE package. This is to calculate the elastic constants at finite temperatures using the Born matrix method. To learn more, please visit [this page](https://docs.lammps.org/Howto_elastic.html
 ) and [this page](https://docs.lammps.org/compute_born_matrix.html).
-- MC package. This is to generate materials with chemical short-range order at a given temperature. [This paper](http://dx.doi.org/10.1103/PhysRevB.85.184203) and [this paper](https://doi.org/10.1103/PhysRevB.86.134204) should be cited if one uses this package.
+- MC package. This is to generate materials with CSRO at a given temperature. [This paper](http://dx.doi.org/10.1103/PhysRevB.85.184203) and [this paper](https://doi.org/10.1103/PhysRevB.86.134204) should be cited if one uses this package.
 
 To build LAMMPS with these three packages, use the file `lmp_mbecmc.sh`. First, cd to any directory on OSCER, e.g., \$HOME, then
 
