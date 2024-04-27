@@ -46,7 +46,7 @@ Once the `sh` run is finished, we will find a file `lmp_mpi` in the `lammps_mbec
 Note: if we use the sbatch files from [LAMMPSatOU](https://github.com/ANSHURAJ11/LAMMPSatOU), we may want to change the walltime (default: 12 hours) and/or number of cores (default: 16). For this project, we use
 
 	#SBATCH --time=200:00:00
-	#SBATCH --ntasks=32
+	#SBATCH --ntasks-per-node=32
 
 Each time we run a new type of simulation, create a new directory.
 
