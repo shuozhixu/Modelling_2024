@@ -364,7 +364,7 @@ Note: either chemical potential difference should not have a too small absolute 
 
 ##### Variance constrained semi-grand canonical ensemble
 
-Once the two chemical potential differences are identified, change the two chemical potential differences in lines 10 and 11 in file `lmp_vcsgc.in` to the opposite of the correct values. Then run the atomsk script, `atomsk_Mo.sh` to build a Mo structure named `data.Mo`.
+Once the two chemical potential differences are identified, change the two chemical potential differences in lines 10 and 11 in file `lmp_vcsgc.in` to the opposite of the values identified earlier. Then run the atomsk script, `atomsk_Mo.sh` to build a Mo structure named `data.Mo`.
 
 Next, make two changes to `data.Mo`:
 
