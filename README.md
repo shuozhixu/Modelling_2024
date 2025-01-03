@@ -206,7 +206,7 @@ Run the atomsk script, `atomsk_Ni.sh`, which can be found in `CoCrNi/ni/` in thi
 
 	sh atomsk_Ni.sh
 
-Then use the data file and the same potential file to calculate its lattice parameters, elastic constants, and GSFE at 0 K, 300 K, 600 K, 900 K, and 1200 K. Remember to 
+Then use the data file and the same potential file to calculate its lattice parameters, elastic constants, and GSFE at 0 K, 300 K, 600 K, 900 K, and 1200 K.
 
 #### Lattice parameter
 
