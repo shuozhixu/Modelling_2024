@@ -130,7 +130,7 @@ First, calculate the lattice parameter at the last step 10000, using
 
 where Lx', Ly', and Lz' are taken at step 10000, while Lx, Ly, and Lz are taken at step 0. Record the result.
 
-Then repeat the calculation above, but using Lx', Ly', and Lz' at steps 9900, 9800, ..., and 9100, respectively. In total, we get ten numbers. Calculate the mean of the ten numbers, and that is the ratio of the lattice parameter for random CoCrNi at 300 K to the trial lattice parameter, 3.5564 Angstrom.
+Then repeat the calculation above, but using Lx', Ly', and Lz' at steps 9900, 9800, ..., and 9100, respectively. In total, we get ten numbers. Calculate the mean of the ten numbers, and that is the ratio of the lattice parameter for random CoCrNi at 300 K to the initial trial lattice parameter, 3.5564 Angstrom.
 
 We will also find a newly generated file `data.relax`, which will be used later in elastic constants calculations.
 
@@ -141,7 +141,7 @@ Repeat the steps above, except that
 - Use the data file `min.CoCrNi_27nmx_27nmy_27nmz_350KMDMC.dat` instead
 - Change the word `random` to `350KMDMC` in line 10 of the file `lmp_300K.in`
 
-Record the lattice parameter, which is for CoCrNi with CSRO. The trial lattice parameter is 3.561 Angstrom.
+Record the lattice parameter, which is for CoCrNi with CSRO. Note that the initial trial lattice parameter is 3.561 Angstrom, different from that for random CoCrNi.
 
 Again, the newly generated file `data.relax` will be used later in elastic constants calculations.
 
