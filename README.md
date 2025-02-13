@@ -174,7 +174,7 @@ Since the elastic constants are in the [1-10]-[11-2]-[111] system, they should b
 
 #### Random CoCrNi
 
-Run the simulation with files `lmp_gsfe.in`, `data.CoCrNi_gsfe_random`, and `CoCrNi.lammps.eam`. The first file can be found in the directory `CoCrNi/gsfe/` in this GitHub repository.
+Run the simulation with files `lmp_gsfe.in`, `data.CoCrNi_gsfe_random`, and `CoCrNi.lammps.eam`. The first file can be found in the directory `CoCrNi/gsfe/` in this GitHub repository. Make sure that line 32 of `lmp_gsfe.in` contains the correct lattice parameter of random CoCrNi at 0 K, in units of Angstrom.
 
 Once it is finished, we will find a file `gsfe_ori`, which should contain 101 lines, with the first one being
 
@@ -191,8 +191,8 @@ To obtain other GSFE curves on other shift planes, please change the last intege
 Follow the procedures above, except that
 
 - Use the data file `data.CoCrNi_gsfe_350KMDMC` instead
-- Change the word `random` to `350KMDMC` in line 13 of the file `lmp_gsfe.in`
-- Change the number `3.5564` to `3.561` in line 32 of the file `lmp_gsfe.in`
+- Change the word `random` to `350KMDMC` in line 13 of `lmp_gsfe.in`
+- Change the number in line 32 of `lmp_gsfe.in` to the correct lattice parameter of CoCrNi with CSRO at 0 K, in units of Angstrom.
 
 Similarly, we need to obtain 20 GSFE curves.
 
