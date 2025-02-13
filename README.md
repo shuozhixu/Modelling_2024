@@ -180,7 +180,7 @@ Once it is finished, we will find a file `gsfe_ori`, which should contain 101 li
 
 	0 -374943.444563279
 
-Then run `sh gsfe_curve.in` in the terminal to generate a new file `gsfe`.
+Then run `sh gsfe_curve.sh` in the terminal to generate a new file `gsfe`.
 
 Note: we have calculated only a single GSFE curve here. [A previous paper](http://dx.doi.org/10.1016/j.intermet.2020.106844) found that multiple GSFE curves need to be calculated to obtain a good mean GSFE curve.
 
